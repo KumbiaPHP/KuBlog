@@ -1,0 +1,221 @@
+/* Formatea los mensajes de Kumbia */
+.notice_message, .success_message, .warning_message, .error_message, .validation_message {
+	border: 1px solid;
+	margin: 1px 0;
+	padding:3px 10px 3px 50px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+}
+
+.error_message {
+	color: #D8000C;
+	background-color: #FFBABA;
+	background-image: url('../img/default/error.png');
+}
+
+.notice_message {
+	color: #00529B;
+	background-color: #BDE5F8;
+	background-image: url('../img/default/info.png');
+}
+
+.success_message {
+	color: #4F8A10;
+	background-color: #DFF2BF;
+	background-image:url('../img/default/valid.png');
+}
+
+.warning_message {
+	color: #9F6000;
+	background-color: #FEEFB3;
+	background-image: url('../img/default/warning.png');
+}
+
+.validation_message {
+	color: #D63301;
+	background-color: #FFCCBA;
+	background-image: url('../img/default/warning.png');
+}
+
+
+.w3c{border:1px solid #ccc;font-family:helvetica,arial,sans-serif;font-weight:bold;font-size:.85em;margin-bottom:0.3em;display:block;width:13em;}
+.w3c span{padding:0 .4em;background-color:#fff;color:#0c479d;}
+.w3c:link,.w3c:visited{background-color:#fc6;color:#000;text-decoration:none;}
+a.w3c:hover{border-color:#009;}
+
+.css {
+    background-color: #CCC;	
+}
+.css2 {
+    background-color: #ddd; 
+}
+
+.content {
+    padding: 10px;	
+}
+
+.content ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.content .alias {
+	color:green;
+    font-size:80%;
+}
+
+.content li {
+    list-style: none;
+    padding: 4px;
+    border-bottom: 1px dotted #BAD8F7;
+}
+
+.content li a {
+    color: #900;
+    font-size: 80%;
+    margin-right: 10px;
+}
+
+h3 {
+    font-size: 140%;
+    padding-bottom: 4px;
+    border-bottom: 1px dotted #ccc;
+    margin-bottom: 10px;
+    color: #003399;
+    padding: 10px 0px;
+    margin: 0px 10px;
+}
+
+.form
+{
+    border: 3px solid #EEE;
+    background:#F5F5F5;
+    padding:10px;
+    margin-left: auto; 
+    width: 50%; 
+    margin-right: auto; 
+    margin-top: 3em;
+    margin-bottom: 3em;
+
+}
+
+div .row {
+    width: 96%;
+    padding-left: 0;
+    padding: 0.3em;
+}
+
+.row .hint
+{
+    margin: 0;
+    padding: 0;
+    color: #999;
+}
+
+input[type="text"], input[type="password"],  select {
+    border:1px solid #BBBBBB;
+    padding:8px;
+    font-size: 0.9em;
+    width:100%;
+}
+
+label{
+    font: normal 1.5em tahoma, arial, helvetica, sans-serif;
+}
+
+input, label, select {
+    display: block;
+    font-weight: bold;
+}
+
+#minimalist
+{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 0.8em;
+    background: #fff;
+    margin: 1em auto;
+    border-collapse: collapse;
+    text-align: left;
+    min-width: 75%;
+}
+#minimalist th
+{
+    font-size: 14px;
+    font-weight: normal;
+    color: #039;
+    padding: 10px 8px;
+    border-bottom: 2px solid #6678b1;
+}
+#minimalist th.action{
+    text-align:center;
+}
+#minimalist td
+{
+    color: #669;
+    padding: 10px;
+    border-bottom: 1px solid #CCC;
+}
+#minimalist tbody tr:hover td
+{
+    color: #003399;
+}
+
+#minimalist a.edit,
+#minimalist a.del {
+    font-size: 100%;
+    text-decoration: none;
+    text-align: center;
+}
+
+#minimalist a.edit:hover,
+#minimalist a.del:hover {
+    color: #000;
+} 
+
+.paginator {
+    padding:10px;
+    margin-left: auto; 
+    width: 75%; 
+    margin: 0.5em auto; 
+    text-align: right;
+}
+.paginator a {
+    border: 1px solid #EEE;
+    padding:  4px 9px;
+    text-decoration: none;
+}
+
+.paginator a:hover {
+    color: #fff;
+    background-color: #003399;
+}
+
+.tagEditor
+{
+	margin: 4px 0;
+	padding: 0;
+}
+
+.tagEditor li
+{
+	display: inline;
+	background-image: url(../img/minus_small.png);
+	background-color: #eef;
+	background-position: right center;
+	background-repeat: no-repeat;
+	list-style-type: none;
+	padding: 0 18px 0 6px;
+	margin: 0 4px;	
+	cursor: pointer;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.tagEditor li:hover
+{
+	background-color: #eee;
+}
+
+img{
+	border: none;
+}

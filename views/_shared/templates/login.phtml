@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv='Content-type' content='text/html; charset=utf-8' />
+  <title>ADMIN</title>
+  <?php echo stylesheet_link_tag('login') ?>
+  <?php echo stylesheet_link_tags(); ?>
+</head>
+<body>
+    <form method="post">
+    <div class="content">
+            <div class="rows-left">
+                <label>Ingresar</label>
+            </div>
+            
+            <div class="rows-left">
+                <label style="color: red"><?php echo $error_msj ?></label>
+            </div>
+
+            <div class="rows-left">
+                    <label>
+                        Usuario
+                        <?php echo text_field_tag('txt_login'); ?>
+                    </label>
+            </div>
+        
+            <div class="rows-left">
+                    <label>
+                        Clave
+                        <?php echo password_field_tag('txt_password'); ?>
+                    </label>
+            </div>
+            
+            <div class="rows-left">
+                    <?php echo submit_tag('Iniciar »'); ?><?php //echo link_to('recuperar_clave/', 'Recuperar Clave')?>
+            </div>
+            
+        <input type="hidden" name='mode' value='auth_login' />
+    </div>
+    </form>
+    <ul>
+    <li id="quotes">
+        <h2><span>&nbsp;</span>Quotes on Twitter</h2> 
+        <ol> 
+            <li>&nbsp;</li> 
+        </ol> 
+    </li>
+    </ul>
+    <?php echo javascript_include_tag('jquery/quotes')?>
+</body>
+</html>
+
+    
+

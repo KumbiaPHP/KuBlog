@@ -1,0 +1,37 @@
+<?php echo Tag::css('jquery.treeview') ?>
+<?php echo Tag::js('jquery/jquery.treeview') ?>
+
+<div id="treecontrol">
+    <a title="Cierra El Arbol" href="#">Cerrar Todos</a> |
+	<a title="Cierra El Arbol" href="#">Expandir Todos</a> |
+	<a title="Cierra y Abre los elementos del Arbol" href="#">Toggle All</a>
+</div>
+
+<ul id="navigation">
+<?php foreach ($listPerfiles as $perfil):?>
+    <li><h2><?php echo $perfil->nombre ?></h2>
+        <ul>
+            <?php foreach(Load::model('controllers')->getMenu($perfil->id) as $item): ?>
+            <li><?php echo link_to(array('#', $item->Menus()->nombre, 'title'=> 'Controlador')) ?>
+                <ul>
+                    <?php foreach (Load::model('controllers')->getSubMenu($perfil->id, $item->Menus()->id) as $menu): ?>
+                        <li><strong><?php echo $menu->nombre ?></strong>  : <?php echo $menu->url ?>
+                            <?php echo link_to(array("admin/controllers/del/$menu->id/", 'Borrar')) ?> |
+                            <?php echo link_to(array("admin/controllers/edit/$menu->id/", 'Editar')) ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+    </li>
+<?php endforeach; ?>
+</ul>
+
+<script type='text/javascript'>
+	$("#navigation").treeview({
+		collapsed: true,
+        animated: 'fast',
+        control: "#treecontrol"
+	});
+</script>

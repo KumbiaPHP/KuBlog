@@ -1,0 +1,23 @@
+<h3>Menus</h3>
+<div class="content">
+    <?php echo View::content(); ?>
+
+    <table id="minimalist">
+        <thead><tr>
+                <th>Nombre</th>
+            	<th>Titulo</th>
+                <th colspan="2" class='action'>Acciones</th>
+        </tr></thead>
+        <tbody>
+            <? foreach( $listMenus->items as $item):?>
+ 				<tr>
+                  	<td><?php echo $item->nombre ?></td>
+                  	<td><?php echo $item->titulo ?></td>
+                  	<td><?php echo Html::imgLink("admin/menus/edit/$item->id/", 'edit.png', 'Editar', "title='Editar Registro' class='edit'")?></td>
+                    <td><?php echo js::link("admin/menus/del/$item->id/", '<img alt="Borra" src="/img/delete.png" title="Borrar Menu" />', '¿Esta seguro que desea eliminar este registro?', 'del') ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <?php View::partial('paginators/classic', false, array('page' => $listMenus ,'url' => 'admin/menus/index')); ?>
+</div>

@@ -1,0 +1,21 @@
+<?php Load::lib('auth') ?>
+<?php Load::lib('helpers'); ?>
+
+<div class="posts">
+    <?php View::content(); ?>
+	<h2><?php echo link_to("noticias/$post->url_title/", $post->title, "title: $post->title") ?></h2>
+    <p class='info'>
+        Enviado por <?php echo $post->author; ?> el <?php echo strftime("%e de %B del %Y", strtotime($post->creation_at));  ?>        
+    </p>
+    <?php echo $post->entry; ?>
+    <?php if(Auth::is_valid()): ?>
+      <div class="nav">
+            <?php echo link_to(array("admin/post/edit/$post->id/", 'Actualizar')); ?>
+      </div>
+    <?php endif; ?>
+    <?php View::partial('widgets/socialbar', false, array('url'=>"noticias/$post->url_title/", 'titulo'=>$post->title)) ?>
+    <p class="postmetadata">Etiquetas: <?php echo Helpers::getTags($post->id) ?></p>
+</div>
+
+<?php //View::partial('comment/list', false, array('comments'=>$comments, 'counComment'=> $countComment)) ?>
+<?php //View::partial('comment/create', false, array('postID'=>$post->id, 'postSlug'=>$post->url_title)) ?>

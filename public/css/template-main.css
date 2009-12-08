@@ -1,0 +1,127 @@
+/*body {
+    margin: 0;
+    padding: 0;
+    font: 10px normal Verdana, Arial, Helvetica, sans-serif;
+    background: #333;
+    color: #fff;
+    min-width:970px;
+}*/
+
+body {
+	background-color:#030201;
+	background-position:center top;
+	background-repeat:no-repeat;
+	color:#746F67;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:12px;
+	margin:0;
+	padding:0;	
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;	
+}
+.post p {
+    line-height: 1.6em;
+}
+#header h1 a{
+    font: 2em normal Georgia, 'Times New Roman', Times, serif;
+    color: #fff;
+    text-decoration: none;
+}
+#header h1 a span { color: #b8ddf0; }
+#header h1 small{
+    font: 10px normal Verdana, Arial, Helvetica, sans-serif;
+    text-transform:uppercase;
+    letter-spacing: 1.5em;
+    display: block;
+    color: #fff;
+}
+h2 {
+    color: #444;
+    font-size: 2em;
+    font-family: Georgia, "Times New Roman", Times, serifl;
+}
+
+.container {
+    width: 970px;
+    margin: 0 auto;
+}
+.fluid {
+    width: 100%;
+    float: left;
+}
+#header {
+    background: #86DC00;
+    padding: 40px 0;
+    border-bottom: solid 5px #000;
+}
+#features {
+    background: #1F2020;
+    border-top: 5px solid #EEEEEE;
+    font-size: 12px;
+}
+
+#another_row {
+    background: #888;
+    padding: 40px 0;
+    text-align: center;
+}
+#features .container div {
+    width: 33%;
+    padding: 40px 0;
+    float: left;
+}
+
+#content {
+    background: #fff;
+    color: #000;
+    padding: 30px 0;
+    font-size: 1.2em;
+}
+#footer {
+    padding: 15px 0;
+}
+
+.widget {
+	background-color:#1F2020;
+	/*background-image:url(../img/sidebar_bkg.jpg);*/
+	background-position:center top;
+	background-repeat:no-repeat;
+	padding:15px;
+	color: #B0B0AE;
+}
+
+.widget ul {
+	border-bottom:1px solid #303131;
+	margin:5px 0;
+	padding:0;
+}
+
+.widget ul li {
+	border-top:1px solid #303131;
+	display:block;
+	list-style-type:none;
+}
+
+.widget ul li a {
+    display:block;
+	padding:5px;
+}
+.widget ul li a:hover {
+    background-color: #1A1B1B;
+    color: #B0B0AE;
+}
+
+.widget h2 {
+	font-style: italic;
+	color:#9FC515;
+	font-family:Arial,Helvetica,Sans-Serif;
+	font-size:18px;
+	font-weight:bold;
+	padding-bottom:5px;
+	text-align:center;
+}

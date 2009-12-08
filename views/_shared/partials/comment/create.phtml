@@ -1,0 +1,28 @@
+<?
+/*
+ * Partials que recibe como parametro el ID del post
+ */
+?>
+<div id="comments">
+<h3>Dejanos tu Comentario</h3>
+    <?php //echo form_tag("comment/create/$postSlug/") ?>
+    <?php echo form_tag("newComment/$postSlug/", 'id: commentform') ?>
+        <p><label for="author"><small>Nombre (*) : </small></label>
+        <input type="text" name="author" id="author" value="<?php echo $comment_author; ?>" size="22" tabindex="1" /></p>
+
+        <p><label for="email"><small>Correo (*) :</small></label>
+        <input type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>" size="22" tabindex="2" /></p>
+
+        <p><label for="url"><small>URL :</small></label>
+        <input type="text" name="url" id="url" value="<?php echo $comment_author_url; ?>" size="22" tabindex="3" /></p>
+
+
+        <!--<p><small><strong>XHTML:</strong> You can use these tags: <code></code></small></p>-->
+
+        <p><label for="url"><small>Commentario (*) :</small></label>
+        <textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+        <p><input name="submit" type="image" src="/css/theme/images/submit.gif" id="submit" alt="Submit Comment" title="Submit Comment" tabindex="5" value="Submit Comment" />
+        </p>
+    <?php echo end_form_tag() ?>
+</div>

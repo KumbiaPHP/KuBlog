@@ -1,0 +1,20 @@
+<?php echo '<?xml version="1.0" encoding="UTF-8" ?>'?>
+<rss version="2.0">
+<channel>
+    <title>CaChi Blog</title>
+    <description>RSS del Blog de Deivinson Tejeda (CaChi)</description>
+    <language>es</language>
+    <copyright>Deivinson Tejeda (CaChi)</copyright>
+    <link>http://cachi.temiga.org/</link>
+    <?php foreach($lastPost as $post): ?>
+	<item>
+		<title><?php echo $post->title ?></title>
+		<link><?php echo 'http://'.$_SERVER['HTTP_HOST']."/noticias/$post->url_title/"?></link>
+		<guid><?php echo 'http://'.$_SERVER['HTTP_HOST']."/noticias/$post->url_title/"?></guid>
+		<description><![CDATA[<?php echo $post->summary ?>]]></description>
+		<author>deivinsontejeda@kumbiaphp.com (Deivinson Tejeda)</author>
+		<pubDate><?php echo date(DATE_RSS, strtotime($post->creation_at)) ?></pubDate>
+	</item>
+    <?endforeach; ?>
+</channel>
+</rss>

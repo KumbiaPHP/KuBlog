@@ -1,0 +1,27 @@
+<?php
+/**
+ * Partials que genera el menu de acuerdo al usuario autenticado
+ */
+Load::lib('auth');
+?>
+<script type="text/javascript">
+    var headID = document.getElementsByTagName("head")[0];
+    var cssNode = document.createElement('link');
+    cssNode.type = 'text/css';
+    cssNode.rel = 'stylesheet';
+    cssNode.href = '<?php echo URL_PATH ?>css/droppy.css';
+    cssNode.media = 'all';
+    headID.appendChild(cssNode);
+</script>
+<ul id='nav'>
+    <?php foreach(Load::model('controllers')->getMenu(Auth::get('perfiles_id')) as $item): ?>
+        <li>
+            <a href='#'><?php echo $item->Menus()->nombre ?></a>
+            <ul>
+            <?php foreach (Load::model('controllers')->getSubMenu(Auth::get('perfiles_id'), $item->Menus()->id) as $controlador): ?>
+                    <li><?php echo link_to(array("$controlador->url/", $controlador->nombre)) ?></li>
+            <?php endforeach; ?>
+            </ul>
+        </li>
+    <?php endforeach; ?>
+</ul>

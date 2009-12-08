@@ -1,0 +1,28 @@
+<h3>Lista de Noticias</h3>
+<div class="content">
+    <?php echo View::content(); ?>
+    <table id="minimalist">
+        <thead><tr>
+                <th>Titulo</th>
+            	<th>Creado</th>
+            	<th>Status</th>
+                <th colspan="2" class='action'>Acciones</th>
+        </tr></thead>
+        <tbody>
+            <? foreach( $listPosts->items as $item):?>
+ 				<tr>
+                  	<td><?php echo $item->title ?></td>
+                  	<td><?php echo $item->creation_at ?></td>
+                  	<?php if($item->status == Post::STATUS_PUBLISHED): ?>
+                  		<td><img alt="Artículo Publicado" src="/img/public.png" title="Artículo Publicado" /></td>
+                  	<?php else:?>
+                  		<td><img alt="Candidato Artículo Bueno" src="/img/candidaro-articulo-bueno.png" title="Candidato Artículo Bueno" /></td>
+                  	<?php endif;?>
+                  	<td><?php echo Html::imgLink("admin/post/edit/$item->id/", 'edit.png', 'Editar', "title='Editar Registro' class='edit'")?></td>
+                    <td><?php echo js::link("admin/post/del/$item->id/", '<img alt="Borra" src="/img/delete.png" title="Borrar Noticia" />', '¿Esta seguro que desea eliminar este registro?', 'del') ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <?php View::partial('paginators/classic', false, array('page' => $listPosts ,'url' => 'admin/post/index')); ?>
+</div>

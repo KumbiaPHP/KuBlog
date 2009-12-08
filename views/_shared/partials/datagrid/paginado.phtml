@@ -1,0 +1,30 @@
+<?php
+/**
+ * $fields array fields
+ * $list objetc ActiveRecord
+ * $paginator string type paginator
+ * $linkEdit string link
+ * $linkDel string link
+ * $url string for action paginator
+ */
+?>
+    <table id="minimalist">
+        <thead><tr>
+            <?php foreach( $fields  as $titulo => $valor): ?>
+                <th> <?php echo $titulo ?></th>
+            <?php endforeach; ?>
+                <th colspan="2" class='action'>Acciones</th>
+        </tr></thead>
+        <tbody>
+            <? foreach( $list->items as $item):
+                echo '<tr>';
+                    foreach($fields as  $campos): ?>
+                        <td><?php echo $item->$campos ?></td>
+                       <?php endforeach; ?>
+                        <td><?php Html::link($linkEdit."$item->id/", 'Editar', "title='Editar Registro' class='edit'") ?></td>
+                        <td><?php js::link($linkDel."$item->id/", 'Borra', '¿Esta seguro que desea eliminar este registro?', 'del') ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <?php View::partial('paginators/'. $paginator, false, array('page' => $list ,'url' => $url)); ?>

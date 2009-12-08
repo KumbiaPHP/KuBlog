@@ -1,0 +1,15 @@
+<div class="content">
+    <?php echo View::content(); ?>
+    <h3>Perfiles</h3>
+    <ul>
+    <?php foreach ($listPerfiles->items as $item) : ?>
+    <li>
+        <td><?php echo link_to(array("perfiles/del/$item->id/", 'Borrar')) ?></td>
+        <strong><?php echo $item->nombre ?></strong>
+    </li>
+    <?php endforeach; ?>
+    </ul>
+    
+    <?php if($listPerfiles->prev) echo link_to(array("perfiles/index/$listUsuarios->prev/", '<< Anterior |')); ?>
+    <?php if($listPerfiles->next) echo link_to(array("perfiles/index/$listUsuarios->next/", 'Próximo >>')); ?>
+</div>

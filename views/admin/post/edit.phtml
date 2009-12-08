@@ -1,0 +1,59 @@
+<h3>Editar Noticia</h3>
+<div class="form">
+    <?php View::content(); ?>
+    <?php echo form_tag("admin/post/edit/$post->id/") ?>
+        <div class="row">
+            <label for="post_title">Titulo</label>
+            <?php echo text_field_tag(array('post.title', 'size'=>'40')) ?>
+        </div>
+
+        <div class="row">
+            <label for="post_entry">Entrada</label>
+            <?php echo textarea_tag('post.entry', "style: width:100%")?>
+        </div>
+
+        <div class="row">
+            <label for="post_status">Estado</label>
+            <?php echo select_tag('post.status',
+                       array('0' => 'Borrador', '1' => 'Publicado', '2' => 'Archivado'), 'include_blank: Seleccione uno...') ?>
+        </div>
+
+        <div class="row">
+            <label for="post_author">Autor</label>
+            <?php echo text_field_tag(array('post.author', 'size'=>'40')) ?>
+        </div>
+
+        <div class="row">
+            <label for="tags">Etiquetas</label>
+            <?php
+                $value = array();
+                foreach ($tags as $tag) {
+                	$value[] = $tag->name;
+                }
+                $value = implode(',', $value);
+            ?>
+            <?php echo text_field_tag(array('tags', 'size'=>'100', 'value'=>$value)) ?>
+        </div>
+
+        <div class="row action">
+            <?php echo hidden_field_tag(array('post.id')) ?>
+            <?php echo hidden_field_tag(array('post.url_title')) ?>
+            <?php echo hidden_field_tag(array('post.creation_at')) ?>
+            <?php View::partial('widgets/tinymce') ?>
+            <?php echo submit_tag('Enviar') ?>
+        </div>
+    <?php echo end_form_tag() ?>
+</div>
+<?php echo Tag::js('jquery/jquery.tag.editor'); ?>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#tags").tagEditor(
+        {
+            confirmRemoval: true,
+			separator: ',',
+			completeOnSeparator: true,
+			completeOnBlur: true,
+			url: '<?php echo URL_PATH ?>admin/post/delTag/<? echo $post->id ?>/'
+        });
+    });
+</script>

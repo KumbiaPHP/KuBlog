@@ -1,0 +1,17 @@
+<?php
+/**
+ * Partials que muestra información del usuario autenticado
+ */
+Load::lib('auth');
+?>
+
+<div id='head-user'>
+    <h1>KumbiaPHP</h1><div id='title2'>web &amp; app Framework</div>        
+    <div class='alignright'>
+        <p id='info-user'>
+            <span class='info-user'>Hola, <?php echo Auth::get('login') ?></span>
+            <?php  echo link_to(array('admin/usuarios/cambiar_clave/', 'Cambiar Clave', 'title'=>'Cambio de Clave')) ?>
+            <?php echo link_to('logout/', 'Salir', 'title: Salir del Sistema') ?>
+        </p>
+    </div>
+</div>

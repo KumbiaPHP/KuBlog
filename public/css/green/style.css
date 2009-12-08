@@ -1,0 +1,279 @@
+body, div, h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dt, dd, img, form, fieldset, blockquote {
+    margin:0px; padding:0px; border:0px; 
+}
+
+body {
+	font-family: Arial, helvetica, sans-serif; 
+	font-size: 62.5%; 
+}
+
+pre {
+    background:#000000 none repeat scroll 0 0;
+    border:5px solid #FFFFFF;
+    color:#FFFFFF;
+    font-family:"Courier New",Courier,mono;
+    margin:0.3em;
+    padding:0.3em;
+}
+
+/* IE FIX */
+pre {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: expression(this.scrollWidth > this.offsetWidth ? 15 : 0);
+  width: 100%;
+}
+
+.container {
+	width: 900px; 
+	margin: 0 auto;
+}
+
+#top_bar {
+	overflow: hidden; 
+	background: #08413c url(images/bar_slice.jpg) top repeat-x; 
+	padding: 7px 0;  
+	border-bottom: 1px solid #7ab7b7; 
+}
+
+div#search {
+	float: left; 
+	width: 40%;
+}
+
+p#subscribe {
+	float: right; 
+	width: 60%; 
+	text-align: right; 
+}
+
+#top_bar p {
+	font-size: 1.2em; 
+	color: #ebf0e8;
+}
+
+#top_bar a {
+	font-size: 1.2em; 
+	color: #a5bf8d;
+}
+
+#header {
+	background: #01835f url(images/header_slice2.jpg) top repeat-x; 
+}
+
+#branding {
+	overflow: hidden; 
+	margin-bottom: 30px; 
+	position: relative; 
+}
+
+h1 {
+	font-family: "Myriad Pro", arial, sans-serif; 
+	color: #fff; 
+	font-weight: normal; 
+	font-size: 4.8em;  
+
+	padding-top: 25px; 
+
+}
+
+p.desc {
+	font-family: "Myriad Pro", arial, sans-serif; 
+	color: #fff; 
+	font-size: 2.4em; 
+	position: absolute; 
+	top: 50%;  left: 8em;  
+}
+
+#navigation {
+	background: #8ec196 url(images/nav_slice.jpg) top repeat-x; 
+	overflow: hidden; 
+	border-top: 1px solid #9cebda; 
+}
+
+ul#menu {
+	list-style: none;  
+}
+
+ul#menu li {
+	float: left; 	
+	padding-top: 11px; 
+	padding-bottom: 11px; 
+	padding-right: 45px; 
+}
+
+ul#menu li a {
+	font-size: 1.8em; 
+	text-decoration: none; 
+	color: #2b2b2b; 
+}
+
+ul#menu li a:hover { 
+	color: #fff; 
+}
+
+#content {
+	overflow: hidden; 
+}
+
+.posts {
+	float: left; 
+	width: 65%; 
+	margin-top: 28px; 
+	padding-right: 30px;
+	border-right: solid 1px #2b2b2b;
+}
+
+#sidebar {
+	float: right; 
+	padding: 25px 3%; 
+	width: 25%; 
+}
+
+#sidebar h3 {
+	font-size: 1.6em; 
+	color: #3c3f40;	
+	margin-top: 10px; 
+}
+
+#sidebar ul {
+	list-style: none; 
+	margin-left: 20px; 
+}
+
+#sidebar ul li {
+	font-size: 1.2em; 
+}
+
+#sidebar ul li a {
+	text-decoration: none;
+	color: #525254; 
+}
+
+.posts h2 {
+	margin: 7px 0 4px 0;  
+	font-size: normal; 
+}
+
+.posts h2, h3, h4, h5, h6 {
+	color: #3c3f40;
+	font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+}
+/*Tamana Fuente*/
+.posts p, .posts ul, .posts a, .posts pre {font-size: 1.5em; line-height: 1.5em;}
+
+.posts p {
+	padding: 7px 0; 
+}
+
+.posts small {
+	font-size: 1.3em;
+	color: #888;
+}
+
+.posts a {
+	color: #327800;
+	text-decoration: none;
+}
+
+.posts a:hover {
+	color: #8EC196;	
+}
+
+.posts blockquote {
+	margin: 0.7em 3em; 
+	border-left: 2px solid #327800; 
+	padding-left: 10px; 
+	font-style: italic;
+}
+
+.posts ol, ul, dl {
+	margin: 4px 0 4px 40px; 
+}
+
+.posts h3, h4, h5, h6 {
+	padding: 4px 0; 
+}
+
+.posts strong {
+	font-weight: bolder; 
+}
+
+.posts em {
+	font-style: italic; 
+}
+
+.posts code {
+	font-size: 1.2em; 
+}
+
+.posts h3 {
+	font-size: 1.8em;
+}
+
+.posts h4 {
+	font-size: 1.4em; 
+}
+
+#footer {
+	font-size: 1.2em; 
+	background: #093b2b url(images/footer_slice.jpg) top repeat-x; 
+	margin-top: 30px; 
+	padding-top: 20px; 
+	padding-bottom: 20px; 
+	overflow: hidden; 
+	border-top: 2px solid #1e956c; 
+
+}
+
+#footer p {
+	color:	#a5bf8d;}
+
+#footer h4 {
+	color:	#a5bf8d;
+	font-size: 1.4em;
+	padding-top: 0; 
+}
+
+#footer ul {
+	list-style: none; 
+	margin-left: 0; 
+}
+
+#footer ul li a {
+	text-decoration: none; 
+	color: #fff; 
+}
+
+#copyright {
+	float: right;
+	text-align: right;  
+	width: 20%; 
+}
+
+#links {
+	float: left; 
+	width: 40%; 
+
+}
+
+#feeds {
+	float: left; 
+	width: 40%; 
+}
+
+.posts .paginator {
+    padding:10px;
+    margin-left: auto; 
+    margin: 0.5em auto; 
+    text-align: center;
+}
+.posts .paginator a {
+    border: 1px solid #EEE;
+    padding:  4px 9px;
+}
+
+.posts .paginator a:hover {
+    color: #fff;
+    background-color: #327800;
+}

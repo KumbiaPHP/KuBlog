@@ -1,0 +1,12 @@
+<?php //View::helpers('html'); ?>
+<ul>
+	<li>
+        <h2>Noticias Recientes</h2>
+		<ul>
+            <?php foreach (Load::model('post')->getLast() as $post): ?>
+			<li><?php echo Html::link("noticias/$post->url_title/", $post->title, "title= \"$post->title\"")  ?></li>
+        	<?php endforeach; ?>
+    	</ul>
+	</li>                
+</ul>
+    
