@@ -3,9 +3,8 @@
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title><?php echo $pageTitle ?></title>
-    <?php echo stylesheet_link_tag('theme/style') ?>
-    <?php echo stylesheet_link_tags(); ?>
-    <?php //View::helpers('html', 'form'); ?>
+    <?php Tag::css('theme/style') ?>
+    <?php echo Tag::includeLinks() ?> 
 </head>
 
 <body>

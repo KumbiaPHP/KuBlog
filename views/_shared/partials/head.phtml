@@ -10,8 +10,8 @@ Load::lib('auth');
     <div class='alignright'>
         <p id='info-user'>
             <span class='info-user'>Hola, <?php echo Auth::get('login') ?></span>
-            <?php  echo link_to(array('admin/usuarios/cambiar_clave/', 'Cambiar Clave', 'title'=>'Cambio de Clave')) ?>
-            <?php echo link_to('logout/', 'Salir', 'title: Salir del Sistema') ?>
+            <?php  echo Html::link('admin/usuarios/cambiar_clave/', 'Cambiar Clave', "title='Cambio de Clave'"); ?>
+            <?php echo Html::link('logout/', 'Salir', "title='Salir del Sistema'") ?>
         </p>
     </div>
 </div>

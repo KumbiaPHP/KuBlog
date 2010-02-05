@@ -12,12 +12,12 @@
     <li><h2><?php echo $perfil->nombre ?></h2>
         <ul>
             <?php foreach(Load::model('controllers')->getMenu($perfil->id) as $item): ?>
-            <li><?php echo link_to(array('#', $item->Menus()->nombre, 'title'=> 'Controlador')) ?>
+            <li><?php echo Html::link('#', $item->Menus()->nombre, "title='Controlador'") ?>
                 <ul>
                     <?php foreach (Load::model('controllers')->getSubMenu($perfil->id, $item->Menus()->id) as $menu): ?>
                         <li><strong><?php echo $menu->nombre ?></strong>  : <?php echo $menu->url ?>
-                            <?php echo link_to(array("admin/controllers/del/$menu->id/", 'Borrar')) ?> |
-                            <?php echo link_to(array("admin/controllers/edit/$menu->id/", 'Editar')) ?>
+                            <?php echo Html::link("admin/controllers/del/$menu->id/", 'Borrar') ?> |
+                            <?php echo Html::link("admin/controllers/edit/$menu->id/", 'Editar') ?>
                         </li>
                     <?php endforeach; ?>
                 </ul>

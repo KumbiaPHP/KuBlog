@@ -6,7 +6,7 @@ Load::lib('helpers');
 ?>
 <div class="posts">
 <?php foreach ($entries->items as $entry): ?>
-    <h2><?php echo link_to("noticias/$entry->url_title/", $entry->title, "title: $entry->title") ?></h2>
+    <h2><?php echo Html::link("noticias/$entry->url_title/", $entry->title, "title='$entry->title'") ?></h2>
     <p class='info'>Enviado por <?php echo $entry->author; ?> el <?php echo strftime("%e de %B del %Y", strtotime($entry->creation_at));  ?></p>
     <?php echo $entry->summary;?>
     <p class="postmetadata">Etiquetas: <?php echo Helpers::getTags($entry->id) ?></p>
@@ -14,8 +14,8 @@ Load::lib('helpers');
 <div class="space"></div>
 <div class="navigation">
 	<div class="alignleft">
-	    <?php if($entries->prev) echo link_to(array("page/$entries->prev/", '<span class="older">Noticias Recientes</span>')); ?></div>
+	    <?php if($entries->prev) echo Html::link("page/$entries->prev/", '<span class="older">Noticias Recientes</span>'); ?></div>
     <div class="alignright">
-        <?php if($entries->next) echo link_to(array("page/$entries->next/", '<span class="newer">Noticias Anteriores</span>')); ?></div>
+        <?php if($entries->next) echo Html::link("page/$entries->next/", '<span class="newer">Noticias Anteriores</span>'); ?></div>
 </div>
 </div><!-- end posts -->

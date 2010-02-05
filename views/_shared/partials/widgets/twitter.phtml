@@ -10,18 +10,6 @@
  */
 function tweet_filter ($ret)
 {
-    //Filtra contenidos del tweet (para links, #tags y @respuestas
-    /*$salida = substr_replace($tweet, '', 0, 0); // El +2 es refiere a el simbolo ':' y el espacio en blanco que le sigue.		
-    //Agregamos links a los http
-    //$salida = preg_replace('/(http|https|mailto|irc|ssh|ftp):\/\/(.*?)\/([\w\.\/\&\=\?\-\,\:\;\#\_\~\%\+]*)/', '<a href="$0" target="_blank">$0</a>', $salida);
-    $salida = preg_replace("#((http|https|ftp|irc|ssh|mailto)://(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie", "'<a href=\"$1\" target=\"_blank\">$1</a>'",$salida);
-    
-    //Agregamos links a los @
-    $salida = preg_replace('/\B@([_a-zA-Z0-9-]+)/', '<a href="http://twitter.com/$1" target="_blank" title="$1">@$1</a>', $salida);
-    //Agregamos links a los #
-    $salida = preg_replace('/\B#([_a-zA-Z0-9-]+)/', '<a href="http://search.twitter.com/search?q=$1" target="_blank" title="$1">#$1</a>', $salida);
-    return $salida;*/
-    //$salida = substr_replace($tweet, '', 0, 0);
     $ret = preg_replace("#(^|[\n ])([\w]+?://[\w]+[^ \"\n\r\t< ]*)#", "\\1<a href=\"\\2\">\\2</a>", $ret);
     $ret = preg_replace("#(^|[\n ])((www|ftp)\.[^ \"\t\n\r< ]*)#", "\\1<a href=\"http://\\2\">\\2</a>", $ret);
     $ret = preg_replace("/@(\w+)/", "<a href=\"http://www.twitter.com/\\1\">@\\1</a>", $ret);

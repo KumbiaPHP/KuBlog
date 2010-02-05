@@ -19,7 +19,7 @@ Load::lib('auth');
             <a href='#'><?php echo $item->Menus()->nombre ?></a>
             <ul>
             <?php foreach (Load::model('controllers')->getSubMenu(Auth::get('perfiles_id'), $item->Menus()->id) as $controlador): ?>
-                    <li><?php echo link_to(array("$controlador->url/", $controlador->nombre)) ?></li>
+                    <li><?php echo Html::link("$controlador->url/", $controlador->nombre) ?></li>
             <?php endforeach; ?>
             </ul>
         </li>

@@ -43,7 +43,7 @@ define('APP', basename(APP_PATH));
  * CORE_PATH:
  * - Ruta al directorio que contiene el núcleo de Kumbia (por defecto la ruta al directorio core/kumbia)
  **/
-define('CORE_PATH', dirname(APP_PATH) . '/core/');
+define('CORE_PATH','/home/cachi/kumbiaphp/bazaar/1.0/core/');
 
 /**
  * Define el PUBLIC_PATH
