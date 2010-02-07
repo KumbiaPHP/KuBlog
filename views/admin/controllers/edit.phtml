@@ -30,13 +30,13 @@
 
         <div class="row">
             <label for='controllers_url'>URL</label>
-            <?php Form::text('controllers.url');//echo text_field_tag(array('controllers.url')) ?>
+            <?php Form::text('controllers.url'); ?>
             <div class='hint'>Ej: module/controller/action</div>
         </div>
 
         <div class="row">
             <label for='controllers_nombre'>Nombre a Mostrar</label>
-            <?php Form::text('controllers.nombre'); //echo text_field_tag(array('controllers.nombre')) ?>
+            <?php Form::text('controllers.nombre'); ?>
         </div>
 
         <div class="row">
@@ -47,8 +47,8 @@
         </div>
 
         <div class="row action">
-            <?php Form::hidden('controllers.id');//echo hidden_field_tag(array('controllers.id')) ?>
-            <?php Form::submit('Actualizar');//echo submit_tag('Actualizar') ?>
+            <?php Form::hidden('controllers.id'); ?>
+            <?php Form::submit('Actualizar'); ?>
         </div>
     </div>
-    <?php Form::close();//echo end_form_tag() ?>
+    <?php echo Form::close(); ?>

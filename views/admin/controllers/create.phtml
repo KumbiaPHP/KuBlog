@@ -40,38 +40,37 @@
     <div class="form">
         <div class="row">
             <label for="controllers_perfiles_id">Perfil</label>
-            <?php echo select_tag(array('controllers.perfiles_id',
-                                            $perfiles, 'option' => 'nombre',
-                                            'include_blank' => 'Seleccione...')) ?>
+            <?php echo Form::dbSelect('controllers.perfiles_id',
+                                       $perfiles, 'nombre',
+                                       'Seleccione...') ?>
         </div>
 
         <div class="row">
             <label for='controllers_menu_id'>Menú</label>
-            <?php echo select_tag(array('controllers.menu_id',
-                                            $menus, 'option' => 'nombre',
-                                            'include_blank' => 'Seleccione...')) ?>
+            <?php echo Form::dbSelect('controllers.menu_id',
+                                       $menus, 'nombre',
+                                       'Seleccione...') ?>
         </div>
 
         <div class="row">
             <label for='controllers_url'>URL</label>
-            <?php echo text_field_tag(array('controllers.url')) ?>
+            <?php echo Form::text('controllers.url') ?>
             <div class='hint'>Ej: module/controller/action</div>
         </div>
 
         <div class="row">
             <label for='controllers_nombre'>Nombre a Mostrar</label>
-            <?php echo text_field_tag(array('controllers.nombre')) ?>
+            <?php echo Form::text('controllers.nombre') ?>
         </div>
 
         <div class="row">
             <label for='controllers_status'>Estado</label>
-            <?php echo select_tag(array('controllers.status',
-                                            array('A'=>'Activo','D'=>'Desactivado'),
-                                            'include_blank' => 'Seleccione...'))?>
+            <?php echo Form::select('controllers.status',
+                                    array('A'=>'Activo','D'=>'Desactivado'))?>
         </div>
 
 	    <div class="row action">
-            <?php echo submit_tag('Enviar') ?>
+            <?php echo Form::submit('Enviar') ?>
         </div>
     </div>
-    <?php Form::close(); //echo end_form_tag() ?>
+    <?php Form::close(); ?>

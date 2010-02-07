@@ -1,6 +1,6 @@
 <h3>Lista de Noticias</h3>
 <div class="content">
-    <?php echo View::content(); ?>
+    <?php View::content(); ?>
     <table id="minimalist">
         <thead><tr>
                 <th>Titulo</th>
@@ -18,7 +18,7 @@
                   	<?php else:?>
                   		<td><img alt="Candidato Artículo Bueno" src="/img/candidaro-articulo-bueno.png" title="Candidato Artículo Bueno" /></td>
                   	<?php endif;?>
-                  	<td><?php echo Html::imgLink("admin/post/edit/$item->id/", 'edit.png', 'Editar', "title='Editar Registro' class='edit'")?></td>
+                  	<td><?php echo Html::link("admin/post/edit/$item->id/", Html::img('edit.png'), "title='Editar Registro' class='edit'")?></td>
                     <td><?php echo js::link("admin/post/del/$item->id/", '<img alt="Borra" src="/img/delete.png" title="Borrar Noticia" />', '¿Esta seguro que desea eliminar este registro?', 'del') ?></td>
                 </tr>
             <?php endforeach; ?>
