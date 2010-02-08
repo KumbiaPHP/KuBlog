@@ -1,17 +1,17 @@
 <h3>Nuevo Menu</h3>
 <div class='form'>
-    <?php echo form_tag('admin/menus/create/') ?>
+    <?php echo Form::open('admin/menus/create/') ?>
     <?php View::content(); ?>
         <div class="row">
            <label>Nombre</label>
-           <?php echo text_field_tag(array('menus.nombre')) ?>
+           <?php echo Form::text('menus.nombre') ?>
         </div>
         <div class="row">
            <label>Titulo</label>
-           <?php echo text_field_tag(array('menus.titulo')) ?>
+           <?php echo Form::text('menus.titulo') ?>
         </div>
         <div class="row action"> 
-            <?php echo submit_tag('Agregar') ?>
+            <?php echo Form::submit('Agregar') ?>
         </div>
-    <?php echo end_form_tag() ?>
+    <?php echo Form::close(); ?>
 </div>

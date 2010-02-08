@@ -1,18 +1,18 @@
 <h3>Editar Menu</h3>
 <div class='form'>
-    <?php echo form_tag('admin/menus/edit/') ?>
+    <?php echo Form::open('admin/menus/edit/') ?>
     <?php View::content(); ?>
     	<div class="row">
     	   <label>Nombre</label>
-           <?php echo text_field_tag(array('menus.nombre')) ?>
+           <?php echo Form::text('menus.nombre') ?>
     	</div>
         <div class="row">
            <label>Titulo</label>
-           <?php echo text_field_tag(array('menus.titulo')) ?>
+           <?php echo Form::text('menus.titulo') ?>
         </div>
     	<div class="row action"> 
-            <?php echo hidden_field_tag(array('menus.id')) ?>
-            <?php echo submit_tag('Actualizar') ?>
+            <?php echo Form::hidden('menus.id') ?>
+            <?php echo Form::submit('Actualizar') ?>
     	</div>
-    <?php echo end_form_tag() ?>
+    <?php echo Form::close() ?>
 </div>
