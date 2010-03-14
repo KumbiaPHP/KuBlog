@@ -3,7 +3,7 @@
 /**
  * Cargando el Modelo
  */
-Load::model('menus');
+Load::models('menus');
 class ScaController extends ApplicationController
 {
     public $scaffold = 'kumbia';
