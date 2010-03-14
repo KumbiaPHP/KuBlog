@@ -27,7 +27,7 @@ define('START_TIME', microtime(1));
  *
  * APP_PATH:
  * - Ruta al directorio de la aplicación (por defecto la ruta al directorio app)
- * - Esta ruta se utiliza para cargar los archivos de la aplicacion
+ * - Esta ruta se utiliza para cargar los archivos de la aplicaciÃ³n
  **/
 define('APP_PATH', dirname(dirname(__FILE__)) . '/');
 
@@ -43,7 +43,7 @@ define('APP', basename(APP_PATH));
  * CORE_PATH:
  * - Ruta al directorio que contiene el núcleo de Kumbia (por defecto la ruta al directorio core/kumbia)
  **/
-define('CORE_PATH','/home/cachi/kumbiaphp/bazaar/1.0/core/');
+define('CORE_PATH', '/home/cachi/kumbiaphp/bazaar/1.0/core/');
 
 /**
  * Define el PUBLIC_PATH
@@ -54,30 +54,15 @@ define('CORE_PATH','/home/cachi/kumbiaphp/bazaar/1.0/core/');
  *   cliente (con el navegador web) y es relativa al DOCUMENT_ROOT del servidor web
  **/
 if ($_SERVER['QUERY_STRING']) {
-    define('PUBLIC_PATH', substr(urldecode($_SERVER['REQUEST_URI']), 0, - strlen($_SERVER['QUERY_STRING']) + 5));
+    define('PUBLIC_PATH', substr(urldecode($_SERVER['REQUEST_URI']), 0, - strlen($_SERVER['QUERY_STRING']) + 6));
 } else {
     define('PUBLIC_PATH', $_SERVER['REQUEST_URI']);
 }
 
 /**
- * Define el URL_PATH
- *
- * URL_PATH:
- * - Path utilizado para generar correctamente la url para acceder los controladores y acciones
- * - Este path puede modificarse para poder utilizar KumbiaPHP sin mod_rewrite.
- *
- *   Considerando que tu aplicacion se encuentre en /var/www/app
- *     Ejemplo:  define('URL_PATH', '/app/index.php?url=')
- *
- *   Para este caso falta tambien definir el PUBLIC_PATH como:
- *     Ejemplo: define('PUBLIC_PATH', '/app/public/')   
- **/
-define('URL_PATH', PUBLIC_PATH);
-
-/**
  * Obtiene la url
  **/
-$url = isset($_GET['url']) ? $_GET['url'] : '/';
+$url = isset($_GET['_url']) ? $_GET['_url'] : '/';
 
 /**
  * Carga el gestor de arranque

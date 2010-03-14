@@ -27,7 +27,7 @@ class MenusController extends ApplicationController
 
     public function create()
     {
-    	if($this->has_post('menus')){
+    	if(Request::hasPost('menus')){
     	    $menu = new Menus($this->post('menus'));
     	    if(!$menu->save()){
     	        $this->menus = $this->post('menus');
@@ -43,14 +43,15 @@ class MenusController extends ApplicationController
             $this->menus = $this->Menus->find($id);
     	}
         //se verifica si se ha enviado el formulario (submit)
-        if($this->has_post('menus')){
+        if(Request::hasPost('menus')){
             $menu = new Menus($this->post('menus'));
             if(!$menu->update()){
                 Flash::error('Falló Operación');
                 //se hacen persistente los datos en el formulario
                 $this->menus = $this->post('menus');
             } else {
-                Router::route_to('action: index', 'id: 1');
+                //enrutando al index para listar los menus
+                Router::redirect('admin/menus/');
             }
         }
 
@@ -71,6 +72,6 @@ class MenusController extends ApplicationController
             }
         }
         //enrutando al index para listar los menus
-        Router::route_to('action: index', 'id: 1');
+        Router::redirect('admin/menus/');
     }
 }

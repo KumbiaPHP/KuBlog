@@ -13,10 +13,8 @@ class TestCaptchaController extends ApplicationController
     function index2 ()
     {
         $this->template = null;
-        $this->select = $this->Menus->db_select();
+        //$this->select = $this->Menus->db_select();
         $this->nullify('error_captcha', 'success_captcha');
-        var_dump($_POST);
-        echo $this->has_post('hola.text');
         if($this->has_post('captcha')){
             if (Captcha::check($this->post('captcha')) == false) {
                 //codigo incorrecto - error mensaje

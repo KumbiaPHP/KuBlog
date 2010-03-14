@@ -13,13 +13,16 @@
  *
  * @author Deivinson Tejeda <deivinsontejeda@gmail.com>
  */
+/**
+ * Carga de Modelos
+ */
+Load::models('post' , 'posts_tags' , 'tags');
+/**
+ * Gestiona la parte administrativa de las noticias
+ */
 class PostController extends ApplicationController
 {
-    /**
-     * Carga de Modelos
-     * @var $models
-     */
-    public $models = array('post' , 'posts_tags' , 'tags');
+
     /**
      * Lista los Post/Noticia
      * @param $page
@@ -28,7 +31,8 @@ class PostController extends ApplicationController
     public function index ($page = 1)
     {
         $this->pageTitle = 'Lista de Noticias';
-        $this->listPosts = $this->Post->getAllPost($page);
+        $posts = new Post();
+        $this->listPosts = $posts->getAllPost($page);
     }
     /**
      * Edita un Post/Noticia
@@ -37,19 +41,22 @@ class PostController extends ApplicationController
      */
     public function edit ($id = null)
     {
+        $post = new Post();
         //se verifica si se ha enviado el formulario (submit)
-        if ($this->has_post('post')) {
-            if (! $this->Post->update_from_request('post')) {
+        if (Input::hasPost('post')) {
+            if (! $post->update_from_request('post')) {
                 Flash::error('Falló Operación');
             } else {
-                $this->PostsTags->addTagsPost($this->post('tags'), $this->Post->id);
+                $postsTags = new PostsTags();
+                $postsTags->addTagsPost(Input::post('tags'), $post->id);
             }
         }
         if ($id != null) {
             //Aplicando la autocarga de objeto, para comenzar la edición
-            $this->post = $this->Post->find($id);
+            $this->post = $post->find($id);
             $this->pageTitle = 'Editando la Noticia - ' . $this->post->title;
-            $this->tags = $this->Tags->getTagByPost($this->post->id);
+            $tags = new Tags();
+            $this->tags = $tags->getTagByPost($this->post->id);
         }
     }
     /**
@@ -59,9 +66,10 @@ class PostController extends ApplicationController
      */
     public function delTag ($postID = null)
     {
-        $this->render(null, null);
-        $this->PostsTags->delTagByPost($postID, $this->post('name'));
-        echo $this->post('name');
+        View::select(NULL, NULL);
+        $postsTags = new PostsTags();
+        $postsTags->delTagByPost($postID, Input::post('name'));
+        echo Input::post('name');
     }
     /**
      * Crea un nuevo Post
@@ -69,7 +77,7 @@ class PostController extends ApplicationController
      */
     public function create ()
     {
-        if ($this->has_post('post')) {
+        if (Input::hasPost('post')) {
             if (! $this->Post->create($this->post('post'))) {
                 $this->post = $this->post('post');
                 Flash::error('Falló la Operación');
@@ -86,7 +94,7 @@ class PostController extends ApplicationController
      */
     public function del ($id = null)
     {
-        $this->render(null);
+        View::select(NULL);
         if ($id) {
             //Buscando el Objeto a Borrar
             $post = $this->Post->find($id);
@@ -118,8 +126,8 @@ class PostController extends ApplicationController
      */
     public function before_filter ()
     {
-        if ($this->is_ajax()) {
-            $this->set_response('view');
+        if (Input::isAjax()) {
+            View::response('view');
         }
     }
 }

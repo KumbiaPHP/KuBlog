@@ -7,21 +7,24 @@
  * @category Kumbia
  * @package Controller
  **/
+// @see Controller antiguo por compatibilidad
+//require_once CORE_PATH . 'kumbia/controller-deprecated.php';
+//@see Controller nuevo controller
+require_once CORE_PATH . 'kumbia/controller.php';
+
 class ApplicationController extends Controller
 {
     public $pageTitle = 'CaChi - Un poco de todo';
-    public $template = 'theme';
     public function initialize ()
     {
         View::template('theme');
         if (Router::get('module') == 'admin') {
             Load::lib('SdAuth');
             if (SdAuth::isLogged()) {
-                //$this->template = 'admin';
                 View::template('admin');
             } else {
                 $this->error_msj = SdAuth::getError();
-                $this->render(null, 'login2');
+                View::select(NULL, 'login2');
                 return false;
             }
             
@@ -32,7 +35,7 @@ class ApplicationController extends Controller
     {
         Load::lib('SdAuth');
         SdAuth::logout();
-        $this->render(null, 'login2');
-        $this->redirect('');
+        View::select(NULL, 'login2');
+        Router::redirect('');
     }
 }

@@ -1,19 +1,19 @@
 <h3>Cambio de Clave</h3>
 <?php View::helpers('form'); ?>
     <?php View::content(); ?>
-    <?php Form::open('admin/usuarios/cambiar_clave/'); ?>
+    <?php echo Form::open('admin/usuarios/cambiar_clave/'); ?>
     <div class="form">
         <div class="row">
             <label for='usuario_passold'>Clave Actual</label>
-            <?php Form::pass('usuario.passold');?>
+            <?php echo Form::pass('usuario.passold');?>
         </div>
         
         <div class="row">
             <label for='usuario_passnew'>Clave Nueva</label>
-            <?php Form::pass('usuario.passnew');?>
+            <?php echo Form::pass('usuario.passnew');?>
         </div>
         <div class="row action">
-            <?php Form::submit('Cambiar'); ?>
+            <?php echo Form::submit('Cambiar'); ?>
         </div>
     </div>
     <?php Form::close(); ?>

@@ -15,9 +15,9 @@ $model= get_class($results)// no hara falta?>
             <?php foreach ($item->fields as $field) : ?>
             <td><?php eh($item->$field)?></td>
             <?php endforeach?>
-			<td><a href="<?php echo URL_PATH.$controller_name?>/ver/<?echo $item->id?>">Ver</a> |
-			<a href="<?php echo URL_PATH.$controller_name?>/editar/<?echo $item->id?>">Editar</a> |
-			<a title="¿Seguro que quiere borrar?" href="<?php echo URL_PATH.$controller_name?>/borrar/<?echo $item->id?>" onclick="return confirm('¿Está seguro?');">Borrar</a>
+			<td><a href="<?php echo PUBLIC_PATH.$controller_name?>/ver/<?echo $item->id?>">Ver</a> |
+			<a href="<?php echo PUBLIC_PATH.$controller_name?>/editar/<?echo $item->id?>">Editar</a> |
+			<a title="¿Seguro que quiere borrar?" href="<?php echo PUBLIC_PATH.$controller_name?>/borrar/<?echo $item->id?>" onclick="return confirm('¿Está seguro?');">Borrar</a>
 			</td>
         </tr>
     <?php endforeach?>
@@ -26,7 +26,7 @@ $model= get_class($results)// no hara falta?>
 <?php View::partial('paginators/digg', false, array('page' => $results ,'url' => "$controller_name/index")); ?>
 </div>
 <div class="links">
-	<a href="<?php echo URL_PATH.$controller_name?>/create/">Crear registro</a>
+	<a href="<?php echo PUBLIC_PATH.$controller_name?>/create/">Crear registro</a>
 	
 </div>
 </div>

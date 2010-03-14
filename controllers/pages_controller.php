@@ -32,15 +32,15 @@ class PagesController extends ApplicationController
 	{
         $this->limit_params = false;
 		// Si es AJAX enviar solo el view
-		if ($this->is_ajax()) {
-		  $this->set_response('view');
+		if (Input::isAjax()) {
+		  View::response('view');
 		}
     }
 	
 	final function show()
 	{
 		$page = implode('/', $this->parameters);
-		$this->render($page);
+		View::select($page);
 	}
 	/**
 	 * Genera Img Captcha
@@ -49,7 +49,7 @@ class PagesController extends ApplicationController
     public function captcha ()
     {
         Load::lib('captcha/captcha');
-        $this->render(null, null);
+        View::select(NULL, NULL);
         $captcha = new Captcha();
         $captcha->run();
     }

@@ -1,86 +1,84 @@
 <?php
 // RECORDAR CAMBIAR EL DEL BUILDER SI CAMBIAMOS ESTE
-
-
-class ScaController extends ApplicationController {
-	
-	public $scaffold = 'kumbia';
-	public $template = 'default';
-	public $models = 'menus';
-	
-	/**
+/**
+ * Cargando el Modelo
+ */
+Load::model('menus');
+class ScaController extends ApplicationController
+{
+    public $scaffold = 'kumbia';
+    public $template = 'default';
+    /**
      * Obtiene una lista para paginar los menus
      */
-    public function index($page=1) 
+    public function index ($page = 1)
     {
-        $this->results = $this->Menus->paginate("page: $page", 'order: id desc');
+        $menu = new Menus();
+        $this->results = $menu->paginate("page: $page", 'order: id desc');
     }
- 
     /**
      * Crea un Registro
      */
     public function create ()
     {
-   
-        if($this->has_post('menus')){
-           
-            $obj = new Menus($this->post('menus'));
+        if (Input::hasPost('menus')) {
+            $menu = new Menus(Input::post('menus'));
             //En caso que falle la operación de guardar
-            if(!$obj->save()){
+            if (! $menu->save()) {
                 Flash::error('Falló Operación');
                 //se hacen persistente los datos en el formulario
-                $this->result = $obj;//->post('articulos');
+                $this->result = $menu; //->post('articulos');
                 return;
-				
             }
-			return Router::redirect("$this->controller_name/");
+            return Router::redirect("$this->controller_name/");
         }
-		// Solo es necesario para el autoForm
-		$this->result = new Menus();
+        // Solo es necesario para el autoForm
+        $this->result = new Menus();
     }
- 
     /**
      * Edita un Registro
      */
-    public function editar($id = null)
+    public function editar ($id = null)
     {
-		$this->render('create');
-    	if($id != null){
-    	    //Aplicando la autocarga de objeto, para comenzar la edición
-            $this->result = $this->Menus->find($id);
-    	}
+        $menu = new Menus();
+        View::select('create');
+        if ($id != null) {
+            //Aplicando la autocarga de objeto, para comenzar la edición
+            $this->result = $menu->find($id);
+        }
         //se verifica si se ha enviado el formulario (submit)
-        if($this->has_post('menus')){
- 
-            if(!$this->Menus->update($this->post('menus'))){
+        if (Input::hasPost('menus')) {
+            if (! $menu->update(Input::post('menus'))) {
                 Flash::error('Falló Operación');
                 //se hacen persistente los datos en el formulario
-                $this->result = $this->post('menus');
+                $this->result = Input::post('menus');
             } else {
-               return Router::redirect("$this->controller_name/");
+                return Router::redirect("$this->controller_name/");
             }
         }
     }
- 
     /**
      * Eliminar un menu
      * 
      * @param int $id
      */
-    public function borrar($id = null)
+    public function borrar ($id = NULL)
     {
+        View::select(NULL, NULL);
         if ($id) {
-            if (!$this->Menus->delete($id)) {
+            $menu = new Menus();
+            if (! $menu->delete($id)) {
                 Flash::error('Falló Operación');
             }
         }
         //enrutando al index para listar los articulos
-		Router::redirect("$this->controller_name/");
-		$this->render(null,null);
+        return Router::redirect("$this->controller_name/");
     }
-	public function ver($id = null) {
-       if($id){
-		$this->result = $this->Menus->find_first($id);
-       } 
-	}
+    public function ver ($id = NULL)
+    {
+        if ($id) {
+            $menu = new Menus();
+            $this->result = $menu->find_first($id);
+        }
+    }
 }

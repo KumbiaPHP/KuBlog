@@ -40,7 +40,7 @@ class ControllersController extends ApplicationController
          * el cual aplica la autocarga de objeto para guardar los
          * datos enviado por POST utilizando autocarga de objeto
          */
-        if ($this->has_post('controllers')) {
+        if (Request::hasPost('controllers')) {
             /**
              * se le pasa al modelo por constructor los datos del form y ActiveRecord recoge esos datos
              * y los asocia al campo correspondiente siempre y cuando se utilice la convención
@@ -74,28 +74,32 @@ class ControllersController extends ApplicationController
             }
         }
         //enrutando al index para listar los menus
-        return Router::route_to('action: index', 'id: 1');
+        return Router::redirect('admin/controllers/');
     }
     /**
      * Edita un registro
      *
      * @param int $id
      */
-    public function edit ($id = null)
+    public function edit ($id = NULL)
     {
+        //Datos del select
+        $this->perfiles = $this->Perfiles->find('order: nombre');
+        $this->menus = $this->Menus->find('order: nombre');
+        
         if ($id != null) {
             //Aplicando la autocarga de objeto, para comenzar la edición
             $this->controllers = $this->Controllers->find($id);
         }
         //se verifica si se ha enviado el formulario (submit)
-        if($this->has_post('controllers')){
+        if(Request::hasPost('controllers')){
             $controller = new Controllers($this->post('controllers'));
             if(!$controller->update()){
                 Flash::error('Falló Operación');
                 //se hacen persistente los datos en el formulario
                 $this->controllers = $this->post('controllers');
             } else {
-                return Router::route_to('action: index', 'id: 1');
+                return Router::redirect('admin/controllers/');
             }
         }
     }

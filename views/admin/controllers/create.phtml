@@ -36,7 +36,7 @@
 ?>
 <h3>Nuevo Controlador</h3>
     <?php View::content(); ?>
-    <?php Form::open('admin/controllers/create/') ?>
+    <?php echo Form::open('admin/controllers/create/') ?>
     <div class="form">
         <div class="row">
             <label for="controllers_perfiles_id">Perfil</label>
@@ -73,4 +73,4 @@
             <?php echo Form::submit('Enviar') ?>
         </div>
     </div>
-    <?php Form::close(); ?>
+    <?php echo Form::close(); ?>
