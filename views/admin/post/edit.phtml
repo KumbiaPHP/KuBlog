@@ -37,7 +37,7 @@
 
         <div class="row action">
             <?php echo Form::hidden('post.id') ?>
-            <?php echo Form::hidden('post.url_title') ?>
+            <?php echo Form::hidden('post.slug') ?>
             <?php echo Form::hidden('post.creation_at') ?>
             <?php View::partial('widgets/tinymce') ?>
             <?php echo Form::submit('Enviar') ?>
@@ -53,7 +53,7 @@
 			separator: ',',
 			completeOnSeparator: true,
 			completeOnBlur: true,
-			url: '<?php echo URL_PATH ?>admin/post/delTag/<? echo $post->id ?>/'
+			url: '<?php echo PUBLIC_PATH ?>admin/post/delTag/<? echo $post->id ?>/'
         });
     });
 </script>

@@ -1,3 +1,4 @@
+<?php header('Content-type: application/rss+xml');?>
 <?php echo '<?xml version="1.0" encoding="UTF-8" ?>'?>
 <rss version="2.0">
 <channel>
@@ -9,8 +10,8 @@
     <?php foreach($lastPost as $post): ?>
 	<item>
 		<title><?php echo $post->title ?></title>
-		<link><?php echo 'http://'.$_SERVER['HTTP_HOST']."/noticias/$post->url_title/"?></link>
-		<guid><?php echo 'http://'.$_SERVER['HTTP_HOST']."/noticias/$post->url_title/"?></guid>
+		<link><?php echo 'http://'.$_SERVER['HTTP_HOST']."/noticias/$post->slug/"?></link>
+		<guid><?php echo 'http://'.$_SERVER['HTTP_HOST']."/noticias/$post->slug/"?></guid>
 		<description><![CDATA[<?php echo $post->summary ?>]]></description>
 		<author>deivinsontejeda@kumbiaphp.com (Deivinson Tejeda)</author>
 		<pubDate><?php echo date(DATE_RSS, strtotime($post->creation_at)) ?></pubDate>

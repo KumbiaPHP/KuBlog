@@ -13,9 +13,10 @@
  *
  * @author Deivinson Tejeda <deivinsontejeda@gmail.com>
  */
+Load::models('post');
+//require_once APP_PATH.'models/post.php';
 class PostController extends ApplicationController
 {
-    public $models = array('post', 'comment');
     /**
      * Vista Principal muestra una lista de Noticias
      *
@@ -23,25 +24,24 @@ class PostController extends ApplicationController
      */
     public function index($page=1)
     {
-        $this->entries = $this->Post->getLastEntry($page);
+        $post = new Post();
+        $this->entries = $post->getLastEntry($page);
     }
     /**
      * Muestra un Post dado su Slug
      *
-     * @param string $url_title
+     * @param string $slug
      */
-    public function ver($url_title=NULL)
+    public function ver($slug=NULL)
     {
-    	if($url_title){
-    	    $this->post = $this->Post->getEntryBySlug($url_title);
-    	    $this->pageTitle = $this->post->title.' - Blog de CaChi';
+    	if(Input::is('GET') && $slug){
+    	    $post = new Post();
+    	    $this->post = $post->getEntryBySlug($slug);
+    	    $this->pageTitle = $post->title.' - Blog de CaChi';
     	    //Verificando q existan entradas
-    	    if($this->post==NULL){
+    	    if($this->post == NULL){
     	        $this->pageTitle = 'Ops! no se Encontraron Noticias - Blog de CaChi';
-                $this->render('no_entry');
-    	    } else {
-    	        $this->countComment = $this->Comment->countComment($this->post->id);//Conteo de los comentarios
-    	        $this->comments = $this->Comment->getCommentByPost($this->post->id);//Comentarios del Post
+                View::select('no_entry');
     	    }
     	} else {
     	    Router::route_to('action: index');
@@ -53,8 +53,9 @@ class PostController extends ApplicationController
      */
     public function ultimos()
     {
+        $post = new Post();
         $this->pageTitle = 'Últimas Noticias';
-        $this->lastPost = $this->Post->getLast();
+        $this->lastPost = $post->getLast();
     }
     /**
      * Realiza una busqueda
@@ -63,10 +64,11 @@ class PostController extends ApplicationController
     public function busqueda()
     {
         Load::lib('validate');
-        if($this->has_get('b') && Validate::isNull($this->get('b'))){
-            $this->b = $this->get('b');
+        if(Input::hasGet('b') && Validate::isNull(Input::get('b'))){
+            $this->b = Input::get('b');
+            $post = new Post();
             //Debug::getInstance()->dump($this->Post->search($this->b), 'Resultado');
-            $this->result = $this->Post->search($this->b);
+            $this->result = $post->search($this->b);
         }
     }
     /**
@@ -75,9 +77,9 @@ class PostController extends ApplicationController
      */
     public function rss()
     {
-        $this->set_response('view');
-        $this->lastPost = $this->Post->getLast();
-        header('Content-type: application/rss+xml');
+        View::response('view');
+        $post = new Post();
+        $this->lastPost = $post->getLast();
     }
     /**
      * Filtra lo post/noticias por tag

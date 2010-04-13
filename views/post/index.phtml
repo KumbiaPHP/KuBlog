@@ -6,7 +6,7 @@ Load::lib('helpers');
 ?>
 <div class="posts">
 <?php foreach ($entries->items as $entry): ?>
-    <h2><?php echo Html::link("noticias/$entry->url_title/", $entry->title, "title='$entry->title'") ?></h2>
+    <h2><?php echo Html::link("noticias/$entry->slug/", $entry->title, "title='$entry->title'") ?></h2>
     <p class='info'>Enviado por <?php echo $entry->author; ?> el <?php echo strftime("%e de %B del %Y", strtotime($entry->creation_at));  ?></p>
     <?php echo $entry->summary;?>
     <p class="postmetadata">Etiquetas: <?php echo Helpers::getTags($entry->id) ?></p>

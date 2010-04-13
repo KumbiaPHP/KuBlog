@@ -3,18 +3,17 @@
  <head>
   <meta http-equiv='Content-type' content='text/html; charset=utf-8' />
     <title><?php echo $pageTitle; ?></title>
-    <?php echo Tag::js('jquery/jquery-1.3.2.min') ?>
     <?php echo Tag::css('bienvenida'); ?>
     <?php echo Tag::css('style'); ?>
-    <?php //echo Tag::includeCss() ?>
+    <?php echo Tag::js('jquery/jquery-1.3.2.min') ?>
     <?php echo Html::includeCss();?>
 </head>
 <body>
 	<?php //View::partial('debug') ?>
     <?php View::partial('head') ?>
-    <?php View::partial('menu2'); ?>
+    <?php View::partial('menu'); ?>
     <?php View::content() ?>
-    <?php View::partial('kumbia/footer') ?>
+    <?php //View::partial('kumbia/footer') ?>
     <?php echo Tag::js('jquery/jquery.kumbiaphp'); ?>
 </body>
 </html>

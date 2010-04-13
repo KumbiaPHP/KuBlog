@@ -13,24 +13,25 @@
  *
  * @author Deivinson Tejeda <deivinsontejeda@gmail.com>
  */
+Load::models('menus');
 class MenusController extends ApplicationController
 {
-    public $models = array('menus');
     /**
      * Lista los menus...
      * @param int $page
      */
     public function index($page = 1)
     {
-    	$this->listMenus = $this->Menus->paginate("page: $page");
+        $menus = new Menus();
+    	$this->listMenus = $menus->paginate("page: $page");
     }
 
     public function create()
     {
-    	if(Request::hasPost('menus')){
+    	if(Input::hasPost('menus')){
     	    $menu = new Menus($this->post('menus'));
     	    if(!$menu->save()){
-    	        $this->menus = $this->post('menus');
+    	        $this->menus = $Input::post('menus');
     	        Flash::error('Falló la Operación');
     	    }
     	}

@@ -53,16 +53,19 @@ define('CORE_PATH', '/home/cachi/kumbiaphp/bazaar/1.0/core/');
  * - Esta ruta la utiliza Kumbia como base para generar las Urls para acceder de lado de
  *   cliente (con el navegador web) y es relativa al DOCUMENT_ROOT del servidor web
  **/
-if ($_SERVER['QUERY_STRING']) {
-    define('PUBLIC_PATH', substr(urldecode($_SERVER['REQUEST_URI']), 0, - strlen($_SERVER['QUERY_STRING']) + 6));
+/*if ($_SERVER['REQUEST_URI'] == '/') {
+    define('PUBLIC_PATH', '/');
+    //define('PUBLIC_PATH', substr(urldecode($_SERVER['REQUEST_URI']), 0, - strlen($_SERVER['QUERY_STRING'].$_SERVER['PATH_INFO'])));
 } else {
-    define('PUBLIC_PATH', $_SERVER['REQUEST_URI']);
-}
-
+    define('PUBLIC_PATH', substr(urldecode($_SERVER['REQUEST_URI']), 0, - strlen($_SERVER['QUERY_STRING'].$_SERVER['PATH_INFO'])+1));
+    //define('PUBLIC_PATH', $_SERVER['REQUEST_URI']);
+}*/
+define('PUBLIC_PATH', '/');
 /**
  * Obtiene la url
  **/
-$url = isset($_GET['_url']) ? $_GET['_url'] : '/';
+//$url = isset($_GET['_url']) ? $_GET['_url'] : '/';
+$url = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '/';
 
 /**
  * Carga el gestor de arranque

@@ -3,8 +3,7 @@
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title><?php echo $pageTitle ?></title>
-    <?php Tag::css('theme/style') ?>
-    <?php echo Html::includeCss() ?> 
+    <link media="screen" type="text/css" rel="stylesheet" href="/css/theme/style.css">
 </head>
 
 <body>
@@ -15,7 +14,7 @@
 		</div>
 
 		<div id="topsearch">
-	    <?php echo Form::open('post/busqueda', 'get', 'id="searchform"'); ?>
+	    <form action="/post/busqueda" method='get' 'id="searchform">
 			<input type="text" class="swap_value" id="s" name="b" value="" />
 			<input type="image" title="Search" alt="Search" id="go" src="/css/theme/images/go.gif" />
 		<?php echo Form::close() ?>
@@ -86,14 +85,6 @@
     </div>
 </div>
 <!-- <p><?php echo 'Tiempo: '.round((microtime(1)-START_TIME),4).' seg.'; echo ', Memoria Usada: '.number_format(memory_get_usage() / 1048576, 2).' MB';?></p> -->
-<!-- <script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-10749219-1");
-pageTracker._trackPageview();
-} catch(err) {}</script> -->
+<?php //View::partial('kumbia/auth')?>
 </body>
 </html>

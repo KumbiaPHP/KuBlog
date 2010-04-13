@@ -23,7 +23,7 @@ class Post extends ActiveRecord
     const STATUS_PUBLISHED=1;
     const STATUS_ARCHIVED=2;
 
-    public $url_title = '';
+    public $slug = '';
     /**
      * Obtiene las ultimas entradas (paginadas)
      *
@@ -38,6 +38,19 @@ class Post extends ActiveRecord
         					   "status=$status",
         					   "per_page: $per_page",
         					   'order: creation_at desc');
+    }
+    
+    public static function input($method, $data )
+    {
+        $post = new Post($data);
+        try {
+            $post->$method();
+            Input::delete('menus');
+            return $post;
+        } catch (Exception $e) {
+            Flash::error('Falló Operación');
+        }
+        return FALSE;
     }
 
     /**
@@ -59,7 +72,7 @@ class Post extends ActiveRecord
      */
     public function getEntryBySlug($slug)
     {
-    	return $this->find_first("url_title='$slug'");
+    	return $this->find_first("slug='$slug'");
     }
     /**
      * Obtiene los ultimos post
@@ -87,17 +100,40 @@ class Post extends ActiveRecord
 
     }
     /**
+     * Elimina la noticia
+     * @param int $id
+     */
+    public function del($id)
+    {
+        $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
+        //Buscando el Objeto a Borrar
+        $post = $this->find($id);
+        if ($post) {
+            if (! $post->delete()) {
+                Flash::error('Falló Operación');
+            } else {
+                require_once APP_PATH.'models/posts_tags.php';
+                $postsTags = new PostsTags();
+                //se eliminan los tags que tenia el Posts/Noticia
+                $postsTags->delete_all("post_id=$post->id");
+                Flash::success('Falló Operación');
+            }
+        } else {
+            Flash::error('No existe la Noticia');
+        }
+    }
+    /**
      * CallBack
      *
      */
     public function before_save()
     {
         Load::lib('Utils');
-        $this->url_title = Utils::slug($this->title);
+        $this->slug = Utils::slug($this->title);
         //verifica si se ha utilizado pagebreak
         if(preg_match('/<!-- pagebreak(.*?)?-->/', $this->entry, $matches)){
             $matches = explode($matches[0], $this->entry, 2);
-            $this->summary = Utils::balanceTags($matches[0]).'<a href="'.URL_PATH.'noticias/'.$this->url_title.'/" title="Sigue Leyendo">Sigue Leyendo...</a>';
+            $this->summary = Utils::balanceTags($matches[0]).'<a href="'.URL_PATH.'noticias/'.$this->slug.'/" title="Sigue Leyendo">Sigue Leyendo...</a>';
         } else {
             $this->summary = $this->entry;
         }
@@ -109,7 +145,7 @@ class Post extends ActiveRecord
     }
     public function after_update()
     {
-        //Cache::clean("post.ver.$this->url_title");
+        //Cache::clean("post.ver.$this->slug");
     }
     public function after_delete()
     {

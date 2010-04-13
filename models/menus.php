@@ -13,6 +13,6 @@
  *
  * @author Deivinson Tejeda <deivinsontejeda@gmail.com>
  */
-require_once APP_PATH.'active_record.php';
+//require_once APP_PATH.'active_record.php';
 class Menus extends ActiveRecord
 {}

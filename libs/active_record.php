@@ -10,10 +10,9 @@
  * @subpackage ActiveRecord
  */
 // Carga el active record 
-Load::coreLib('active_record_base');
-class ActiveRecord extends ActiveRecordBase {
-
-    
+Load::coreLib('kumbia_active_record');
+class ActiveRecord extends KumbiaActiveRecord 
+{
     public function after_save()
     {
         Flash::success('Operación Exitosa!');

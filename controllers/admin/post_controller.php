@@ -39,19 +39,18 @@ class PostController extends ApplicationController
      * @param $id
      * @return ResultSet
      */
-    public function edit ($id = null)
+    public function edit ($id = NULL)
     {
         $post = new Post();
         //se verifica si se ha enviado el formulario (submit)
         if (Input::hasPost('post')) {
-            if (! $post->update_from_request('post')) {
-                Flash::error('Falló Operación');
-            } else {
+            if($post = Post::input('update', Input::post('post'))){
                 $postsTags = new PostsTags();
                 $postsTags->addTagsPost(Input::post('tags'), $post->id);
+                return Router::redirect('admin/post/');
             }
         }
-        if ($id != null) {
+        if ($id != NULL) {
             //Aplicando la autocarga de objeto, para comenzar la edición
             $this->post = $post->find($id);
             $this->pageTitle = 'Editando la Noticia - ' . $this->post->title;
@@ -66,7 +65,7 @@ class PostController extends ApplicationController
      */
     public function delTag ($postID = null)
     {
-        View::select(NULL, NULL);
+        View::select(NULL);
         $postsTags = new PostsTags();
         $postsTags->delTagByPost($postID, Input::post('name'));
         echo Input::post('name');
@@ -78,13 +77,11 @@ class PostController extends ApplicationController
     public function create ()
     {
         if (Input::hasPost('post')) {
-            if (! $this->Post->create($this->post('post'))) {
-                $this->post = $this->post('post');
-                Flash::error('Falló la Operación');
-            } else {
-                $this->PostsTags->addTagsPost($this->post('tags'), $this->Post->id);
+            if($post = Post::input('create', Input::post('post'))){
+                $postsTags = new PostsTags();
+                $postsTags->addTagsPost(Input::post('tags'), $post->id);
+                return Router::redirect('admin/post/');
             }
-            return Router::redirect('admin/post/');
         }
     }
     /**
@@ -96,29 +93,10 @@ class PostController extends ApplicationController
     {
         View::select(NULL);
         if ($id) {
-            //Buscando el Objeto a Borrar
-            $post = $this->Post->find($id);
-            if ($post) {
-                //$post = $this->Post->find($id);
-                if (! $post->delete()) {
-                    Flash::error('Falló Operación');
-                } else {
-                    //se eliminan los tags que tenia el Posts/Noticia
-                    $this->PostsTags->delete_all("post_id=$post->id");
-                    Flash::success('Falló Operación');
-                }
-            } else {
-                Flash::error('No existe la Noticia');
-            }
+            $post = new Post();
+            $post->del($id);
         }
-        //redireccionando al index para listar las noticias
         return Router::redirect('admin/post/');
-    }
-    public function publicPost($id=null)
-    {
-        if($id){
-
-        }
     }
     /**
      * Corriendo filtro

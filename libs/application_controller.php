@@ -24,8 +24,8 @@ class ApplicationController extends Controller
                 View::template('admin');
             } else {
                 $this->error_msj = SdAuth::getError();
-                View::select(NULL, 'login2');
-                return false;
+                View::template('login2');
+                return FALSE;
             }
             
         }
@@ -35,7 +35,7 @@ class ApplicationController extends Controller
     {
         Load::lib('SdAuth');
         SdAuth::logout();
-        View::select(NULL, 'login2');
+        View::template('login2');
         Router::redirect('');
     }
 }

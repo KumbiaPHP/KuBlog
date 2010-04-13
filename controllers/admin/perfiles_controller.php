@@ -13,9 +13,9 @@
  *
  * @author Deivinson Tejeda <deivinsontejeda@gmail.com>
  */
+Load::models('perfiles');
 class PerfilesController extends ApplicationController
 {
-    public $models = array('perfiles');
     /**
      * Lista los perfiles
      *
@@ -23,7 +23,8 @@ class PerfilesController extends ApplicationController
      */
     final function index ($page = 1)
     {
-        $this->listPerfiles = $this->Perfiles->paginate("page: $page");
+        $perfiles = new Perfiles();
+        $this->listPerfiles = $perfiles->paginate("page: $page");
     }
     /**
      * Crea un perfil
@@ -31,7 +32,7 @@ class PerfilesController extends ApplicationController
      */
     final function create ()
     {
-        if ($this->has_post('perfiles')) {
+        if (Input::hasPost('perfiles')) {
             $perfil = new Perfiles($this->post('perfiles'));
             if (! $perfil->save()) {
                 Flash::error('Fallo Operación');
@@ -49,13 +50,14 @@ class PerfilesController extends ApplicationController
     final function del ($id = null)
     {
         if ($id) {
+            $perfiles = new Perfiles();
             //Buscando el Objeto a Borrar
-            $perfil = $this->Perfiles->find($id);
+            $perfil = $perfiles->find($id);
             if (! $perfil->delete()) {
                 Flash::error('Falló Operación');
             }
         }
         //enrutando al index para listar los menus
-        Router::route_to('action: index', 'id: 1');
+        Router::redirect('perfiles/');
     }
 }

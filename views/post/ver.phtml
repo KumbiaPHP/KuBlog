@@ -3,7 +3,7 @@
 
 <div class="posts">
     <?php View::content(); ?>
-	<h2><?php echo Html::link("noticias/$post->url_title/", $post->title, "title='$post->title'") ?></h2>
+	<h2><?php echo Html::link("noticias/$post->slug/", $post->title, "title='$post->title'") ?></h2>
     <p class='info'>
         Enviado por <?php echo $post->author; ?> el <?php echo strftime("%e de %B del %Y", strtotime($post->creation_at));  ?>        
     </p>
@@ -13,7 +13,7 @@
             <?php echo Html::link("admin/post/edit/$post->id/", 'Actualizar'); ?>
       </div>
     <?php endif; ?>
-    <?php View::partial('widgets/socialbar', false, array('url'=>"noticias/$post->url_title/", 'titulo'=>$post->title)) ?>
+    <?php View::partial('widgets/socialbar', false, array('url'=>"noticias/$post->slug/", 'titulo'=>$post->title)) ?>
     <p class="postmetadata">Etiquetas: <?php echo Helpers::getTags($post->id) ?></p>
 </div>
 

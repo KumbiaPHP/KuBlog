@@ -13,25 +13,25 @@
  *
  * @author Deivinson Tejeda <deivinsontejeda@gmail.com>
  */
+Load::models('tags');
 class TagsController extends ApplicationController
 {
-    public $models = array('tags');
 	/**
 	 * The default table name
 	 */
     public function index()
     {
-        //$this->render(null);
-    	$this->tags = $this->Tags->getAll();
+        $tags = new Tags();
+    	$this->tags = $tags->getAll();
     }
     /**
      * Elimina un tag
      *
      * @param string $id
      */
-    public function del($postID=null)
+    public function del($postID=NULL)
     {
-        $this->render(null, null);
-        echo $this->post('name');
+        View::select(NULL);
+        echo Input::post('name');
     }
 }
