@@ -1,7 +1,7 @@
 -- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
--- Server version	5.0.51a-24+lenny2
+-- Server version	5.0.51a-24+lenny3
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -13,11 +13,20 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+
 --
--- Definition of table `blog`.`comment`
+-- Create schema noticias
 --
 
-CREATE TABLE  `comment` (
+CREATE DATABASE IF NOT EXISTS noticias;
+USE noticias;
+
+--
+-- Definition of table `noticias`.`comment`
+--
+
+DROP TABLE IF EXISTS `noticias`.`comment`;
+CREATE TABLE  `noticias`.`comment` (
   `id` int(11) NOT NULL auto_increment,
   `content` text NOT NULL,
   `status` int(11) NOT NULL,
@@ -31,7 +40,7 @@ CREATE TABLE  `comment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `blog`.`comment`
+-- Dumping data for table `noticias`.`comment`
 --
 
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
@@ -41,10 +50,11 @@ UNLOCK TABLES;
 
 
 --
--- Definition of table `blog`.`controllers`
+-- Definition of table `noticias`.`controllers`
 --
 
-CREATE TABLE  `controllers` (
+DROP TABLE IF EXISTS `noticias`.`controllers`;
+CREATE TABLE  `noticias`.`controllers` (
   `id` int(10) NOT NULL auto_increment,
   `menu_id` int(10) NOT NULL,
   `nombre` varchar(50) NOT NULL,
@@ -57,12 +67,12 @@ CREATE TABLE  `controllers` (
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `blog`.`controllers`
+-- Dumping data for table `noticias`.`controllers`
 --
 
 /*!40000 ALTER TABLE `controllers` DISABLE KEYS */;
 LOCK TABLES `controllers` WRITE;
-INSERT INTO `controllers` VALUES  (16,5,'Listar',1,'A','admin/post'),
+INSERT INTO `noticias`.`controllers` VALUES  (16,5,'Listar',1,'A','admin/post'),
  (17,5,'Nueva',1,'A','admin/post/create'),
  (18,8,'Listar',1,'A','admin/tags');
 UNLOCK TABLES;
@@ -70,10 +80,11 @@ UNLOCK TABLES;
 
 
 --
--- Definition of table `blog`.`menus`
+-- Definition of table `noticias`.`menus`
 --
 
-CREATE TABLE  `menus` (
+DROP TABLE IF EXISTS `noticias`.`menus`;
+CREATE TABLE  `noticias`.`menus` (
   `id` int(10) NOT NULL auto_increment,
   `nombre` varchar(50) NOT NULL,
   `titulo` varchar(50) NOT NULL,
@@ -81,12 +92,12 @@ CREATE TABLE  `menus` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `blog`.`menus`
+-- Dumping data for table `noticias`.`menus`
 --
 
 /*!40000 ALTER TABLE `menus` DISABLE KEYS */;
 LOCK TABLES `menus` WRITE;
-INSERT INTO `menus` VALUES  (1,'Controladores','administra los Controladores'),
+INSERT INTO `noticias`.`menus` VALUES  (1,'Controladores','administra los Controladores'),
  (2,'Usuarios','Administra Usuarios'),
  (3,'Menus','Administra Menus'),
  (4,'Perfiles','Administra Perfiles'),
@@ -99,32 +110,34 @@ UNLOCK TABLES;
 
 
 --
--- Definition of table `blog`.`perfiles`
+-- Definition of table `noticias`.`perfiles`
 --
 
-CREATE TABLE  `perfiles` (
+DROP TABLE IF EXISTS `noticias`.`perfiles`;
+CREATE TABLE  `noticias`.`perfiles` (
   `id` int(10) NOT NULL auto_increment,
   `nombre` varchar(50) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `blog`.`perfiles`
+-- Dumping data for table `noticias`.`perfiles`
 --
 
 /*!40000 ALTER TABLE `perfiles` DISABLE KEYS */;
 LOCK TABLES `perfiles` WRITE;
-INSERT INTO `perfiles` VALUES  (1,'admin'),
+INSERT INTO `noticias`.`perfiles` VALUES  (1,'admin'),
  (2,'invitado');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `perfiles` ENABLE KEYS */;
 
 
 --
--- Definition of table `blog`.`post`
+-- Definition of table `noticias`.`post`
 --
 
-CREATE TABLE  `post` (
+DROP TABLE IF EXISTS `noticias`.`post`;
+CREATE TABLE  `noticias`.`post` (
   `id` int(10) NOT NULL auto_increment,
   `entry` text,
   `title` varchar(255) NOT NULL,
@@ -136,38 +149,74 @@ CREATE TABLE  `post` (
   `summary` text,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `slug` (`slug`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `noticias`.`post`
+--
+
+/*!40000 ALTER TABLE `post` DISABLE KEYS */;
+LOCK TABLES `post` WRITE;
+INSERT INTO `noticias`.`post` VALUES  (2,'<p>asdasd íííííasdaóóóóóúúúú</p>','Prueba','prueba','2010-04-05 23:19:34','1969-12-31 20:00:00','111',1,'<p>asdasd íííííasdaóóóóóúúúú</p>');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `post` ENABLE KEYS */;
 
 
 --
--- Definition of table `blog`.`posts_tags`
+-- Definition of table `noticias`.`posts_tags`
 --
 
-CREATE TABLE  `posts_tags` (
+DROP TABLE IF EXISTS `noticias`.`posts_tags`;
+CREATE TABLE  `noticias`.`posts_tags` (
   `id` int(11) NOT NULL auto_increment,
   `post_id` int(11) NOT NULL,
   `tag_id` int(11) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `noticias`.`posts_tags`
+--
+
+/*!40000 ALTER TABLE `posts_tags` DISABLE KEYS */;
+LOCK TABLES `posts_tags` WRITE;
+INSERT INTO `noticias`.`posts_tags` VALUES  (1,2,1),
+ (2,2,2);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `posts_tags` ENABLE KEYS */;
 
 
 --
--- Definition of table `blog`.`tags`
+-- Definition of table `noticias`.`tags`
 --
 
-CREATE TABLE  `tags` (
+DROP TABLE IF EXISTS `noticias`.`tags`;
+CREATE TABLE  `noticias`.`tags` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(50) NOT NULL,
   `url` varchar(50) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Definition of table `blog`.`usuarios`
+-- Dumping data for table `noticias`.`tags`
 --
 
-CREATE TABLE  `usuarios` (
+/*!40000 ALTER TABLE `tags` DISABLE KEYS */;
+LOCK TABLES `tags` WRITE;
+INSERT INTO `noticias`.`tags` VALUES  (1,'Default','Default'),
+ (2,'11','11'),
+ (3,'12','12');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tags` ENABLE KEYS */;
+
+
+--
+-- Definition of table `noticias`.`usuarios`
+--
+
+DROP TABLE IF EXISTS `noticias`.`usuarios`;
+CREATE TABLE  `noticias`.`usuarios` (
   `id` int(10) NOT NULL auto_increment,
   `login` varchar(50) NOT NULL,
   `mail` varchar(100) NOT NULL,
@@ -181,12 +230,12 @@ CREATE TABLE  `usuarios` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `blog`.`usuarios`
+-- Dumping data for table `noticias`.`usuarios`
 --
 
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 LOCK TABLES `usuarios` WRITE;
-INSERT INTO `usuarios` VALUES  (1,'admin','deivinsontejeda@kumbiaphp.com','ce67ae2fac4bac6c57a09dd34c24a71acce4f293',1,'A','admin'),
+INSERT INTO `noticias`.`usuarios` VALUES  (1,'admin','deivinsontejeda@kumbiaphp.com','92eea1927e65de974fd8fdc251cbc646',1,'A','admin'),
  (2,'invitado','','0c0438a2d770051789cbafdd47fe25a9d7f74587',2,'A','invitado');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
