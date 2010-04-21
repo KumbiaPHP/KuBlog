@@ -19,6 +19,7 @@
 /**
  * Establece polí­tica de informe de errores
  */
+//error_reporting(0); // Usar este en producción, no envia errores
 error_reporting(E_ALL ^ E_STRICT);
 define('START_TIME', microtime(1));
 
@@ -29,13 +30,7 @@ define('START_TIME', microtime(1));
  * - Ruta al directorio de la aplicación (por defecto la ruta al directorio app)
  * - Esta ruta se utiliza para cargar los archivos de la aplicaciÃ³n
  **/
-define('APP_PATH', dirname(dirname(__FILE__)) . '/');
-
-/**
- * Define el nombre de la APP
- *
- */
-define('APP', basename(APP_PATH));
+define('APP_PATH', dirname(dirname(__FILE__)) . '/app/');
 
 /**
  * Define el CORE_PATH
@@ -43,7 +38,7 @@ define('APP', basename(APP_PATH));
  * CORE_PATH:
  * - Ruta al directorio que contiene el núcleo de Kumbia (por defecto la ruta al directorio core/kumbia)
  **/
-define('CORE_PATH', dirname(APP_PATH) . '/core/');
+define('CORE_PATH', dirname(dirname(APP_PATH)) . '/core/');
 
 /**
  * Define el PUBLIC_PATH
