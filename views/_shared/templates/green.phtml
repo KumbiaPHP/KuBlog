@@ -1,81 +1,80 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title><?php echo $pageTitle ?></title>
-		<?php echo stylesheet_link_tag('green/style') ?>
-        <?php echo stylesheet_link_tags(); ?>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><?php echo $pageTitle ?></title>
+        <?php Tag::css('green/style') ?>
+        <?php echo Html::includeCss() ?>
+    </head>
+    <body>
 
-	</head>
-	<body>
+        <div id="main">
+            <div id="top_bar">
+                <div class="container">
+                    <div id="search">
+                        <?php
+                        Form::open('post/busqueda/');
+                        Form::text('busqueda');
+                        Form::submit('Buscar');
+                        Form::close();
+                        ?>
+                    </div>
+                    <p id='subscribe'><?php Html::link('noticias/rss/', 'Suscribete RSS') ?></p>
+                </div><!-- end bar container -->
+            </div><!-- end top bar -->
 
-		<div id="main">
-			<div id="top_bar">
-				<div class="container">
-				<div id="search">
-					<?php
-					    Form::open('post/busqueda/');
-					        Form::text('busqueda');
-					        Form::submit('Buscar');
-					    Form::close();
-					?>
-				</div>
-				<p id='subscribe'><?php Html::link('noticias/rss/', 'Suscribete RSS') ?></p>
-				</div><!-- end bar container -->
-			</div><!-- end top bar -->
+            <div id="header">
 
-			<div id="header">
+                <div id="branding" class="container">
+                    <h1>CaChi</h1>
+                    <p class="desc">Un poco de todo</p>
+                </div><!-- end branding -->
 
-				<div id="branding" class="container">
-					<h1>CaChi</h1>
-					<p class="desc">Un poco de todo</p>
-				</div><!-- end branding -->
+                <div id="navigation">
+                    <ul id="menu" class="container">
+                        <li><a href="/" accesskey="1">PORTADA</a></li>
+                        <li><?php Html::link('about/', '¿SOBRE MÍ?', 'accesskey="2"'); ?></li>
+                        <li><?php Html::link('noticias/archivos/', 'RECIENTES', 'accesskey="3"'); ?></li>
+                        <li><?php Html::link('about/', '¿TEMIGA?', 'accesskey="4"'); ?></li>
+                    </ul>
+                </div><!-- end navigation -->
 
-				<div id="navigation">
-					<ul id="menu" class="container">
-						<li><a href="/" accesskey="1">PORTADA</a></li>
-						<li><?php Html::link('about/', '¿SOBRE MÍ?', 'accesskey="2"'); ?></li>
-						<li><?php Html::link('noticias/archivos/', 'RECIENTES', 'accesskey="3"'); ?></li>
-						<li><?php Html::link('about/', '¿TEMIGA?', 'accesskey="4"'); ?></li>
-					</ul>
-				</div><!-- end navigation -->
+            </div><!-- end header -->
 
-			</div><!-- end header -->
+            <div id="content" class="container">
+                <?php View::content(); ?>
 
-			<div id="content" class="container">
-				<?php View::content(); ?>
+                <div id="sidebar">
+                    <?php View::partial('noticias/recientes') ?>
 
-				<div id="sidebar">
-    				<?php View::partial('noticias/recientes') ?>
+                </div><!-- end sidebar -->
 
-				</div><!-- end sidebar -->
+            </div><!-- end content -->
 
-			</div><!-- end content -->
+        </div><!-- end main -->
 
-		</div><!-- end main -->
+        <div id="footer">
 
-		<div id="footer">
+            <div id="footer_content" class="container">
 
-			<div id="footer_content" class="container">
+                <div id="links">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="http://www.kumbiaphp.com" title='KumbiaPHP Framework'>KumbiaPHP Framework</a></li>
+                        <li><a href="http://www.temiga.org" title='Temiga Site'>Temiga's</a></li>
+                    </ul>
+                </div>
 
-				<div id="links">
-					<h4>Enlaces</h4>
-					<ul>
-						<li><a href="http://www.kumbiaphp.com" title='KumbiaPHP Framework'>KumbiaPHP Framework</a></li>
-						<li><a href="http://www.temiga.org" title='Temiga Site'>Temiga's</a></li>
-					</ul>
-				</div>
+                <div id="feeds">
+                    <?php //View::partial('widgets/feed', false, 'url: http://www.kumbiaphp.com/blog/feed/, nombre: RSS KumbiaPHP') ?>
+                </div>
 
-				<div id="feeds">
-					<?php //View::partial('widgets/feed', false, 'url: http://www.kumbiaphp.com/blog/feed/, nombre: RSS KumbiaPHP') ?>
-				</div>
+                <div id="copyright">
+                    <p>Power By KumbiaPHP</p>
+                </div>
+            </div><!-- end footer content -->
 
-				<div id="copyright">
-					<p>Power By KumbiaPHP</p>
-				</div>
-			</div><!-- end footer content -->
-
-		</div><!-- end footer -->
-	</body>
+        </div><!-- end footer -->
+    </body>
 </html>

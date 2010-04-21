@@ -1,22 +1,23 @@
 <?php
 /**
  * Partials que se alimenta del WebService de Twitter Search en formato JSON
- * 
+ *
  * http://apiwiki.twitter.com/Twitter-Search-API-Method%3A-search
- * 
+ *
  * @param String $words Palabra a buscar ej: kumbiaphp, kumbiaphp+framework, kumbiaphp+framework+php
  * @param int    $rpp Número de tweets a retornar por página
  * @return string
  */
-function tweet_filter ($ret)
-{
+function tweet_filter ($ret) {
     $ret = preg_replace("#(^|[\n ])([\w]+?://[\w]+[^ \"\n\r\t< ]*)#", "\\1<a href=\"\\2\">\\2</a>", $ret);
     $ret = preg_replace("#(^|[\n ])((www|ftp)\.[^ \"\t\n\r< ]*)#", "\\1<a href=\"http://\\2\">\\2</a>", $ret);
     $ret = preg_replace("/@(\w+)/", "<a href=\"http://www.twitter.com/\\1\">@\\1</a>", $ret);
     $ret = preg_replace("/#(\w+)/", "<a href=\"http://search.twitter.com/search?q=\\1\">#\\1</a>", $ret);
+
+    return $ret;
 }
 //$jsonFile = file_get_contents("http://search.twitter.com/search.json?q=$words&lang=all&rpp=$rpp");
-$json = json_decode(file_get_contents("http://search.twitter.com/search.json?q=kumbiaphp&lang=all&rpp=6"));
+$json = json_decode(file_get_contents("http://search.twitter.com/search.json?q=simacel&lang=all&rpp=6"));
 
 ?>
 
@@ -25,11 +26,13 @@ $json = json_decode(file_get_contents("http://search.twitter.com/search.json?q=k
 
 <ul class='results'>
     <?php foreach ($json->results as $tweetx): ?>
-        <li>
-			<a title="@<?php echo $tweetx->from_user ?>" href="http://twitter.com/<?php echo $tweetx->from_user?>">
-				<img src="<?php echo $tweetx->profile_image_url ?>" width="24" height="24" alt="avatar" alt="@<?php echo $tweetx->from_user ?>" class='avatar' />
-			</a>
-        	<p><?php echo tweet_filter($tweetx->text)?></p>
-        </li>
+    <li>
+        <p>
+            <a title="@<?php echo $tweetx->from_user ?>" href="http://twitter.com/<?php echo $tweetx->from_user?>">
+                <img src="<?php echo $tweetx->profile_image_url ?>" width="24" height="24" alt="avatar" alt="@<?php echo $tweetx->from_user ?>" class='avatar' />
+            </a>
+                <?php echo tweet_filter($tweetx->text)?>
+        </p>
+    </li>
     <?php endforeach;?>
 </ul>

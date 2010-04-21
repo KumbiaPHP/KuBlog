@@ -54,6 +54,6 @@ span.size0 a{
 <?php 
     //View::helpers('html');
     //View::helpers('TagCloud');
-    $tagCloud = new TagCloud(Load::model('tags')->getAll());
+    $tagCloud = new TagCloud(Load::model('etiqueta')->getAll());
 ?>
-<h2>Cloud Tag</h2><?php echo $tagCloud->show(); ?>
+<h2>Nube de etiquetas</h2><?php echo $tagCloud->show(); ?>
