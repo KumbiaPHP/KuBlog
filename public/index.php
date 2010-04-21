@@ -11,7 +11,7 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@kumbiaphp.com so we can send you a copy immediately.
- * 
+ *
  * @copyright  Copyright (c) 2005-2009 Kumbia Team (http://www.kumbiaphp.com)
  * @license    http://wiki.kumbiaphp.com/Licencia     New BSD License
  */
@@ -33,7 +33,7 @@ define('APP_PATH', dirname(dirname(__FILE__)) . '/');
 
 /**
  * Define el nombre de la APP
- * 
+ *
  */
 define('APP', basename(APP_PATH));
 
@@ -43,7 +43,7 @@ define('APP', basename(APP_PATH));
  * CORE_PATH:
  * - Ruta al directorio que contiene el núcleo de Kumbia (por defecto la ruta al directorio core/kumbia)
  **/
-define('CORE_PATH', '/home/cachi/kumbiaphp/bazaar/1.0/core/');
+define('CORE_PATH', dirname(APP_PATH) . '/core/');
 
 /**
  * Define el PUBLIC_PATH
