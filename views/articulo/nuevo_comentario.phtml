@@ -1,0 +1,33 @@
+<div id="comments">
+    <h3>Dejanos tu Comentario</h3>
+    <?php View::content() ?>
+    <div class="form">
+        <?php echo Form::open("nuevo_comentario/$articulo_slug/", 'post') ?>
+        <?php echo Form::hidden('comentario.articulo_id', '',$articulo_id) ?>
+        <table>
+            <tr>
+                <td><label for="comentario_autor">Nombre (*):</label></td>
+                <td><?php echo Form::text('comentario.autor')?></td>
+            </tr>
+            <tr>
+                <td><label for="comentario_email">Correo (*):</label></td>
+                <td><?php echo Form::text('comentario.email')?></td>
+            </tr>
+            <tr>
+                <td><label for="comentario_url">Sitio web:</label></td>
+                <td><?php echo Form::text('comentario.url')?></td>
+            </tr>
+            <tr>
+                <td><label for="comentario_autor">Comentario (*):</label></td>
+                <td><?php echo Form::textarea('comentario.comentario',array('cols=57', 'rows=6'))?></td>
+            </tr>
+        </table>
+        <p>
+            <?php echo Form::submit('Enviar')?>
+        </p>
+        <?php echo Form::close() ?>
+    </div>
+</div>
+<p>
+<?php View::partial('comentario/list', false, array('comentarios'=>$comentarios, 'countComment'=> $countComment)) ?>
+</p>

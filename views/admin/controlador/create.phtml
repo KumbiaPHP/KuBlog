@@ -1,0 +1,76 @@
+<?php
+/**
+ * Formulario realizado con autocarga de objeto
+ * model.campo
+ *
+ * KumbiaPHP implementa la autocarga de objeto la cual siguiendo la convencion model.field
+ * En este caso el model es "controllers" si vamos a la BD se vera que existe una tabla
+ * llamada "controllers" y field (campo) serán los campos de esa tabla.
+ *
+ * Veamos la estructuta de tabla controllers:
+ * CREATE TABLE controllers
+ * (
+ *   id           int            unique not null auto_increment,
+ *   nombre       varchar(100),
+ *   url          varchar(100)   not null,
+ *   status       char(1)        not null,
+ *   perfiles_id  int            not null,
+ *   menu_id      int            not null,
+ *   primary key(id),
+ *   foreign key(perfiles_id) references perfiles(id),
+ *   foreign key(menu_id) references menus(id)
+ * )
+ * TYPE = InnoDB;
+ *
+ * En concordancia con los fields (campos) de la tabla "controllers" se indica el comportamiento de la autocarga de objeto
+ * para que el controller no tener que recoger cada uno de los valores enviado por POST.
+ *
+ * Para este caso haremos en los helpers:
+ * text_field_tag(array('controllers.url'))
+ *
+ * Automáticamente cuando ese valor vaya al action menus/create KumbiaPHP interpreta que existe una tabla "controllers" con un campo "url"
+ * y si vemos la estructura de la tabla es asi.
+ *
+ * Ahora debes ir al método create del controller menus, para que observes como se hace esta asociación.
+ */
+?>
+<h3>Nuevo Controlador</h3>
+    <?php View::content(); ?>
+    <?php echo Form::open('admin/controllers/create/') ?>
+    <div class="form">
+        <div class="row">
+            <label for="controllers_perfiles_id">Perfil</label>
+            <?php echo Form::dbSelect('controllers.perfiles_id',
+                                       $perfiles, 'nombre',
+                                       'Seleccione...') ?>
+        </div>
+
+        <div class="row">
+            <label for='controllers_menu_id'>Menú</label>
+            <?php echo Form::dbSelect('controllers.menu_id',
+                                       $menus, 'nombre',
+                                       'Seleccione...') ?>
+        </div>
+
+        <div class="row">
+            <label for='controllers_url'>URL</label>
+            <?php echo Form::text('controllers.url') ?>
+            <div class='hint'>Ej: module/controller/action</div>
+        </div>
+
+        <div class="row">
+            <label for='controllers_nombre'>Nombre a Mostrar</label>
+            <?php echo Form::text('controllers.nombre') ?>
+        </div>
+
+        <div class="row">
+            <label for='controllers_status'>Estado</label>
+            <?php echo Form::select('controllers.status',
+                                    array('A'=>'Activo','D'=>'Desactivado'))?>
+        </div>
+
+	    <div class="row action">
+            <?php echo Form::submit('Enviar') ?>
+        </div>
+    </div>
+    <?php echo Form::close(); ?>

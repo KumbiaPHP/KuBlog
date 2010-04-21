@@ -1,0 +1,13 @@
+<?php View::content(); ?>
+<h3>Recuperar Clave</h3>
+<?php echo form_tag('usuarios/recuperar_clave/') ?>
+<table>
+    <tr>
+        <td>Login:</td>
+        <td><?php echo text_field_tag(array('login')) ?></td>
+    </tr>
+    <tr>
+        <td><?php echo submit_tag('Recuperar') ?></td>
+    </tr>
+</table>
+<?php echo end_form_tag() ?>
