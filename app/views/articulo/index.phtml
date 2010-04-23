@@ -9,7 +9,7 @@ Load::lib('helpers');
     <div class="post">        
         <h2 class="title"><?php echo Html::link("articulo/$articulo->slug/", $articulo->titulo, "title='$articulo->titulo'") ?></h2>
         <p class="info">
-            Enviado por <?php echo $articulo->getUsuario()->nombre; ?> el <?php echo strftime("%e de %B del %Y", strtotime($articulo->creado_at));  ?>
+            Enviado por <?php eh($articulo->getUsuario()->nombre); ?> el <?php echo strftime("%e de %B del %Y", strtotime($articulo->creado_at));  ?>
         </p>
         <div class="entry">
                 <?php echo $articulo->contenido;?>

@@ -29,7 +29,7 @@ class Comentario extends ActiveRecord {
      * @param int $estado
      */
     public function getCommentByPost($articulo_id, $estado=1) {
-        return $this->find("articulo_id=$articulo_id and estado=$estado",'order: creado_at desc');
+        return $this->find("post_id=$articulo_id and status=$estado",'order: created_at desc');
     }
     /**
      * Realiza un conteo de los comentarios
@@ -39,7 +39,7 @@ class Comentario extends ActiveRecord {
      * @return Resulset
      */
     public function countComment($articulo_id, $estado=1) {
-        return $this->count("estado=$estado AND articulo_id=$articulo_id");
+        return $this->count("status=$estado AND post_id=$articulo_id");
     }
     /*
      * Callback
