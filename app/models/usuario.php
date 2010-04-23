@@ -72,7 +72,7 @@ class Usuario extends ActiveRecord {
      */
     public function updateUsuarioByMail($login, $pass) {
         $this->find_first("login='$login'");
-        $this->password = sha1($pass);
+        $this->password = hash('md5', $pass);
         $this->update();
         return $this;
     }

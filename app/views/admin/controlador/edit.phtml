@@ -12,11 +12,11 @@
  */
 ?>
     <?php View::content(); ?>
-    <?php echo Form::open('admin/controllers/edit/');//echo form_tag('admin/controllers/edit/') ?>
+    <?php echo Form::open('admin/controlador/edit/');//echo form_tag('admin/controllers/edit/') ?>
     <div class="form">
         <div class="row">
             <label for="controllers_perfiles_id">Perfil</label>
-            <?php echo Form::dbSelect('controllers.perfiles_id',
+            <?php echo Form::dbSelect('controllers.perfil_id',
                                        $perfiles, 'nombre',
                                        'Seleccione...') ?>
         </div>

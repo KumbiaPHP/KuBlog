@@ -11,10 +11,10 @@
             </tr></thead>
         <tbody>
             <? foreach($listPosts->items as $item):?>
-            <tr>
-                <td><?php echo $item->titulo ?></td>
-                <td><?php echo $item->creado_at ?></td>
-                <td><?php echo $item->getUsuario()->nombre ?></td>
+            <tr>                
+                <td><?php eh($item->titulo) ?></td>
+                <td><?php eh($item->creado_at) ?></td>
+                <td><?php eh($item->getUsuario()->nombre) ?></td>
                     <?php if($item->estado == Articulo::STATUS_PUBLISHED): ?>
                 <td><img alt="Artículo Publicado" src="/img/public.png" title="Artículo Publicado" /></td>
                     <?php else:?>

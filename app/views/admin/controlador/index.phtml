@@ -11,13 +11,13 @@
 <?php foreach ($listPerfiles as $perfil):?>
     <li><h2><?php echo $perfil->nombre ?></h2>
         <ul>
-            <?php foreach(Load::model('controllers')->getMenu($perfil->id) as $item): ?>
-            <li><?php echo Html::link('#', $item->Menus()->nombre, "title='Controlador'") ?>
+            <?php foreach(Load::model('controlador')->getMenu($perfil->id) as $item): ?>
+            <li><?php echo Html::link('#', $item->Menu()->nombre, "title='Controlador'") ?>
                 <ul>
-                    <?php foreach (Load::model('controllers')->getSubMenu($perfil->id, $item->Menus()->id) as $menu): ?>
+                    <?php foreach (Load::model('controlador')->getSubMenu($perfil->id, $item->Menu()->id) as $menu): ?>
                         <li><strong><?php echo $menu->nombre ?></strong>  : <?php echo $menu->url ?>
-                            <?php echo Html::link("admin/controllers/del/$menu->id/", 'Borrar') ?> |
-                            <?php echo Html::link("admin/controllers/edit/$menu->id/", 'Editar') ?>
+                            <?php echo Html::link("admin/controlador/del/$menu->id/", 'Borrar') ?> |
+                            <?php echo Html::link("admin/controlador/edit/$menu->id/", 'Editar') ?>
                         </li>
                     <?php endforeach; ?>
                 </ul>

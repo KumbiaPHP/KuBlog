@@ -42,7 +42,7 @@ class SdAuth
     {
         Load::lib('auth');
         $password = hash('md5', $password);
-        $auth = new Auth('model', 'class: usuarios', "login: $username", "password: $password", 'status: A');
+        $auth = new Auth('model', 'class: usuario', "login: $username", "password: $password", 'status: A');
         if ($auth->authenticate()) {
             Session::set(SESSION_KEY, true);
             return true;

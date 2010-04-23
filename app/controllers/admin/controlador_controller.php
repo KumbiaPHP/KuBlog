@@ -13,8 +13,8 @@
  *
  * @author Deivinson Tejeda <deivinsontejeda@gmail.com>
  */
-Load::models('perfiles', 'menus', 'controllers');
-class ControllersController extends ApplicationController
+Load::models('perfil', 'menu', 'controlador');
+class ControladorController extends ApplicationController
 {
     /**
      * Muestra un Tree (arbol) con los perfiles.
@@ -22,7 +22,7 @@ class ControllersController extends ApplicationController
      */
     public function index ()
     {
-        $perfiles = new Perfiles();
+        $perfiles = new Perfil();
         $this->listPerfiles = $perfiles->find();
     }
     /**
@@ -32,7 +32,7 @@ class ControllersController extends ApplicationController
     public function create ()
     {
         //Datos del select
-        $perfiles = new Perfiles();
+        $perfiles = new Perfil();
         $this->perfiles = $perfiles->find('order: nombre');
         $menus = new Menus();
         $this->menus = $menus->find('order: nombre');
@@ -48,12 +48,12 @@ class ControllersController extends ApplicationController
              * y los asocia al campo correspondiente siempre y cuando se utilice la convención
              * model.campo
              */
-            $controller = new Controllers(Input::post('controllers'));
+            $controller = new Controlador(Input::post('controllers'));
             //En caso que falle la operación
             if (!$controller->save()) {
                 Flash::error('Falló Operación');
                 //se hacen persistente los datos en el formulario
-                $this->controllers = $this->post('controllers');
+                $this->controllers = Input::post('controllers');
                 /**
                  * NOTA: para que la autocarga aplique de forma correcta, es necesario que llame a la variable de instancia
                  * igual como esta el model de la vista, en este caso el model es "controllers"
@@ -76,7 +76,7 @@ class ControllersController extends ApplicationController
             }
         }
         //enrutando al index para listar los menus
-        return Router::redirect('admin/controllers/');
+        return Router::redirect('admin/controlador/');
     }
     /**
      * Edita un registro
@@ -86,26 +86,25 @@ class ControllersController extends ApplicationController
     public function edit ($id = NULL)
     {
         //Datos del select
-        $perfiles = new Perfiles();
+        $perfiles = new Perfil();
         $this->perfiles = $perfiles->find('order: nombre');
-        $menus = new Menus();
+        $menus = new Menu();
         $this->menus = $menus->find('order: nombre');
-        $controller = new Controllers();
+        $controller = new Controlador();
         if ($id != NULL) {
             //Aplicando la autocarga de objeto, para comenzar la edición
             $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
-            var_dump($id);die;
             $this->controllers = $controller->find($id);
         }
         //se verifica si se ha enviado el formulario (submit)
         if(Input::hasPost('controllers')){
-            $controller = new Controllers(Input::post('controllers'));
+            $controller = new Controlador(Input::post('controllers'));
             if(!$controller->update()){
                 Flash::error('Falló Operación');
                 //se hacen persistente los datos en el formulario
-                $this->controllers = $this->post('controllers');
+                $this->controllers = Input::post('controllers');
             } else {
-                return Router::redirect('admin/controllers/');
+                return Router::redirect('admin/controlador/');
             }
         }
     }

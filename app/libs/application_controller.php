@@ -24,7 +24,7 @@ class ApplicationController extends Controller
                 View::template('admin');
             } else {
                 $this->error_msj = SdAuth::getError();
-                View::template('login2');
+                View::template('login');
                 return FALSE;
             }
             
