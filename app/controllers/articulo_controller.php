@@ -34,10 +34,10 @@ class ArticuloController extends ApplicationController {
         if(Input::is('GET') && $slug) {
             $articulo = new Articulo();
             $this->articulo = $articulo->getEntryBySlug($slug);
-            $this->pageTitle = $articulo->titulo.' - simacel.com';
-            //Verificando q existan entradas
+            $this->pageTitle = $articulo->titulo.' - '.$this->pageTitle;
+            //Verificando que existan entradas
             if($this->articulo == NULL) {
-                $this->pageTitle = 'Ops! no se Encontraron Noticias - simacel.com';
+                $this->pageTitle = 'Ops! no se Encontraron Noticias - '.$this->pageTitle;
                 View::select('no_entry');
             }
 
@@ -96,7 +96,7 @@ class ArticuloController extends ApplicationController {
         $articulo = $articulo->getEntryBySlug($articulo_slug);
         $this->articulo_id = $articulo->id;
         $this->articulo_slug = $articulo_slug;
-        $this->comentarios = Load::model('comentario')->find("conditions: articulo_id={$this->articulo_id}");
+        $this->comentarios = Load::model('comentario')->getCommentByPost($this->articulo_id);
         $this->countComment = count($this->comentarios);
 
         if(Input::hasPost('comentario')) {
