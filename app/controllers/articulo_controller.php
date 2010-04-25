@@ -13,7 +13,7 @@
  *
  * @author Deivinson Tejeda <deivinsontejeda@gmail.com>
  */
-Load::models('articulo');
+Load::models(array('articulo','recaptcha'));
 //require_once APP_PATH.'models/articulo.php';
 class ArticuloController extends ApplicationController {
     /**
@@ -31,8 +31,10 @@ class ArticuloController extends ApplicationController {
      * @param string $slug
      */
     public function ver($slug=NULL) {
-        if(Input::is('GET') && $slug) {
+        if($slug) {
             $articulo = new Articulo();
+            $recaptcha = new Recaptcha();
+            
             $this->articulo = $articulo->getEntryBySlug($slug);
             $this->pageTitle = $articulo->titulo.' - '.$this->pageTitle;
             //Verificando que existan entradas
@@ -43,6 +45,7 @@ class ArticuloController extends ApplicationController {
 
             $this->comentarios = Load::model('comentario')->getCommentByPost($this->articulo->id);
             $this->countComment = count($this->comentarios);
+            $this->captcha = $recaptcha->generar();
         } else {
             Router::route_to('action: index');
         }
@@ -93,18 +96,34 @@ class ArticuloController extends ApplicationController {
      */
     public function nuevo_comentario($articulo_slug=null) {
         $articulo = new Articulo();
+        $recaptcha = new Recaptcha();
+
         $articulo = $articulo->getEntryBySlug($articulo_slug);
         $this->articulo_id = $articulo->id;
         $this->articulo_slug = $articulo_slug;
         $this->comentarios = Load::model('comentario')->getCommentByPost($this->articulo_id);
         $this->countComment = count($this->comentarios);
+        $this->captcha = $recaptcha->generar();
 
         if(Input::hasPost('comentario')) {
-            if(Load::model('comentario')->save(Input::post('comentario'))) {
-                Flash::success('Comentario enviado');
-                Router::redirect("articulo/$articulo_slug/");
-            }else {
-                Flash::error('Ha ocurrido un error');
+
+            try {
+                //Comprueba el reCAPTCHA
+                if($recaptcha->comprobar(($_SERVER["REMOTE_ADDR"]),
+                $_POST['recaptcha_challenge_field'],
+                $_POST['recaptcha_response_field'])) {
+
+                    if(Load::model('comentario')->save(Input::post('comentario'))) {
+                        Flash::success('Comentario enviado');
+                        Router::redirect("articulo/$articulo_slug/");
+                    }else {
+                        Flash::error('Ha ocurrido un error');
+                        $this->comentario = Input::post('comentario');
+                    }
+                }
+            }catch(KumbiaException $kex) {
+                Flash::error('Ingresa correctamente las palabras del captcha');
+                $this->captcha = $recaptcha->generar($kex->getMessage());                
                 $this->comentario = Input::post('comentario');
             }
         }

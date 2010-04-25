@@ -1,3 +1,9 @@
+<script type="text/javascript">
+    var RecaptchaOptions = {
+        lang : 'es'
+    };
+</script>
+
 <div id="comments">
     <h3>Dejanos tu Comentario</h3>
     <div class="form">
@@ -18,7 +24,10 @@
             </tr>
             <tr>
                 <td><label for="comentario_autor">Comentario (*):</label></td>
-                <td><?php echo Form::textarea('comentario.comentario',array('cols=57', 'rows=6'))?></td>
+                <td><?php echo Form::textarea('comentario.comentario',array('cols'=>'57', 'rows'=>'6'))?></td>
+            </tr>
+            <tr>
+                <td colspan="2"><?php echo $captcha ?></td>
             </tr>
         </table>
         <p>
