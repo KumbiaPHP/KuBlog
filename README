@@ -8,3 +8,12 @@ Cualquier duda sobre la instalacion te recomendamos pasar por el IRC de KumbiaPH
 para brindarte la ayuda necesaria.
 
 [1] http://kumbiaphp.com/blog/irc/
+
+- INSTALACIÓN
+ * Cargar el Backup /path/to/app/config/sql/kublog.sql
+ * Crear un vhost donde su Document Root sea /path/to/app/public/
+ 
+ Si crees que hace falta registrar algún otro paso para la correcta instalación informanos
+ 
+ ¡Latin Revolutions!
+ 
