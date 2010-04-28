@@ -15,7 +15,6 @@ Load::lib('helpers');
                 <?php echo $articulo->contenido;?>
         </div>
         <p class="postmetadata">Etiquetas: <?php echo Helpers::getTags($articulo->id) ?></p>
-        <?php echo Html::link("nuevo_comentario/$articulo->slug/", 'Deja tu comentario') ?>
     </div>
     <?php endforeach; ?>
     <div class="space"></div>

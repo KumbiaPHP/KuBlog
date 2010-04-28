@@ -26,7 +26,7 @@
 		<ul>
     		<li class="current_page_item"><?php echo Html::link('', 'PORTADA', 'accesskey="1"'); ?></li>
     		<li><?php echo Html::link('about/', '¿SOBRE MÍ?', 'accesskey="2"'); ?></li>
-    		<li><?php echo Html::link('noticias/archivos/', 'RECIENTES', 'accesskey="3"'); ?></li>
+    		<li><?php echo Html::link('articulo/archivos/', 'RECIENTES', 'accesskey="3"'); ?></li>
     		<li><?php echo Html::link('about/', '¿TEMIGA?', 'accesskey="4"'); ?></li>
 		</ul>
 	</div>
@@ -59,17 +59,8 @@
 		<?php View::partial('noticias/recientes', '+1 week') ?>
     </div>
 
-    <div class="boxes">
-		<?php //View::partial('widgets/feed', '+1 week', 'url: http://www.kumbiaphp.com/blog/feed/, nombre: RSS KumbiaPHP')?>
-    </div>
-
     <div id="lsidebar">
     	<?php View::partial('widgets/enlaces', '+1 year') ?>
-    </div>
-
-    <div id="rsidebar">
-        <?php //View::partial('widgets/flickr_rss', '+1 week', array('name'=>'Flikr', 'url'=>'http://api.flickr.com/services/feeds/photos_public.gne?tags=kumbiaphp&lang=es-us&format=rss_200')); ?>
-        <?php //View::partial('widgets/flickr_rss_lightbox', '+4 week', 'name: Flikr'); ?>
     </div>
     <div class="clear"></div>
     </div>
@@ -85,6 +76,5 @@
     </div>
 </div>
 <!-- <p><?php echo 'Tiempo: '.round((microtime(1)-START_TIME),4).' seg.'; echo ', Memoria Usada: '.number_format(memory_get_usage() / 1048576, 2).' MB';?></p> -->
-<?php //View::partial('kumbia/auth')?>
 </body>
 </html>
