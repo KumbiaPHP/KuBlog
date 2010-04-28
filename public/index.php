@@ -59,8 +59,8 @@ define('PUBLIC_PATH', '/');
 /**
  * Obtiene la url
  **/
-//$url = isset($_GET['_url']) ? $_GET['_url'] : '/';
-$url = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '/';
+$url = isset($_GET['_url']) ? $_GET['_url'] : '/';
+//$url = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '/';
 
 /**
  * Carga el gestor de arranque
