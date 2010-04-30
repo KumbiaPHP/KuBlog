@@ -119,7 +119,7 @@ elseif (in_array($tag, $single_tags)) {
     public static function truncateWord ($text, $limit = 50, $end = '[...]')
     {
         $text = strip_tags($text); //quitando tags HTML
-        if (strlen($text) > $limit) {
+        if (str_word_count($text, 0) > $limit) {
             $words = str_word_count($text, 2);
             $pos = array_keys($words);
             $text = substr($text, 0, $pos[$limit]) . $end;
