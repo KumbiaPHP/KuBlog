@@ -43,14 +43,4 @@ class PagesController extends ApplicationController {
         $page = implode('/', $this->parameters);
         View::select($page);
     }
-    /**
-     * Genera Img Captcha
-     *
-     */
-    public function captcha () {
-        Load::lib('captcha/captcha');
-        View::select(NULL, NULL);
-        $captcha = new Captcha();
-        $captcha->run();
-    }    
 }

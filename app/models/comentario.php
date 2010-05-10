@@ -49,9 +49,10 @@ class Comentario extends ActiveRecord {
     }
 
     public function before_save() {
-        /*Load::lib('Validations');
-        if(!Validations::url($this->url)) {
-            return 'cancel';
-        } */
+	Load::Model("antispam");
+	$Antispam = new Antispam();
+
+	if ($Antispam->esSpam($this->autor, $this->email, $this->url, $this->comentario))
+		return 'cancel';
     }
 }
