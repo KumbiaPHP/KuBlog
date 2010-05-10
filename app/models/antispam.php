@@ -4,8 +4,7 @@ require_once APP_PATH. '/libs/Akismet.php';
 
 class Antispam {
 	/**
-	* Comprueba si es correcto el valor introducido por el usuario,
-	* de lo contrario lanza una excepción de tipo KumbiaException
+	* Comprueba si es correcto el valor introducido por el usuario.
 	*
 	* @param author_name
 	* @param author_email
