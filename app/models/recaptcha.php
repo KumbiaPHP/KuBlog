@@ -6,8 +6,8 @@ class Recaptcha {
 
     //Llave publica y privada de tu sitio en reCAPTCHA
     //https://www.google.com/recaptcha/admin/list
-    private static $_publickey  = "";
-    private static $_privatekey = "";
+    private static $_publickey  = "6LePF7oSAAAAALYNEfbbOfRAc9lCz3LKvoKcQkwZ";
+    private static $_privatekey = "6LePF7oSAAAAADRQBaACf7imDRSwq-kPXyZOCBCA";
 
     /**
      * Genera el html con el recaptcha
