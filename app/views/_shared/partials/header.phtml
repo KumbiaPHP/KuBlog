@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head profile="http://gmpg.org/xfn/11">
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title><?php echo "Name"; //bloginfo('name'); ?> - <?php echo "Post Title"; //wp_title(); ?></title>
+
+	<link media="screen" type="text/css" rel="stylesheet" href="/css/style.css">
+	<?php //wp_head(); ?>
+</head>
+<body>
+
+	<div id="header">
+		<div id="logo">
+			<h1><a href="<?php echo "#"; //echo get_option('home'); ?>/"><?php echo "Name"; //bloginfo('name'); ?></a></h1>
+			<p><?php echo "Description"; //bloginfo('description'); ?></p>
+		</div>
+		<!-- end #logo -->
+
+		<div id="menu">
+			<ul>
+				<li class="current_page_item current_page_item"><a href="/" class="current_page_item">Home</a></li>
+				<li class="page_item"><a href="/acerca/" title="About">About</a></li>
+			</ul>
+		</div>
+		<!-- end #menu -->
+	</div>
+	<!-- end #header -->
+
+	<div id="page">

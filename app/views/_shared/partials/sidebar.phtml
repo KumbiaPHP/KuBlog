@@ -1,0 +1,43 @@
+	<div id="sidebar">
+		<ul>
+			<li id="search" class="widget widget_search">
+				Search for:
+				<?php View::Partial("searchform"); ?>
+			</li>
+
+<!--			<li>
+				<h2>Archives</h2>
+				<ul>
+					<li><a href="#" title="June 2007">June 2007</a></li>
+					<li><a href="#" title="May 2007">May 2007</a></li>
+					<li><a href="#" title="April 2007">April 2007</a></li>
+					<li><a href="#" title="March 2007">March 2007</a></li>
+					<li><a href="#" title="February 2007">February 2007</a>
+					<?php //wp_get_archives('type=monthly'); ?>
+				</ul>
+			</li>
+-->		
+			<li class="categories">
+				<?php echo Helpers::listaEtiquetas(true, "<h2>Tags</h2>"); ?>
+				<?php //wp_list_categories('show_count=1&title_li=<h2>Categories</h2>'); ?>
+			</li>
+
+			<li class="linkcat">
+				<?php echo Helpers::listaEnlaces("<h2>Enlaces</h2>"); ?>
+				<?php //wp_list_bookmarks(); ?>
+			</li>
+
+			<li>
+
+			<li>
+				<h2>Meta</h2>
+				<ul>
+					<li><a href="http://validator.w3.org/check/referer" title="This page validates as XHTML 1.0 Transitional">Valid <abbr title="eXtensible HyperText Markup Language">XHTML</abbr></a></li>
+					<li><a href="http://gmpg.org/xfn/"><abbr title="XHTML Friends Network">XFN</abbr></a></li>
+					<li><a href="http://kumbiaphp.com/" title="Powered by KumbiaPHP Framework">KumbiaPHP Framework</a></li>
+				</ul>
+				<?php //wp_meta(); ?>
+			</li>
+		</ul>
+	</div>
+	<!-- end sidebar -->
