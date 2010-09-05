@@ -1,0 +1,56 @@
+<?php
+View::content();
+Load::lib('helpers');
+?>
+<div class="posts">
+<?php
+foreach ($articulos->items as $post_tag):
+        $articulo = $post_tag->getArticulo();
+        ?>
+<div class="post">
+    <h2 class="title"><?php echo Html::link("articulo/$articulo->slug/", $articulo->titulo, "title='$articulo->titulo'") ?></h2>
+    <p class="info">
+        Enviado por <?php eh($articulo->getUsuario()->nombre); ?> el <?php echo strftime("%e de %B del %Y", strtotime($articulo->creado_at)); ?>
+    </p>
+    <div class="entry">
+<?php echo $articulo->resumen; ?>
+    </div>
+    <p class="postmetadata">Etiquetas: <?php echo Helpers::getTags($articulo->id) ?></p>
+<?php echo Html::link("nuevo_comentario/$articulo->slug/", 'Deja tu comentario') ?>
+</div>
+<?php endforeach; ?>
+<div class="space"></div>
+<div class="navigation">
+    <div class="alignleft">
+<?php if($articulos->prev) echo Html::link("page/$articulos->prev/", '<span class="older">Noticias Recientes</span>'); ?></div>
+    <div class="alignright">
+<?php if($articulos->next) echo Html::link("page/$articulos->next/", '<span class="newer">Noticias Anteriores</span>'); ?></div>
+</div>
+</div>
+
+<?php
+;
+/**
+  foreach ($articulos->items as $key => $post_tag):
+  $articulo = $post_tag->getArticulo();
+  ?>
+  <div class="single_post">
+  <article id="article<?php echo $key ?>"> <!-- The new article tag. The id is supplied so it can be scrolled into view. -->
+  <h2<?php echo Html::link("articulo/{$articulo->getCategoria()->nombre}/$articulo->slug/", $articulo->titulo, "title='$articulo->titulo'") ?></h2>
+  <p class="info">
+  Enviado por <?php eh($articulo->getUsuario()->nombre); ?> el <?php echo strftime("%e de %B del %Y", strtotime($articulo->creado_at)); ?>
+  </p>
+  <div class="line"></div>
+
+  <div class="articleBody clear">
+
+  <!--<figure>--> <!-- The figure tag marks data (usually an image) that is part of the article -->
+  <!--<a href="http://tutorialzine.com/2010/02/photo-shoot-css-jquery/"><img src="http://tutorialzine.com/img/featured/641.jpg" width="620" height="340" /></a>
+  </figure>-->
+
+  <?php echo $articulo->resumen; ?>
+  </div>
+  </div>
+  </article>
+  <?php endforeach;* */
+?>
