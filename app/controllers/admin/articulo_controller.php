@@ -53,6 +53,7 @@ class ArticuloController extends ApplicationController {
             $this->pageTitle = 'Editando el articulo - ' . $this->articulo->title;
             $etiqueta = new Etiqueta();
             $this->tags = $etiqueta->getTagByPost($this->articulo->id);
+            $this->categorias = Load::model('categoria')->find();
         }
     }
     /**
