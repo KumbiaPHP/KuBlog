@@ -1,5 +1,5 @@
 # Descomentar la linea si carga el index.html
-#DirectoryIndex index.php
+DirectoryIndex index.php
 
 # Si esta mod_rewrite habilitado
 <IfModule mod_rewrite.c>
@@ -12,7 +12,7 @@
 
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_URI} !(.*)/$
-    RewriteRule ^(.*)$ http://blog/$1/ [L,R=301]
+    RewriteRule ^(.*)$ http://kublog/$1/ [L,R=301]
 
     # No permite reescritura si el archivo o directorio existe
     RewriteCond %{REQUEST_FILENAME} !-f

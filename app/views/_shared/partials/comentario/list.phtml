@@ -6,14 +6,18 @@
 <?php endif; ?>
 
 <?php foreach($comentarios as $comment): ?>
-<p>
-<div class="comment" id="c<?php echo $comment->id; ?>">
-    <div class="author"><a href='<?php echo $comment->url ?>' target="_blank"><?php echo $comment->autor ?></a> dice:</div>
 
+<div class="comment" id="c<?php echo $comment->id; ?>">     
+    <div class="content">
+        <strong>
+            <a name="<?php echo strtotime($comment->creado_at) ?>"></a><a href='<?php echo $comment->url ?>' title="<?php echo $comment->autor; ?>"><?php echo $comment->autor; ?></a>
+        </strong>
+            <?php echo $comment->comentario; ?>
+    </div>
     <div class="time">
             <?php echo strftime("%e de %B del %Y, a las %R", strtotime($comment->creado_at)); ?>
     </div>
-    <div class="content"><?php echo $comment->comentario; ?></div>
 </div>
-</p>
+
+
 <?php endforeach; ?>

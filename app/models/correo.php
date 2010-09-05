@@ -16,19 +16,21 @@
 class Correo {
 
     //Atributos para el envio de correo (acceso privado)
-    private static $_userName = ''; // GMAIL username
-    private static $_password = ''; // GMAIL password
-    private static $_from = '';
+    private static $_userName = 'no-reply@youdomain.com'; // mail username
+    private static $_password = 'pass'; // mail password
+    private static $_from = 'fromm';
+    private static $_host = 'host';
+    private static $_port = '465';
     /**
      * Quien envia el Mail
      * @var $fromName
      */
-    public static $fromName = 'Administrador del Sistema';
+    //public static $fromName = 'Administrador del Sistema';
     /**
      * Asunto del Mail
      * @var $subject
      */
-    public static $subject = 'Envio de Clave de Acceso';
+    //public static $subject = 'Envio de Clave de Acceso';
 
     /**
      * Genera Claves aleatorias...
@@ -61,14 +63,14 @@ class Correo {
         $mail->IsSMTP();
         $mail->SMTPAuth = true; // enable SMTP authentication
         $mail->SMTPSecure = 'ssl'; // sets the prefix to the servier
-        $mail->Host = 'smtp.gmail.com'; // sets GMAIL as the SMTP server
-        $mail->Port = 587; // set the SMTP port for the GMAIL server
+        $mail->Host = self::$_host; // sets GMAIL as the SMTP server
+        $mail->Port = self::$_port; // set the SMTP port for the GMAIL server
         $mail->Username = self::$_userName;
         $mail->Password = self::$_password;
-        $mail->AddReplyTo(self::$_from, self::$fromName);
+        $mail->AddReplyTo(self::$_from, 'Administrador del Sistema');
         $mail->From = self::$_from;
-        $mail->FromName = self::$fromName;
-        $mail->Subject =  self::$subject;
+        $mail->FromName = 'Administrador del Sistema';
+        $mail->Subject = 'Envío de clave de acceso';
         $mail->Body = $body;
         $mail->WordWrap = 50; // set word wrap
         $mail->MsgHTML($body);
@@ -104,18 +106,18 @@ class Correo {
         $mail->IsSMTP();
         $mail->SMTPAuth = true; // enable SMTP authentication
         $mail->SMTPSecure = 'ssl'; // sets the prefix to the servier
-        $mail->Host = 'smtp.gmail.com'; // sets GMAIL as the SMTP server
-        $mail->Port = 465; // set the SMTP port for the GMAIL server
+        $mail->Host = self::$_host; // sets GMAIL as the SMTP server
+        $mail->Port = self::$_port; // set the SMTP port for the GMAIL server
         $mail->Username = self::$_userName;
         $mail->Password = self::$_password;
         $mail->AddReplyTo($correo, $person);
-        $mail->From = self::$_from;
-        $mail->FromName = self::$fromName;
+        $mail->From = $correo;
+        $mail->FromName = $person;
         $mail->Subject =  'Contacto desde la web';
         $mail->Body = $body;
         $mail->WordWrap = 50; // set word wrap
         $mail->MsgHTML($body);
-        $mail->AddAddress('aqui@tucorreo.com', 'Tu correo');
+        $mail->AddAddress('maxter2024@gmail.com', 'Henry Stivens');
         $mail->IsHTML(true); // send as HTML
 
         //Enviamos el correo

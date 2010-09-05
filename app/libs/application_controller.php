@@ -12,11 +12,11 @@
 //@see Controller nuevo controller
 require_once CORE_PATH . 'kumbia/controller.php';
 
-class ApplicationController extends Controller
-{
-    public $pageTitle = 'CaChi - Un poco de todo';
-    public function initialize ()
-    {
+class ApplicationController extends Controller {
+    public $pageTitle = 'KuBlog';
+    public $keyWords = '';
+    public $description = '';
+    public function initialize () {
         View::template('theme');
         if (Router::get('module') == 'admin') {
             Load::lib('SdAuth');
@@ -27,15 +27,32 @@ class ApplicationController extends Controller
                 View::template('login');
                 return FALSE;
             }
-            
+
         }
     }
-    
-    public function logout ()
-    {
+
+    public function logout () {
         Load::lib('SdAuth');
         SdAuth::logout();
         View::template('login2');
         Router::redirect('');
+    }
+
+    public function contact() {
+        Load::model('correo');
+        if(Input::hasPost('contacto')) {
+            $data = Input::post('contacto');
+            $correo = new Correo();
+            try {
+                if($correo->sendContact($data['correo'], $data['nombre'], $data['cuerpo'])) {
+                    Flash::success('Correo enviado');
+                }else {
+                    Flash::error('Correo no enviado');
+                }
+            }catch (phpmailerException $ex) {
+                Flash::error('Exception: '.$ex->getMessage());
+            }
+            Router::redirect('contacto/');
+        }
     }
 }

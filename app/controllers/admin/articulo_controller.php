@@ -80,6 +80,7 @@ class ArticuloController extends ApplicationController {
         }
 
         $this->usuario_id = Auth::get('id');
+        $this->categorias = Load::model('categoria')->find();
         //$this->autor = Auth::get('nombre');
     }
     /**

@@ -16,12 +16,12 @@
                 <td><?php eh($item->creado_at) ?></td>
                 <td><?php eh($item->getUsuario()->nombre) ?></td>
                     <?php if($item->estado == Articulo::STATUS_PUBLISHED): ?>
-                <td><img alt="Artículo Publicado" src="/img/public.png" title="Artículo Publicado" /></td>
+                <td><img alt="Artículo Publicado" src="/img/admin/public.png" title="Artículo Publicado" /></td>
                     <?php else:?>
-                <td><img alt="Candidato Artículo Bueno" src="/img/candidaro-articulo-bueno.png" title="Candidato Artículo Bueno" /></td>
+                <td><img alt="Candidato Artículo Bueno" src="/img/admin/candidato-articulo-bueno.png" title="Candidato Artículo Bueno" /></td>
                     <?php endif;?>
-                <td><?php echo Html::link("admin/articulo/edit/$item->id/", Html::img('edit.png'), "title='Editar Registro' class='edit'")?></td>
-                <td><?php echo js::link("admin/articulo/del/$item->id/", '<img alt="Borra" src="/img/delete.png" title="Borrar Noticia" />', '¿Esta seguro que desea eliminar este registro?', 'del') ?></td>                
+                <td><?php echo Html::link("admin/articulo/edit/$item->id/", Html::img('admin/edit.png'), "title='Editar Registro' class='edit'")?></td>
+                <td><?php echo js::link("admin/articulo/del/$item->id/", '<img alt="Borrar" src="/img/admin/delete.png" title="Borrar Noticia" />', '¿Esta seguro que desea eliminar este registro?', 'del') ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>

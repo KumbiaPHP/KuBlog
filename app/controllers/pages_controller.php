@@ -44,8 +44,7 @@ class PagesController extends ApplicationController {
         View::select($page);
     }
     /**
-     * Genera Img Captcha
-     *
+     * Genera Img Captcha     *
      */
     public function captcha () {
         Load::lib('captcha/captcha');

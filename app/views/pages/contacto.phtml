@@ -1,10 +1,31 @@
 <h2>Contacto</h2>
+<br />
+<div>
+    <table>
+        <tr>
+            <td><label for="nombre">Nombre:</label></td>
+            <td>Christian Bedoya</td>
+        </tr>
+        <tr>
+            <td><label for="nombre">Correo electrónico:</label></td>
+            <td>info [ @ ] simacel.com</td>
+        </tr>
+        <tr>
+            <td><label for="nombre">Celular:</label></td>
+            <td>3187954591</td>
+        </tr>
+    </table>
+</div>
+<br /><br />
+<h2>Evíanos un correo</h2>
 <?php View::content() ?>
+<br />
 <div class="form">
     <?php echo Form::open("contact/", 'post') ?>
     <table>
+
         <tr>
-            <td><label for="contacto_autor">Nombre (*):</label></td>
+            <td><label for="contacto_nombre">Nombre (*):</label></td>
             <td><?php echo Form::text('contacto.nombre')?></td>
         </tr>
         <tr>
@@ -13,7 +34,7 @@
         </tr>        
         <tr>
             <td><label for="contacto_autor">Comentario (*):</label></td>
-            <td><?php echo Form::textarea('contacto.cuerpo',array('cols=65', 'rows=6'))?></td>
+            <td><?php echo Form::textarea('contacto.cuerpo',array('cols'=>'57', 'rows'=>'6'))?></td>
         </tr>
     </table>
     <p>

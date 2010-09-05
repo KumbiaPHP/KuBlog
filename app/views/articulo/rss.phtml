@@ -9,7 +9,7 @@
     <link>http://blog.simacel.com/</link>
     <?php foreach($lastPost as $post): ?>
 	<item>
-		<title><?php echo $post->title ?></title>
+		<title><?php echo $post->titulo ?></title>
 		<link><?php echo 'http://'.$_SERVER['HTTP_HOST']."/articulo/$post->slug/"?></link>
 		<guid><?php echo 'http://'.$_SERVER['HTTP_HOST']."/articulo/$post->slug/"?></guid>
 		<description><![CDATA[<?php echo $post->contenido ?>]]></description>

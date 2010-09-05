@@ -20,6 +20,11 @@
 //include_once APP_PATH.'models/posts_tags.php';
 
 class ArticuloEtiqueta extends ActiveRecord {
+
+    public function initialize () {
+        $this->belongs_to('articulo');
+        $this->belongs_to('etiqueta');
+    }
     /**
      * Guarda las etiquetas de un articulo
      * @param $etiquetas int
@@ -65,6 +70,16 @@ class ArticuloEtiqueta extends ActiveRecord {
      */
     public function countTags($etiqueta_id=null) {
         return $this->count("etiqueta_id=$etiqueta_id");
+    }
+
+    /**
+     * Obtiene los articulos-etiquetas
+     */
+    public function getPostByTag($page=1, $ppage=5, $etiqueta_id=null) {        
+        return $this->paginate("page: $page",
+                "etiqueta_id = $etiqueta_id",
+                "per_page: $ppage",
+                'order: id desc');
     }
     /**
      * Run CallBack

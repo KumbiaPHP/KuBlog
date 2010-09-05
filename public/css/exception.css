@@ -1,6 +1,7 @@
-//.exception, .exception_information { margin: 0.5em; background-color:#F3F3F3; border: 1px solid gray; }
+/*
+.exception, .exception_information { margin: 0.5em; background-color:#F3F3F3; border: 1px solid gray; }
 
-//.exception {
+.exception {
 	color: red;
 	background-image: url('../img/default/exception.png');
 	padding: 25px 10px 25px 90px;
@@ -8,11 +9,11 @@
 	background-position: 10px center;
 }
 
-//.exception_information {	
+.exception_information {	
 	color: black;
 	font-size: 0.8em;
 	padding: 0.6em 0.8em;
-}
+}*/
 
 .exception_file { font-size: 0.9em; color: black; }
 

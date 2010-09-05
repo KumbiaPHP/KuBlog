@@ -3,7 +3,7 @@
 
 <div class="post">
     <?php View::content(); ?>
-    <h2 class="title"><?php echo Html::link("articulo/$articulo->slug/", $articulo->titulo, "title='$articulo->titulo'") ?></h2>
+    <h2 class="title"><?php echo Html::link("articulo/{$articulo->getCategoria()->nombre}/$articulo->slug/", $articulo->titulo, "title='$articulo->titulo'") ?></h2>
     <p class='info'>
         Enviado por <?php echo $articulo->getUsuario()->nombre; ?> el <?php echo strftime("%e de %B del %Y", strtotime($articulo->creado_at));  ?>
     </p>

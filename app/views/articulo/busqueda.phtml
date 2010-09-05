@@ -3,9 +3,9 @@
 <?php if(isset($b)): ?>
 	<h2>Resultado de búsqueda por "<?php echo $b ?>"</h2>
 	<?php foreach ($result as $articulo): ?>
-	<h2><?php echo Html::link("articulo/$articulo->url_title/", $articulo->title, "title= \"$articulo->title\"")  ?></h2>
+	<h2><?php echo Html::link("articulo/$articulo->slug/", $articulo->titulo, "title= \"$articulo->titulo\"")  ?></h2>
 	<p class='info'>
-        Enviado por <?php echo $articulo->usuario_id; ?> el <?php echo strftime("%e de %B del %Y", strtotime($articulo->creado_at));  ?>
+        Enviado por <?php echo $articulo->getUsuario()->nombre; ?> el <?php echo strftime("%e de %B del %Y", strtotime($articulo->creado_at));  ?>
     </p>
     <?php endforeach; ?>
 <?php else: ?>

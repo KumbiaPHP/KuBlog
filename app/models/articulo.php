@@ -25,8 +25,9 @@ class Articulo extends ActiveRecord {
 
     public $slug = '';
     
-    public function initialize () {
+    public function initialize () {        
         $this->belongs_to('usuario');
+        $this->belongs_to('categoria');
     }
     /**
      * Obtiene los últimos artículos (paginados)
@@ -36,7 +37,7 @@ class Articulo extends ActiveRecord {
      * @param $estado int
      * @return resulset
      */
-    public function getLastEntry($page=1, $per_page=2, $estado=Articulo::STATUS_PUBLISHED) {
+    public function getLastEntry($page=1, $per_page=4, $estado=Articulo::STATUS_PUBLISHED) {
         return $this->paginate("page: $page",
                 "estado=$estado",
                 "per_page: $per_page",
@@ -131,7 +132,7 @@ class Articulo extends ActiveRecord {
         //verifica si se ha utilizado pagebreak
         if(preg_match('/<!-- pagebreak(.*?)?-->/', $this->contenido, $matches)) {
             $matches = explode($matches[0], $this->contenido, 2);
-            $this->resumen = Utils::balanceTags($matches[0]).'<a href="'.URL_PATH.'articulo/'.$this->slug.'/" title="Sigue Leyendo">Sigue Leyendo...</a>';
+            $this->resumen = Utils::balanceTags($matches[0]).'<a href="'.PUBLIC_PATH.'articulo/'.$this->getCategoria()->nombre.'/'.$this->slug.'/" title="Sigue Leyendo">Sigue leyendo...</a>';//$this->resumen = Utils::balanceTags($matches[0]).'<a href="'.$url.'articulo/'.$this->slug.'/" title="Sigue Leyendo">Sigue Leyendo...</a>';
         } else {
             $this->resumen = $this->contenido;
         }

@@ -1,28 +1,15 @@
 <?php
-
-View::content(); 
+KumbiaView::content();
 Load::lib('helpers');
-
 ?>
-<div class="posts">
-    <?php foreach ($articulos->items as $articulo): ?>
-    <div class="post">        
-        <h2 class="title"><?php echo Html::link("articulo/$articulo->slug/", $articulo->titulo, "title='$articulo->titulo'") ?></h2>
-        <p class="info">
-            Enviado por <?php eh($articulo->getUsuario()->nombre); ?> el <?php echo strftime("%e de %B del %Y", strtotime($articulo->creado_at));  ?>
-        </p>
-        <div class="entry">
-                <?php echo $articulo->contenido;?>
-        </div>
-        <p class="postmetadata">Etiquetas: <?php echo Helpers::getTags($articulo->id) ?></p>
-        <?php echo Html::link("nuevo_comentario/$articulo->slug/", 'Deja tu comentario') ?>
-    </div>
-    <?php endforeach; ?>
-    <div class="space"></div>
-    <div class="navigation">
-        <div class="alignleft">
-            <?php if($articulos->prev) echo Html::link("page/$articulos->prev/", '<span class="older">Noticias Recientes</span>'); ?></div>
-        <div class="alignright">
-            <?php if($articulos->next) echo Html::link("page/$articulos->next/", '<span class="newer">Noticias Anteriores</span>'); ?></div>
-    </div>
-</div><!-- end posts -->
+<?php foreach ($articulos->items as $key => $articulo): ?>    
+    <article class="hentry">
+        <hgroup>
+            <h2 class="entry-title"><?php echo Html::link("articulo/{$articulo->getCategoria()->nombre}/$articulo->slug/", $articulo->titulo, "title='$articulo->titulo'") ?></h2>
+            <h3>Enviado por <a class="author" href="#"><?php eh($articulo->getUsuario()->nombre); ?></a> el <abbr class="updated published" title="20100228T15:08:00"><?php echo strftime("%e de %B del %Y", strtotime($articulo->creado_at)); ?></a></time></h3>
+        </hgroup>
+        <p class="entry-summary"><?php echo $articulo->resumen; ?></p>
+        <footer><a href="#"><?php echo Html::link("nuevo_comentario/$articulo->slug/", 'Deja tu comentario') ?></a></footer>
+        <br /><hr /><br />
+    </article>        
+<?php endforeach; ?>

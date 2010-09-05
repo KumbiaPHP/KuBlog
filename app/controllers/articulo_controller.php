@@ -13,7 +13,7 @@
  *
  * @author Deivinson Tejeda <deivinsontejeda@gmail.com>
  */
-Load::models(array('articulo','recaptcha'));
+Load::models(array('articulo','recaptcha','categoria','etiqueta'));
 //require_once APP_PATH.'models/articulo.php';
 class ArticuloController extends ApplicationController {
     /**
@@ -30,23 +30,27 @@ class ArticuloController extends ApplicationController {
      *
      * @param string $slug
      */
-    public function ver($slug=NULL) {
+    public function ver($categoria_nombre=NULL, $slug=NULL) {
         if($slug) {
+            Load::lib('Utils');
             $articulo = new Articulo();
             $recaptcha = new Recaptcha();
             
             $this->articulo = $articulo->getEntryBySlug($slug);
             $this->pageTitle = $articulo->titulo.' - '.$this->pageTitle;
+            $this->description = Utils::truncateWord($articulo->resumen,15,'...');
             //Verificando que existan entradas
             if($this->articulo == NULL) {
-                $this->pageTitle = 'Ops! no se Encontraron Noticias - '.$this->pageTitle;
+                $this->pageTitle = 'Ops! no se Encontraron Noticias - '.$this->pageTitle;                
                 View::select('no_entry');
             }
 
             $this->comentarios = Load::model('comentario')->getCommentByPost($this->articulo->id);
             $this->countComment = count($this->comentarios);
             $this->captcha = $recaptcha->generar();
-        } else {
+        } else if($categoria_nombre){
+            Router::route_to('action: index');
+        }else{
             Router::route_to('action: index');
         }
     }
@@ -64,8 +68,10 @@ class ArticuloController extends ApplicationController {
      *
      */
     public function busqueda() {
+        //var_dump(Input::get('b'));
+        //die;
         Load::lib('validate');
-        if(Input::hasGet('b') && Validate::isNull(Input::get('b'))) {
+        if(Input::hasGet('b') && !Validate::isNull(Input::get('b'))) {
             $this->b = Input::get('b');
             $articulo = new Articulo();
             //Debug::getInstance()->dump($this->articulo->search($this->b), 'Resultado');
@@ -83,11 +89,22 @@ class ArticuloController extends ApplicationController {
     }
     /**
      * Filtra lo articulos por etiquetas
-     * @param $tag
+     * @param $name
      * @return unknown_type
      */
-    public function tag($tag=NULL) {
+    public function tag($name=NULL,$page=1) {
+        $etiqueta = new Etiqueta();
+        $articulo_etiqueta = new ArticuloEtiqueta();
 
+        $this->pageTitle = "Últimas Noticias sobre $name";
+        $this->articulos = null;
+
+        $tag = $etiqueta->find_first("name='$name'");
+
+        if($tag != null){
+
+            $this->articulos = $articulo_etiqueta->getPostByTag($page,10,$tag->id);
+        }              
     }
     /**
      * Guarda el comentario del artículo

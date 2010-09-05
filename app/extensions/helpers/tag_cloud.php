@@ -86,7 +86,7 @@ class TagCloud
         foreach ($this->_elements as $data) {
             if($class){
                 $size = $this->getClass(($data['count'] / $this->_biggest) * 100);
-                $output .= "<span class='size{$size}'><a href='#' class='tag'> {$data['name']} </a></span>";
+                $output .= "<span class='size{$size}'><a href='/articulo/tag/{$data['name']}' class='tag'> {$data['name']} </a></span>";
             } else {
                 // Determina el tamaño basado en el min/max scale y el smallest/biggest rango
                 $size = ((($data['count'] - $this->_smallest) * $scale) / $range) + $this->min_size;

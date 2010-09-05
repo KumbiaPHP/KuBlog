@@ -14,11 +14,13 @@
  * @author Deivinson Tejeda <deivinsontejeda@gmail.com>
  * @author Henry Stivens Adarme Muñoz <henry.stivens@gmail.com>
  */
+Load::models('articulo');
 class Comentario extends ActiveRecord {
     const STATUS_PENDING=0;
     const STATUS_APPROVED=1;
 
-    public function initizalize() {
+    public function initialize() {        
+        $this->belongs_to('articulo');
         $this->validates_email_in('email');
     }
 
@@ -40,6 +42,18 @@ class Comentario extends ActiveRecord {
      */
     public function countComment($articulo_id, $estado=1) {
         return $this->count("estado=$estado AND articulo_id=$articulo_id");
+    }
+    /**
+     * Obtiene los ultimos comentarios
+     *
+     * @param int $limit
+     * @return result
+     */
+    public function getLast($limit=10, $estado=Comentario::STATUS_APPROVED) {
+        $today = date('Y-m-d H:i:s');
+        return $this->find('order: creado_at desc',
+                "conditions: creado_at <= \"$today\" AND estado=$estado",
+                "limit: $limit");
     }
     /*
      * Callback

@@ -1,6 +1,6 @@
 <?php
 /**
- * KBlog - KumbiaPHP Blog
+ * KuBlog - KumbiaPHP Blog
  * PHP version 5
  * LICENSE
  *

@@ -30,7 +30,7 @@ define('START_TIME', microtime(1));
  * - Ruta al directorio de la aplicación (por defecto la ruta al directorio app)
  * - Esta ruta se utiliza para cargar los archivos de la aplicaciÃ³n
  **/
-define('APP_PATH', dirname(dirname(__FILE__)) . '/app/');
+define('APP_PATH', dirname(dirname(__FILE__)) . '/app/');//define('APP_PATH', '/home2/metodosp/kumbiaphp/1.0/kublog-dev/');
 
 /**
  * Define el CORE_PATH
@@ -38,7 +38,7 @@ define('APP_PATH', dirname(dirname(__FILE__)) . '/app/');
  * CORE_PATH:
  * - Ruta al directorio que contiene el núcleo de Kumbia (por defecto la ruta al directorio core/kumbia)
  **/
-define('CORE_PATH', dirname(dirname(APP_PATH)) . '/core/');
+define('CORE_PATH', '/var/www/1.0/core/');//define('CORE_PATH', '/home2/metodosp/kumbiaphp/1.0/core/');
 
 /**
  * Define el PUBLIC_PATH
@@ -60,7 +60,7 @@ define('PUBLIC_PATH', '/');
  * Obtiene la url
  **/
 //$url = isset($_GET['_url']) ? $_GET['_url'] : '/';
-$url = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '/';
+$url = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '/';//$url = isset($_SERVER['ORIG_PATH_INFO']) ? $_SERVER['ORIG_PATH_INFO'] : '/';
 
 /**
  * Carga el gestor de arranque
