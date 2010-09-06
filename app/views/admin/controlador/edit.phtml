@@ -1,0 +1,53 @@
+<?php
+/**
+ * Formulario realizado con autocarga de objeto
+ * model.campo
+ *
+ * Para editar la lógica es la misma en la autocarga de objeto que en este caso indicamos
+ * el id del objeto y se deja oculto esto para que ActiveRecord no cree un registro nuevo
+ * sino que lo actualice.
+ *
+ * hidden_field_tag(array('controllers.id'))
+ *
+ */
+?>
+    <?php View::content(); ?>
+    <?php echo Form::open('admin/controlador/edit/');//echo form_tag('admin/controllers/edit/') ?>
+    <div class="form">
+        <div class="row">
+            <label for="controllers_perfiles_id">Perfil</label>
+            <?php echo Form::dbSelect('controllers.perfil_id',
+                                       $perfiles, 'nombre',
+                                       'Seleccione...') ?>
+        </div>
+
+        <div class="row">
+            <label for='controllers_menu_id'>Menú</label>
+            <?php echo Form::dbSelect('controllers.menu_id',
+                                       $menus, 'nombre',
+                                       'Seleccione...') ?>
+        </div>
+
+        <div class="row">
+            <label for='controllers_url'>URL</label>
+            <?php echo Form::text('controllers.url') ?>
+            <div class='hint'>Ej: module/controller/action</div>
+        </div>
+
+        <div class="row">
+            <label for='controllers_nombre'>Nombre a Mostrar</label>
+            <?php echo Form::text('controllers.nombre') ?>
+        </div>
+
+        <div class="row">
+            <label for='controllers_status'>Estado</label>
+            <?php echo Form::select('controllers.status',
+                                    array('A'=>'Activo','D'=>'Desactivado'))?>
+        </div>
+
+        <div class="row action">
+            <?php echo Form::hidden('controllers.id'); ?>
+            <?php echo Form::submit('Actualizar'); ?>
+        </div>
+    </div>
+    <?php echo Form::close(); ?>

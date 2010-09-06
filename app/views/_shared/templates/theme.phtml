@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <title><?php echo $pageTitle ?></title>
+        <meta name="keywords" content="<? echo $keyWords ?>" />
+        <meta name="description" content="<? echo $description ?>" />
+        <meta name="title" content="<?php echo $pageTitle ?>" />
+
+        <?php Tag::css('theme/style') ?>
+        <?php Tag::css('theme/cloud') ?>
+        <?php echo Html::includeCss() ?>
+
+        <!--[if IE]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/theme/iehacks.css" />
+        <![endif]-->
+
+        <!--[if lte IE 7]>
+        <link rel="stylesheet" type="text/css" href="css/theme/ie67hacks.css" />
+        <![endif]-->
+    </head>
+    <body>
+        <div>
+            &nbsp;
+        </div>
+
+    <header>
+        <div id="logo">
+            <!--<a href="#"><img src="images/logo.gif" alt="Logo" /></a>-->
+            <hgroup>
+                <h1><a href="/">KuBlog</a></h1>
+                <h2>Sistema de blog potenciado por KumbiaPHP</h2>
+            </hgroup>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">home</a></li>
+                <li><a href="#">tutorials</a></li>
+                <li><a href="#">resources</a></li>
+                <li><a href="#">articles</a></li>
+                <li><a href="#">forums</a></li>
+                <li><a href="#">contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="content">
+        <section class="hfeed">
+            <?php View::content(); ?>
+        </section>
+        <aside>            
+            <?php View::partial('cloud_tag') ?>
+            <br />
+            <?php View::partial('comentario/recientes') ?>
+            <br />
+        </aside>
+    </div>
+    <footer id="main-footer">
+        <section id="footer-1">
+		Copyright KuBlog &copy; 2010
+        </section>
+        <section id="footer-2">
+
+        </section>
+    </footer>
+    <?php echo Tag::js('jquery/jquery-1.3.2.min'); ?>
+    <?php echo Tag::js('jquery/jquery.kumbiaphp'); ?>
+    <?php //View::partial('analytics') ?>
+            <!--<?php echo 'Tiempo: ' . round((microtime(1) - START_TIME), 4) . ' seg.';
+            echo ', Memoria Usada: ' . number_format(memory_get_usage() / 1048576, 2) . ' MB'; ?>-->
+</body>
+</html>

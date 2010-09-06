@@ -1,0 +1,9 @@
+<?php
+    View::content();
+    //Cuerpo del mail
+    $body = "<h2>Prueba Mail</h2> $passNew";
+    //Cargando Utils
+    Load::utils('utils');
+    //Enviando Mail
+    Mail::send($usuario->mail, $usuario->login, $body);
+?>

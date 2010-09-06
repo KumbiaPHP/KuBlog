@@ -1,0 +1,18 @@
+<h3>Editar Categoria</h3>
+<div class="form">
+    <?php View::content(); ?>
+    <?php echo Form::open("admin/categoria/edit/$categoria->id/") ?>
+        <div class="row">
+            <label for="categoria_title">Nombre</label>
+            <?php echo Form::text('categoria.nombre', "size='40'") ?>
+        </div>
+
+        
+        <div class="row action">
+            <?php echo Form::hidden('categoria.usuario_id') ?>
+            <?php View::partial('widgets/tinymce') ?>
+            <?php echo Form::submit('Enviar') ?>
+        </div>
+    <?php echo Form::close() ?>
+</div>
+<?php echo Tag::js('jquery/jquery.tag.editor'); ?>

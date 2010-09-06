@@ -1,0 +1,10 @@
+<ul>
+    <li>
+        <h2>Noticias recientes</h2>
+        <ul>
+            <?php foreach (Load::model('articulo')->getLast() as $articulo): ?>
+            <li><?php echo Html::link("articulo/$articulo->slug/", $articulo->titulo, "title= \"$articulo->titulo\"")  ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </li>
+</ul>

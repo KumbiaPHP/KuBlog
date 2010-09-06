@@ -1,0 +1,46 @@
+<?php
+/**
+ * Visualizar feed
+ *
+ * @param string $name Nombre
+ * @param string $url URL completa del feed
+ * @param int $show cantidad elementos a mostrar
+ * @return html
+ */
+   	/*<style type="text/css">
+	 jQuery lightBox plugin - Gallery style 
+	div#gallery {
+		width: 190px;
+	}
+	div#gallery ul li ul { list-style: none; }
+	div#gallery ul li ul li { background: none; display: inline; list-style-position: inside; padding-left: 13px;}
+	div#gallery ul li ul li a img {
+		border: 2px solid #3e3e3e;
+	}
+	div#gallery ul li ul li a:hover img {
+		border: 2px solid #9FC253;
+		color: #9FC253;
+	}
+	div#gallery ul li ul li a:hover { color: #fff; }
+	</style>*/
+
+?>
+<div id="gallery"><ul><li>
+<?php if ($feed = simplexml_load_file($url)){ ?>
+    <h2><?php echo $name ?></h2>
+    <ul>
+	<? for ($i=0; $i<6; $i++) : ?>
+    	<?php $item = $feed->channel->item[$i];?>
+        <?php $media  = $item->children('http://search.yahoo.com/mrss/');
+        $thumb  = $media->thumbnail->attributes();
+        $url    = (string) $thumb['url'];
+        $width  = (string) $thumb['width'];
+        $height = (string) $thumb['height'];
+        $title  = (string) $item->title; ?>
+        <li>
+            <a href="<?= $item->link?>" target="_blank"><img src="<?= $url?>" alt="<?= $title?>" title="<?= $title?>" /></a>
+        </li>
+        <? endfor;?>
+    </ul>
+<?php } ?>
+</li></ul></div>

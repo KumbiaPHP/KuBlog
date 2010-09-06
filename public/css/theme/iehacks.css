@@ -1,0 +1,19 @@
+#content {
+	background: url(images/spacer.gif) repeat;
+}
+
+aside {
+	float: right;
+	padding-top: 40px;
+}
+
+.hfeed {
+	float: left;
+	padding-top: 40px;
+}
+
+hr {
+	border-bottom: 1px solid #fff !important;
+	border-left: 1px solid #fff !important;
+	border-right: 1px solid #fff !important;
+}

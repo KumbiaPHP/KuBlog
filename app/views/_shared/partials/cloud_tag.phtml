@@ -1,0 +1,3 @@
+<?php $tagCloud = new TagCloud(Load::model('etiqueta')->getAll());?>
+<h2>Nube de etiquetas</h2><div class='cloud'><?php echo $tagCloud->show(); ?></div>
+<br /><br />

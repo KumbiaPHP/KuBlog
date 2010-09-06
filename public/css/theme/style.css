@@ -1,0 +1,224 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f1f1f1;
+    padding: 0;
+    margin: 0;
+    color: #222;
+    font-size: 62.5%;
+
+}
+
+header {
+    width: 960px;
+    margin: 0px auto;
+    display: block;
+
+}
+#logo {
+    padding: 35px 0px 35px 40px;
+    background: #fff;
+
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+
+}
+#logo a:active {
+    background: transparent !important;
+}
+
+
+nav {	
+    width: 950px;
+    margin: 0px auto;
+    overflow: hidden;
+    font-size: 2.0em;
+    font-weight: bold;
+    padding: 0px 0px 0px 10px;
+
+    display: block;
+}
+
+nav ul {
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    list-style: none;
+    float: left;
+    padding: 0px 35px 0px 10px;
+}
+nav a {
+    text-decoration: none;
+    color: #000 !important;
+    display: block;
+    padding: 20px;
+}
+nav a:hover {
+    color: #444;
+    background: #fff;
+}	
+
+
+#content {
+    width: 960px;
+    margin: 0px auto;
+
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+
+    font-size: 1.4em;
+
+}
+
+footer {
+    display: block;
+}
+#main-footer {
+    width: 960px;
+    margin: 0px auto;
+    padding: 15px;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+.hfeed, x:-moz-any-link, x:only-child {
+    float: left;
+}
+
+aside, x:-moz-any-link, x:only-child {
+    float: right;
+}
+
+article {
+    text-align: justify;
+    line-height: 1.5em;
+    color: #222;
+
+    display: block;
+}
+
+#main-content, .hfeed {
+    padding: 10px 20px 20px 40px;
+    width: 500px;
+    background: #fff;
+
+    -moz-border-radius-bottomleft: 0.8em;
+    -webkit-border-bottom-left-radius: 0.8em;
+    -moz-border-radius-topleft: 0.8em;
+    -webkit-border-top-left-radius: 0.8em;
+
+    display: block;
+
+}
+
+aside {
+    padding: 10px 20px 20px 40px;
+    width: 340px;
+    background: #fff;
+
+    -webkit-border-bottom-right-radius: 0.8em;
+    -moz-border-radius-bottomright: 0.8em;
+    -webkit-border-top-right-radius: 0.8em;
+    -moz-border-radius-topright: 0.8em;
+
+    display: block;
+
+}
+aside ul {
+    list-style: none;
+    padding: 0px 0px 0px 6px;
+}
+
+aside ul li {
+    line-height: 1.5em;
+    /*font-size: 1.2em;*/
+    border-bottom: 1px dotted #d9d9d9;
+}
+aside ul li a {
+    padding: 10px 0px 10px 10px;
+    display: block;
+    font-weight: bold;
+}
+aside ul li a:hover {
+    background: #f1f7f9;
+}
+
+/* Some Headings for You
+h1 { font-size: 3.0em; }
+h2 { font-size: 2.2em; }
+h3 { font-size: 1.6em; }
+h4 { font-size: 1.2em; }
+h5 { font-size: 1.0em; }
+h6 { font-size: 0.8em; }
+*/
+
+hgroup h3, hgroup h3 a { color: #9aa8ad !important; }
+hgroup h1, hgroup h1 a { color: #51add3 !important; }
+h3 a { text-decoration: underline; }
+h1, h2, h3, h4, h5, h6 { line-height: 0.5em; }
+
+a {
+    color: #2a708e;
+    text-decoration: none;
+}
+
+a img {
+    border: 0;
+}
+
+a:visited { color: #104258; }
+a:active { background: #eaf7fc; }
+a:hover { color: #0c1e2f; }
+
+
+hr {
+    border-bottom: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 1px dotted #d9d9d9;
+}
+
+.floatleft {
+    float: left;
+}
+
+.floatright {
+    float: right;
+}
+
+/* Formatea los mensajes Flash::xxx() de KumbiaPHP */
+.flash {
+    font-size:12px;
+    border: 1px solid;
+    margin: 1px 0;
+    min-height: 16px;
+    padding:2px 10px 2px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+
+.error {
+    color: #D8000C;
+    background-color: #FFBABA;
+    background-image: url('../../img/default/error.png');
+}
+
+.info {
+    /*color: #00529B;
+    background-color: #BDE5F8;
+    background-image: url('../../img/default/info.png');*/
+}
+
+.valid {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    background-image:url('../../img/default/valid.png');
+}
+.warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+    background-image: url('../../img/default/warning.png');
+}
