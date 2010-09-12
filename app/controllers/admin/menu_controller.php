@@ -13,47 +13,49 @@
  *
  * @author Deivinson Tejeda <deivinsontejeda@gmail.com>
  */
-Load::models('menus');
-class MenusController extends ApplicationController
+Load::models('menu');
+class menuController extends ApplicationController
 {
     /**
-     * Lista los menus...
+     * Lista los menu...
      * @param int $page
      */
     public function index($page = 1)
     {
-        $menus = new Menus();
-    	$this->listMenus = $menus->paginate("page: $page");
+        $menu = new Menu();
+    	$this->listMenu = $menu->paginate("page: $page");
     }
 
     public function create()
     {
-    	if(Input::hasPost('menus')){
-    	    $menu = new Menus($this->post('menus'));
+    	if(Input::hasPost('menu')){
+    	    $menu = new menu(Input::post('menu'));
     	    if(!$menu->save()){
-    	        $this->menus = Input::post('menus');
+    	        $this->menu = new Menu(Input::post('menu'));
     	        Flash::error('Falló la Operación');
-    	    }
+    	    }else{
+                Router::redirect('admin/menu');
+            }
     	}
     }
 
     public function edit($id = null)
     {
-        $menus = new Menus();
+        $menu = new Menu();
     	if($id != null){
     	    //Aplicando la autocarga de objeto, para comenzar la edición
-            $this->menus = $menus->find($id);
+            $this->menu = $menu->find($id);
     	}
         //se verifica si se ha enviado el formulario (submit)
-        if(Input::hasPost('menus')){
-            $menu = new Menus(Input::post('menus'));
+        if(Input::hasPost('menu')){
+            $menu = new Menu(Input::post('menu'));
             if(!$menu->update()){
                 Flash::error('Falló Operación');
                 //se hacen persistente los datos en el formulario
-                $this->menus = Input::post('menus');
+                $this->menu = Input::post('menu');
             } else {
-                //enrutando al index para listar los menus
-                Router::redirect('admin/menus/');
+                //enrutando al index para listar los menu
+                Router::redirect('admin/menu/');
             }
         }
 
@@ -66,15 +68,15 @@ class MenusController extends ApplicationController
      */
     public function del($id = null)
     {
-        $menus = new Menus();
+        $menu = new Menu();
         if ($id) {
             //Buscando el Objeto a Borrar
-            $menu = $menus->find($id);
+            $menu = $menu->find($id);
             if (!$menu->delete()) {
                 Flash::error('Falló Operación');
             }
         }
-        //enrutando al index para listar los menus
-        Router::redirect('admin/menus/');
+        //enrutando al index para listar los menu
+        Router::redirect('admin/menu/');
     }
 }

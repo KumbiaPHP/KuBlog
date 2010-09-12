@@ -1,13 +1,13 @@
 <?php View::content(); ?>
-<?php echo form_tag('perfiles/create/') ?>
+<?php echo Form::open() ?>
 <table>
     <tr>
         <td>Nombre</td>
-        <td><?php echo text_field_tag(array('perfiles.nombre')) ?></td>
+        <td><?php echo Form::text('perfil.nombre') ?></td>
     </tr>
     <tr>
         <td>&nbsp;</td>
-        <td><?php echo submit_tag('Agregar') ?></td>
+        <td><?php echo Form::submit('Agregar') ?></td>
     </tr>
 </table>
-<?php echo end_form_tag() ?>
+<?php echo Form::close() ?>

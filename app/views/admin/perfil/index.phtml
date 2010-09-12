@@ -4,12 +4,12 @@
     <ul>
     <?php foreach ($listPerfiles->items as $item) : ?>
     <li>
-        <td><?php echo Html::link("perfiles/del/$item->id/", 'Borrar') ?></td>
+        <?php echo Html::link("perfil/del/$item->id/", 'Borrar') ?>
         <strong><?php echo $item->nombre ?></strong>
     </li>
     <?php endforeach; ?>
     </ul>
     
-    <?php if($listPerfiles->prev) echo Html::link("perfiles/index/$listUsuarios->prev/", '<< Anterior |'); ?>
-    <?php if($listPerfiles->next) echo Html::link("perfiles/index/$listUsuarios->next/", 'Próximo >>'); ?>
+    <?php if($listPerfiles->prev) echo Html::link("perfil/index/$listUsuarios->prev/", '<< Anterior |'); ?>
+    <?php if($listPerfiles->next) echo Html::link("perfil/index/$listUsuarios->next/", 'Próximo >>'); ?>
 </div>

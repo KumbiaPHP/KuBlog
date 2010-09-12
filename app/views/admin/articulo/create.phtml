@@ -25,6 +25,12 @@
     </div>
 
     <div class="row">
+        <label for="articulo_estado">Permitir comentarios</label>
+        <?php echo Form::select('articulo.habilitar_comentarios',
+                array('1' => 'SI', '0' => 'NO')) ?>
+    </div>
+
+    <div class="row">
         <label for="tags">Etiquetas</label>
         <?php echo Form::text('tags', "size='100'", 'Default') ?>
     </div>

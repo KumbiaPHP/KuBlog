@@ -8,7 +8,7 @@ foreach ($articulos->items as $post_tag):
         $articulo = $post_tag->getArticulo();
         ?>
 <div class="post">
-    <h2 class="title"><?php echo Html::link("articulo/$articulo->slug/", $articulo->titulo, "title='$articulo->titulo'") ?></h2>
+    <h2 class="title"><?php echo Html::link("articulo/{$post->getCategoria()->url}/$articulo->slug/", $articulo->titulo, "title='$articulo->titulo'") ?></h2>
     <p class="info">
         Enviado por <?php eh($articulo->getUsuario()->nombre); ?> el <?php echo strftime("%e de %B del %Y", strtotime($articulo->creado_at)); ?>
     </p>
@@ -36,7 +36,7 @@ foreach ($articulos->items as $post_tag):
   ?>
   <div class="single_post">
   <article id="article<?php echo $key ?>"> <!-- The new article tag. The id is supplied so it can be scrolled into view. -->
-  <h2<?php echo Html::link("articulo/{$articulo->getCategoria()->nombre}/$articulo->slug/", $articulo->titulo, "title='$articulo->titulo'") ?></h2>
+  <h2<?php echo Html::link("articulo/{$articulo->getCategoria()->url}/$articulo->slug/", $articulo->titulo, "title='$articulo->titulo'") ?></h2>
   <p class="info">
   Enviado por <?php eh($articulo->getUsuario()->nombre); ?> el <?php echo strftime("%e de %B del %Y", strtotime($articulo->creado_at)); ?>
   </p>

@@ -1,14 +1,14 @@
 <h3>Nuevo Menu</h3>
 <div class='form'>
-    <?php echo Form::open('admin/menus/create/') ?>
+    <?php echo Form::open('admin/menu/create/') ?>
     <?php View::content(); ?>
         <div class="row">
            <label>Nombre</label>
-           <?php echo Form::text('menus.nombre') ?>
+           <?php echo Form::text('menu.nombre') ?>
         </div>
         <div class="row">
            <label>Titulo</label>
-           <?php echo Form::text('menus.titulo') ?>
+           <?php echo Form::text('menu.titulo') ?>
         </div>
         <div class="row action"> 
             <?php echo Form::submit('Agregar') ?>

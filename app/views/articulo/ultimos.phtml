@@ -2,7 +2,7 @@
 <div class="posts">
 	<h2>Últimas Noticias</h2>
 	<?php foreach ($lastPost as $post): ?>
-	<h2><?php echo Html::link("articulo/$post->slug/", $post->titulo, "title= \"$post->titulo\"")  ?></h2>
+	<h2><?php echo Html::link("articulo/{$post->getCategoria()->url}/$post->slug/", $post->titulo, "title= \"$post->titulo\"")  ?></h2>
 	<p class='info'>
         Enviado por <?php echo $post->usuario_id; ?> el <?php echo strftime("%e de %B del %Y", strtotime($post->creado_at));  ?>
     </p>

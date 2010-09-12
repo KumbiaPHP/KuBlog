@@ -12,6 +12,7 @@
  * to deivinsontejeda@gmail.com so we can send you a copy immediately.
  *
  * @author Deivinson Tejeda <deivinsontejeda@gmail.com>
+ * @author Henry Stivens Adarme <henrystivens@gmail.com>
  */
 /**
  * Carga de Modelos
@@ -23,14 +24,15 @@ Load::models('articulo' , 'articulo_etiqueta' , 'etiqueta');
 class ArticuloController extends ApplicationController {
 
     /**
-     * Lista los artículos
+     * Lista los artículos, si es administrador o editor los lista todos, si
+     * es autor o colaborador solo lusta los propios.
      * @param $page
      * @return Paginate
      */
-    public function index ($page = 1) {
+    public function index ($page = 1, $estado=null) {
         $this->pageTitle = 'Lista de artículos';
         $articulo = new Articulo();
-        $this->listPosts = $articulo->getAllPost($page);
+        $this->listPosts = $articulo->getAllPost($page, 10, $estado);
     }
     /**
      * Edita un artículo
@@ -42,15 +44,18 @@ class ArticuloController extends ApplicationController {
         //se verifica si se ha enviado el formulario (submit)
         if (Input::hasPost('articulo')) {
             if($articulo = Articulo::input('update', Input::post('articulo'))) {
-                $articulo_etiqueta = new ArticuloEtiqueta();
-                $articulo_etiqueta->addTagsPost(Input::post('tags'), $articulo->id);
+                if(Input::post('tags')){
+                    $articulo_etiqueta = new ArticuloEtiqueta();
+                    $articulo_etiqueta->addTagsPost(Input::post('tags'), $articulo->id);
+                }
                 return Router::redirect('admin/articulo/');
             }
         }
         if ($id != NULL) {
             //Aplicando la autocarga de objeto, para comenzar la edición
+            $articulo = new Articulo();
             $this->articulo = $articulo->find($id);
-            $this->pageTitle = 'Editando el articulo - ' . $this->articulo->title;
+            $this->pageTitle = 'Editando el articulo - ' . $this->articulo->titulo;
             $etiqueta = new Etiqueta();
             $this->tags = $etiqueta->getTagByPost($this->articulo->id);
             $this->categorias = Load::model('categoria')->find();
@@ -68,15 +73,19 @@ class ArticuloController extends ApplicationController {
         echo Input::post('name');
     }
     /**
-     * Crea un nuevo articulo
-     *
+     * Crea un nuevo articulo     *
      */
     public function create () {
         if (Input::hasPost('articulo')) {
             if($articulo = Articulo::input('create', Input::post('articulo'))) {
                 $articulo_etiqueta = new ArticuloEtiqueta();
-                $articulo_etiqueta->addTagsPost(Input::post('tags'), $articulo->id);
+                if(Input::post('tags')){
+                    $articulo_etiqueta->addTagsPost(Input::post('tags'), $articulo->id);
+                }
+                Flash::success('Articulo creado con éxito');
                 return Router::redirect('admin/articulo/');
+            }else{
+                $this->articulo = new Articulo(Input::post('articulo'));//Autocarga
             }
         }
 

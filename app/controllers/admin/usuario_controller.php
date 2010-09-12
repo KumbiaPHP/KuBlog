@@ -1,4 +1,5 @@
 <?php
+
 /**
  * KBlog - KumbiaPHP Blog
  * PHP version 5
@@ -14,60 +15,62 @@
  * @author Deivinson Tejeda <deivinsontejeda@gmail.com>
  */
 Load::models('usuario', 'perfil');
-class UsuarioController extends ApplicationController
-{    
+
+class UsuarioController extends ApplicationController {
+
     /**
      * Lista los Usuarios
      *
      * @param int $page
      */
-    public function index ($page = 1)
-    {
+    public function index($page = 1) {
         $usuario = new Usuario();
         $this->listUsuarios = $usuario->getListUsuarios($page);
     }
+
     /**
      * Crea un Usuario
-     *
      */
-    public function create ()
-    {
-        $perfiles = new Perfiles();
+    public function create() {
+        $perfil = new Perfil();
         //datos del select
-        $this->perfiles = $perfiles->find();
+        $this->perfiles = $perfil->find();
         /**
          * Se verifica si el usuario envio el form (submit) y si ademas
          * dentro del array POST existe uno llamado "usuarios"
          * el cual aplica la autocarga de objeto para guardar los
          * datos enviado por POST utilizando autocarga de objeto
          */
-        if (Input::hasPost('usuarios')) {
-            $usuarios = Input::post('usuarios');
+        if (Input::hasPost('usuario')) {
+            $usuario = Input::post('usuario');
             //verifica que las claves sean iguales
-            if ($usuarios['password'] === $usuarios['password2']) {
-                $usuarios['password'] = sha1($usuarios['password']);
-                $user = new Usuarios($usuarios);
-                if (!$user->save()) {
-                    Flash::error('Falló Operación');
+            if ($usuario['password'] === $usuario['password2']) {
+                $usuario['password'] = sha1($usuario['password']);
+                $user = new Usuario($usuario);
+                if ($user->save()) {
+                    Flash::success('El usuario ha sido creado con éxito');
+                    Router::redirect('admin/usuario');
+                }else{
+                    Flash::error('Hubo un problema al crear el usuario');
                     //se hacen persistente los datos en el formulario
-                    $this->usuarios = $usuarios;
+                    $this->usuario = $usuario;
                 }
             } else {
                 Flash::error('Las claves no son iguales');
                 //se limpian del array las claves ingresadas
-                unset($usuarios['password']);
+                unset($usuario['password']);
                 //se hacen persistente los datos en el formulario
-                $this->usuarios = $usuarios;
+                $this->usuario = $usuarios;
             }
         }
     }
+
     /**
      * Borra un Usuario del Sistema de forma logica
      *
      * @param int $id
      */
-    public function del ($id = null)
-    {
+    public function del($id = null) {
         $usuarios = new Usuarios();
         if ($id) {
             //Buscando el Objeto a Borrar
@@ -81,31 +84,34 @@ class UsuarioController extends ApplicationController
         //enrutando al index para listar los usuarios
         Router::route_to('action: index', 'id: 1');
     }
+
     /**
      * Muestra el form para cambiar pass al usuario
      */
-    public function cambiar_clave()
-    {
+    public function cambiar_clave() {
         $usuario = new Usuario();
-        if(Input::hasPost('usuario')){
+        if (Input::hasPost('usuario')) {
             $user = Input::post('usuario');
             //cargo la extension auth para obtener el id del usuario en session
             Load::lib('auth');
-            if(!$usuario->changePass(Auth::get('id'), $user['passold'], $user['passnew'])){
-                Flash::error('Cambio de Clave Falló');
+            if ($usuario->changePass(Auth::get('id'), $user['passold'], $user['passnew'])) {
+                Flash::success('El cambio de clave se efectuó con éxito');
+                return Router::redirect('admin/');
+            } else {
+                Flash::error('Hubo un problema al intentar el cambio de clave');
             }
         }
     }
 
-    public function recuperar_clave()
-    {
+    public function recuperar_clave() {
         View::template('mailer');
         $usuarios = new Usuarios();
-        if(Input::hasPost('login') && $this->Usuarios->loginExist(Input::post('login'))){
+        if (Input::hasPost('login') && $this->Usuarios->loginExist(Input::post('login'))) {
             Load::library('mail');
             $this->passNew = Mail::generarClave(6);
             $this->usuario = $usuarios->updateUsuarioByMail(Input::post('login'), $this->passNew);
             View::select('mailer');
         }
     }
+
 }

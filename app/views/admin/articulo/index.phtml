@@ -5,6 +5,7 @@
         <thead><tr>
                 <th>Titulo</th>
                 <th>Creado</th>
+                <th>Publicado</th>
                 <th>Autor</th>
                 <th>Estado</th>                
                 <th colspan="2" class='action'>Acciones</th>
@@ -14,6 +15,7 @@
             <tr>                
                 <td><?php eh($item->titulo) ?></td>
                 <td><?php eh($item->creado_at) ?></td>
+                <td><?php eh($item->fecha_publicacion) ?></td>
                 <td><?php eh($item->getUsuario()->nombre) ?></td>
                     <?php if($item->estado == Articulo::STATUS_PUBLISHED): ?>
                 <td><img alt="Artículo Publicado" src="/img/admin/public.png" title="Artículo Publicado" /></td>

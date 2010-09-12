@@ -1,4 +1,4 @@
-<h3>Menus</h3>
+<h3>Menu</h3>
 <div class="content">
     <?php echo View::content(); ?>
 
@@ -9,15 +9,15 @@
                 <th colspan="2" class='action'>Acciones</th>
         </tr></thead>
         <tbody>
-            <? foreach( $listMenus->items as $item):?>
+            <? foreach( $listMenu->items as $item):?>
  				<tr>
                   	<td><?php echo $item->nombre ?></td>
                   	<td><?php echo $item->titulo ?></td>
-                  	<td><?php echo Html::link("admin/menus/edit/$item->id/", Html::img('edit.png'), "title='Editar Registro' class='edit'")?></td>
-                    <td><?php echo js::link("admin/menus/del/$item->id/", '<img alt="Borra" src="/img/delete.png" title="Borrar Menu" />', '¿Esta seguro que desea eliminar este registro?', 'del') ?></td>
+                  	<td><?php echo Html::link("admin/menu/edit/$item->id/", Html::img('edit.png'), "title='Editar Registro' class='edit'")?></td>
+                    <td><?php echo js::link("admin/menu/del/$item->id/", '<img alt="Borra" src="/img/delete.png" title="Borrar Menu" />', '¿Esta seguro que desea eliminar este registro?', 'del') ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-    <?php View::partial('paginators/classic', false, array('page' => $listMenus ,'url' => 'admin/menus/index')); ?>
+    <?php View::partial('paginators/classic', false, array('page' => $listMenu ,'url' => 'admin/menu/index')); ?>
 </div>

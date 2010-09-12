@@ -3,7 +3,7 @@
 
 <div class="post">
     <?php View::content(); ?>
-    <h2 class="title"><?php echo Html::link("articulo/{$articulo->getCategoria()->nombre}/$articulo->slug/", $articulo->titulo, "title='$articulo->titulo'") ?></h2>
+    <h2 class="title"><?php echo Html::link("articulo/{$articulo->getCategoria()->url}/$articulo->slug/", $articulo->titulo, "title='$articulo->titulo'") ?></h2>
     <p class='info'>
         Enviado por <?php echo $articulo->getUsuario()->nombre; ?> el <?php echo strftime("%e de %B del %Y", strtotime($articulo->creado_at));  ?>
     </p>
@@ -13,7 +13,7 @@
             <?php echo Html::link("admin/articulo/edit/$articulo->id/", 'Actualizar'); ?>
       </div>
     <?php endif; ?>
-    <?php View::partial('widgets/socialbar', false, array('url'=>"articulo/$articulo->slug/", 'titulo'=>$articulo->titulo)) ?>
+    <?php View::partial('widgets/socialbar', false, array('url'=>"articulo/{$articulo->getCategoria()->url}/$articulo->slug/", 'titulo'=>$articulo->titulo)) ?>
     <p class="postmetadata">Etiquetas: <?php echo Helpers::getTags($articulo->id) ?></p>
 </div>
 

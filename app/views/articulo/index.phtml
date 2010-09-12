@@ -5,7 +5,7 @@ Load::lib('helpers');
 <?php foreach ($articulos->items as $key => $articulo): ?>    
     <article class="hentry">
         <hgroup>
-            <h2 class="entry-title"><?php echo Html::link("articulo/{$articulo->getCategoria()->nombre}/$articulo->slug/", $articulo->titulo, "title='$articulo->titulo'") ?></h2>
+            <h2 class="entry-title"><?php echo Html::link("articulo/{$articulo->getCategoria()->url}/$articulo->slug/", $articulo->titulo, "title='$articulo->titulo'") ?></h2>
             <h3>Enviado por <a class="author" href="#"><?php eh($articulo->getUsuario()->nombre); ?></a> el <abbr class="updated published" title="20100228T15:08:00"><?php echo strftime("%e de %B del %Y", strtotime($articulo->creado_at)); ?></a></time></h3>
         </hgroup>
         <p class="entry-summary"><?php echo $articulo->resumen; ?></p>

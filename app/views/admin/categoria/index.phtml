@@ -4,24 +4,25 @@
     <table id="minimalist">
         <thead><tr>
                 <th>Nombre</th>
-                          
+                <th>URL</th>
+                <th>Estado</th>
                 <th colspan="2" class='action'>Acciones</th>
             </tr></thead>
         <tbody>
-            <? foreach($listPosts->items as $item):?>
-            <tr>                
-                <td><?php eh($item->nombre) ?></td>
-                
-                    <?php if($item->estado == Categoria::STATUS_PUBLISHED): ?>
-                <td><img alt="Artículo Publicado" src="/img/public.png" title="Artículo Publicado" /></td>
-                    <?php else:?>
-                <td><img alt="Candidato Artículo Bueno" src="/img/candidaro-articulo-bueno.png" title="Candidato Artículo Bueno" /></td>
-                    <?php endif;?>
-                <td><?php echo Html::link("admin/categoria/edit/$item->id/", Html::img('edit.png'), "title='Editar Registro' class='edit'")?></td>
-                <td><?php echo js::link("admin/categoria/del/$item->id/", '<img alt="Borra" src="/img/delete.png" title="Borrar Noticia" />', '¿Esta seguro que desea eliminar este registro?', 'del') ?></td>
-            </tr>
+            <? foreach ($listPosts->items as $item): ?>
+                <tr>
+                    <td><?php eh($item->nombre) ?></td>
+                    <td><?php eh($item->url) ?></td>
+                <?php if ($item->estado == Categoria::STATUS_ACTIVE): ?>
+                    <td><img alt="Artículo Publicado" src="/img/admin/public.png" title="Categoria activa" /></td>
+                <?php else: ?>
+                        <td><img alt="Candidato Artículo Bueno" src="/img/admin/candidato-articulo-bueno.png" title="Categoria inactiva" /></td>
+                <?php endif; ?>
+                        <td><?php echo Html::link("admin/categoria/edit/$item->id/", Html::img('admin/edit.png'), "title='Editar registro' alt='Editar registro'") ?></td>
+                        <td><?php echo js::link("admin/categoria/del/$item->id/", Html::img('admin/delete.png'), "title='Borra registro' alt='Eliminar registro'", '¿Está seguro que desea eliminar este registro?', 'del') ?></td>
+                    </tr>
             <?php endforeach; ?>
-        </tbody>
-    </table>
-    <?php View::partial('paginators/classic', false, array('page' => $listPosts ,'url' => 'admin/categoria/index')); ?>
+                    </tbody>
+                </table>
+    <?php View::partial('paginators/classic', false, array('page' => $listPosts, 'url' => 'admin/categoria/index')); ?>
 </div>

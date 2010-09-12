@@ -7,46 +7,46 @@
  * el id del objeto y se deja oculto esto para que ActiveRecord no cree un registro nuevo
  * sino que lo actualice.
  *
- * hidden_field_tag(array('controllers.id'))
+ * hidden_field_tag(array('controlador.id'))
  *
  */
 ?>
     <?php View::content(); ?>
-    <?php echo Form::open('admin/controlador/edit/');//echo form_tag('admin/controllers/edit/') ?>
+    <?php echo Form::open('admin/controlador/edit/');//echo form_tag('admin/controlador/edit/') ?>
     <div class="form">
         <div class="row">
-            <label for="controllers_perfiles_id">Perfil</label>
-            <?php echo Form::dbSelect('controllers.perfil_id',
+            <label for="controlador_perfiles_id">Perfil</label>
+            <?php echo Form::dbSelect('controlador.perfil_id',
                                        $perfiles, 'nombre',
                                        'Seleccione...') ?>
         </div>
 
         <div class="row">
-            <label for='controllers_menu_id'>Menú</label>
-            <?php echo Form::dbSelect('controllers.menu_id',
-                                       $menus, 'nombre',
+            <label for='controlador_menu_id'>Menú</label>
+            <?php echo Form::dbSelect('controlador.menu_id',
+                                       $menu, 'nombre',
                                        'Seleccione...') ?>
         </div>
 
         <div class="row">
-            <label for='controllers_url'>URL</label>
-            <?php echo Form::text('controllers.url') ?>
+            <label for='controlador_url'>URL</label>
+            <?php echo Form::text('controlador.url') ?>
             <div class='hint'>Ej: module/controller/action</div>
         </div>
 
         <div class="row">
-            <label for='controllers_nombre'>Nombre a Mostrar</label>
-            <?php echo Form::text('controllers.nombre') ?>
+            <label for='controlador_nombre'>Nombre a Mostrar</label>
+            <?php echo Form::text('controlador.nombre') ?>
         </div>
 
         <div class="row">
-            <label for='controllers_status'>Estado</label>
-            <?php echo Form::select('controllers.status',
+            <label for='controlador_status'>Estado</label>
+            <?php echo Form::select('controlador.status',
                                     array('A'=>'Activo','D'=>'Desactivado'))?>
         </div>
 
         <div class="row action">
-            <?php echo Form::hidden('controllers.id'); ?>
+            <?php echo Form::hidden('controlador.id'); ?>
             <?php echo Form::submit('Actualizar'); ?>
         </div>
     </div>
