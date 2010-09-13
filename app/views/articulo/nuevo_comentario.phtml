@@ -8,7 +8,7 @@
     <h3>Dejanos tu Comentario</h3>
     <?php View::content() ?>
     <div class="form">
-        <?php echo Form::open("nuevo_comentario/$articulo_slug/", 'post') ?>
+        <?php echo Form::open("nuevo_comentario/$ruta", 'post') ?>
         <?php echo Form::hidden('comentario.articulo_id', '',$articulo_id) ?>
         <table>
             <tr>

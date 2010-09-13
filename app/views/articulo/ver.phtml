@@ -1,23 +1,27 @@
 <?php Load::lib('auth') ?>
 <?php Load::lib('helpers'); ?>
+<?php View::content(); ?>
+<article class="hentry">
+    <hgroup>
+        <h2 class="entry-title"><?php echo Html::link($articulo->ruta(), $articulo->titulo, "title='$articulo->titulo'") ?></h2>
+        <h3>Enviado por <a class="author" href="#"><?php eh($articulo->getUsuario()->nombre); ?></a> el <time><abbr class="updated published" title="<?php echo date(DATE_W3C, strtotime($articulo->fecha_publicacion)) ?>"><?php echo strftime("%e de %B del %Y", strtotime($articulo->creado_at)); ?></abbr></time></h3>
+    </hgroup>
+    <p class="entry-summary"><?php echo $articulo->contenido; ?></p>
+    <footer>        
+        <?php View::partial('widgets/socialbar', false, array('url' => $articulo->ruta(), 'titulo' => $articulo->titulo)) ?>
+        <p class="postmetadata">Etiquetas: <?php echo Helpers::getTags($articulo->id) ?></p>
+        <?php if (Auth::is_valid()): ?>
+            <div class="nav">
+    <?php echo Html::link("admin/articulo/edit/$articulo->id/", 'Editar este artículo'); ?>
+        </div>
+<?php endif; ?>
+    </footer>
+    <br /><hr /><br />
+</article>   
 
-<div class="post">
-    <?php View::content(); ?>
-    <h2 class="title"><?php echo Html::link("articulo/{$articulo->getCategoria()->url}/$articulo->slug/", $articulo->titulo, "title='$articulo->titulo'") ?></h2>
-    <p class='info'>
-        Enviado por <?php echo $articulo->getUsuario()->nombre; ?> el <?php echo strftime("%e de %B del %Y", strtotime($articulo->creado_at));  ?>
-    </p>
-    <?php echo $articulo->contenido; ?>
-    <?php if(Auth::is_valid()): ?>
-      <div class="nav">
-            <?php echo Html::link("admin/articulo/edit/$articulo->id/", 'Actualizar'); ?>
-      </div>
-    <?php endif; ?>
-    <?php View::partial('widgets/socialbar', false, array('url'=>"articulo/{$articulo->getCategoria()->url}/$articulo->slug/", 'titulo'=>$articulo->titulo)) ?>
-    <p class="postmetadata">Etiquetas: <?php echo Helpers::getTags($articulo->id) ?></p>
-</div>
-
-<?php //echo Html::link("nuevo_comentario/$articulo->slug/", 'Deja tu comentario') ?>
-
-<?php View::partial('comentario/create', false, array('articulo_id'=>$articulo->id, 'articulo_slug'=>$articulo->slug, 'captcha'=>$captcha)) ?>
-<?php View::partial('comentario/list', false, array('comentarios'=>$comentarios, 'countComment'=> $countComment)) ?>
+<?php
+            if ($articulo->habilitar_comentarios == 1) {
+                View::partial('comentario/create', false, array('articulo_id' => $articulo->id, 'articulo_slug' => $articulo->slug, 'captcha' => $captcha));
+                View::partial('comentario/list', false, array('comentarios' => $comentarios, 'countComment' => $countComment));
+            }
+?>

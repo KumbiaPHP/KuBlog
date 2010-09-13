@@ -63,12 +63,9 @@ nav a:hover {
 #content {
     width: 960px;
     margin: 0px auto;
-
     display: -webkit-box;
     -webkit-box-orient: horizontal;
-
     font-size: 1.4em;
-
 }
 
 footer {
@@ -81,6 +78,7 @@ footer {
     font-size: 1.8em;
     font-weight: bold;
     text-align: center;
+    clear: both;
 }
 
 

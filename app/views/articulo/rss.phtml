@@ -10,8 +10,8 @@
         <?php foreach ($lastPost as $post): ?>
             <item>
                 <title><?php echo $post->titulo ?></title>
-                <link><?php echo 'http://' . $_SERVER['HTTP_HOST'] . "/articulo/{$post->getCategoria()->url}/$post->slug/" ?></link>
-                <guid><?php echo 'http://' . $_SERVER['HTTP_HOST'] . "/articulo/{$post->getCategoria()->url}/$post->slug/" ?></guid>
+                <link><?php echo 'http://' . $_SERVER['HTTP_HOST'] . "/{$post->ruta()}" ?></link>
+                <guid><?php echo 'http://' . $_SERVER['HTTP_HOST'] . "/{$post->ruta()}" ?></guid>
                 <description><![CDATA[<?php echo $post->contenido ?>]]></description>
                 <author>info@simacel.com</author>
                 <pubDate><?php echo date(DATE_RSS, strtotime($post->creado_at)) ?></pubDate>

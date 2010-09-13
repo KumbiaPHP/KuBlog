@@ -111,13 +111,13 @@ class ArticuloController extends ApplicationController {
      * @param $tag
      * @return unknown_type
      */
-    public function nuevo_comentario($articulo_slug=null) {
+    public function nuevo_comentario($categoria_nombre=NULL, $articulo_slug=null) {
         $articulo = new Articulo();
         $recaptcha = new Recaptcha();
 
         $articulo = $articulo->getEntryBySlug($articulo_slug);
         $this->articulo_id = $articulo->id;
-        $this->articulo_slug = $articulo_slug;
+        $this->ruta = $articulo->rutaSimple();
         $this->comentarios = Load::model('comentario')->getCommentByPost($this->articulo_id);
         $this->countComment = count($this->comentarios);
         $this->captcha = $recaptcha->generar();
@@ -126,18 +126,19 @@ class ArticuloController extends ApplicationController {
 
             try {
                 //Comprueba el reCAPTCHA
-                if($recaptcha->comprobar(($_SERVER["REMOTE_ADDR"]),
-                $_POST['recaptcha_challenge_field'],
-                $_POST['recaptcha_response_field'])) {
+                //if($recaptcha->comprobar(($_SERVER["REMOTE_ADDR"]),
+                //$_POST['recaptcha_challenge_field'],
+                //$_POST['recaptcha_response_field'])) {
 
                     if(Load::model('comentario')->save(Input::post('comentario'))) {
+                        $articulo->numero_comentario += 1;
+                        $articulo->update();
                         Flash::success('Comentario enviado');
-                        Router::redirect("articulo/$articulo_slug/");
-                    }else {
-                        Flash::error('Ha ocurrido un error');
+                        Router::redirect($articulo->ruta());
+                    }else {                        
                         $this->comentario = Input::post('comentario');
                     }
-                }
+                //}
             }catch(KumbiaException $kex) {
                 Flash::error('Ingresa correctamente las palabras del captcha');
                 $this->captcha = $recaptcha->generar($kex->getMessage());                
