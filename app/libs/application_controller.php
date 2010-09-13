@@ -18,6 +18,7 @@ class ApplicationController extends Controller {
     public $description = '';
     public function initialize () {
         View::template('theme');
+        $this->categorias = Load::model('categoria')->find('conditions: estado="'.Categoria::STATUS_ACTIVE.'"');
         if (Router::get('module') == 'admin') {
             Load::lib('SdAuth');
             if (SdAuth::isLogged()) {
