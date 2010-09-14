@@ -21,7 +21,7 @@
 
 <?php
             if ($articulo->habilitar_comentarios == 1) {
-                View::partial('comentario/create', false, array('articulo_id' => $articulo->id, 'articulo_slug' => $articulo->slug, 'captcha' => $captcha));
+                View::partial('comentario/create', false, array('articulo_id' => $articulo->id, 'ruta' => $articulo->rutaSimple(), 'captcha' => $captcha));
                 View::partial('comentario/list', false, array('comentarios' => $comentarios, 'countComment' => $countComment));
             }
 ?>
