@@ -174,6 +174,14 @@ class Articulo extends ActiveRecord {
         }
     }
 
+    public function ruta() {
+        return "articulo/{$this->getCategoria()->url}/$this->slug/";
+    }
+
+    public function rutaSimple() {
+        return "{$this->getCategoria()->url}/$this->slug/";
+    }
+
     /**
      * CallBack
      */
