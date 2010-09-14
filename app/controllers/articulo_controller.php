@@ -131,7 +131,7 @@ class ArticuloController extends ApplicationController {
                 //$_POST['recaptcha_response_field'])) {
 
                     if(Load::model('comentario')->save(Input::post('comentario'))) {
-                        $articulo->numero_comentario += 1;
+                        $articulo->numero_comentarios += 1;
                         $articulo->update();
                         Flash::success('Comentario enviado');
                         Router::redirect($articulo->ruta());
