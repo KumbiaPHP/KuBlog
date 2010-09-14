@@ -14,6 +14,11 @@
  * @author Deivinson Tejeda <deivinsontejeda@gmail.com>
  */
 class Perfil extends ActiveRecord {
+    const COLABORADOR = 'colaborador';
+    const AUTOR = 'autor';
+    const EDITOR= 'editor';
+    const ADMINISTRADOR = 'administrador';
+
     public function initialize () {
         $this->has_many('controlador');
     }

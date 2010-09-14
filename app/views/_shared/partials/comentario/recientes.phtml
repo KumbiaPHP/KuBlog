@@ -5,7 +5,8 @@
     <?php foreach (Load::model('comentario')->getLast() as $comentario): ?>
         <li><?php
         $texto = Utils::truncateWord($comentario->comentario, 15, '...');
-        echo Html::link("articulo/{$comentario->getArticulo()->getCategoria()->nombre}/{$comentario->getArticulo()->slug}/#" . strtotime($comentario->creado_at), $texto, "title= \"$texto\"") ?></li>
+        $articulo = $comentario->getArticulo();
+        echo Html::link("{$articulo->ruta()}/#" . strtotime($comentario->creado_at), $texto, "title= \"$texto\"") ?></li>
     <?php endforeach; ?>
 </ul>
 

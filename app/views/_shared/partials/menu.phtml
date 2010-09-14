@@ -16,35 +16,38 @@
 </script>
 
 <ul class="dropdown dropdown-horizontal">
-    <?php foreach(Load::model('controlador')->getMenu(Auth::get('perfil_id')) as $item): ?>
+    <?php foreach (Load::model('controlador')->getMenu(Auth::get('perfil_id')) as $item): ?>
         <li>
             <a href='#' title="<?php echo $item->Menu()->titulo ?>"><?php echo $item->Menu()->nombre ?></a>
             <ul>
             <?php foreach (Load::model('controlador')->getSubMenu(Auth::get('perfil_id'), $item->Menu()->id) as $controlador): ?>
-                <?php if($controlador->url == 'null'){?>
+            <?php if ($controlador->url == 'null') {
+ ?>
                     <li class="empty"><?php echo $controlador->nombre ?></li>
-                <?php }else{?>
+<?php } else { ?>
                     <li><?php echo Html::link("$controlador->url/", $controlador->nombre) ?></li>
-                <?php }?>
-            <?php endforeach; ?>
+            <?php } ?>
+<?php endforeach; ?>
             </ul>
         </li>
     <?php endforeach; ?>
-    <li>
-        <a title="Menu Administrativo" href="#">Admin</a>
-        <ul>
-            <li class="empty">Controladores</li>
-            <li><?php echo Html::link('admin/controlador/','Listar Controladores') ?></li>
-            <li><?php echo Html::link('admin/controlador/create/', 'Nuevo Controlados') ?></li>
-            <li class="empty">Menus</li>
-            <li><?php echo Html::link('admin/menu/', 'Listar Menu') ?></li>
-            <li><?php echo Html::link('admin/menu/create/', 'Nuevo Menu') ?></li>
-        </ul>
-    </li>
-    <li class="right">
-        <?php echo Html::link('', 'Ver sitio','target="_blank"') ?>
-    </li>
-    <li class="right">
-        <?php echo Html::link('logout/', 'Salir') ?>
+<?php if (Auth::get('perfil_id') == 1) { ?>
+                    <li>
+                        <a title="Menu Administrativo" href="#">Admin</a>
+                        <ul>
+                            <li class="empty">Controladores</li>
+                            <li><?php echo Html::link('admin/controlador/', 'Listar controladores') ?></li>
+                            <li><?php echo Html::link('admin/controlador/create/', 'Crear controlador') ?></li>
+                            <li class="empty">Menus</li>
+                            <li><?php echo Html::link('admin/menu/', 'Listar menu') ?></li>
+                            <li><?php echo Html::link('admin/menu/create/', 'Crear menú') ?></li>
+                        </ul>
+                    </li>
+<?php } ?>
+                        <li class="right">
+<?php echo Html::link('', 'Ver sitio', 'target="_blank"') ?>
+                    </li>
+                    <li class="right">
+<?php echo Html::link('logout/', 'Salir') ?>
     </li>
 </ul>

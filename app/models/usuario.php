@@ -1,4 +1,5 @@
 <?php
+
 /**
  * KBlog - KumbiaPHP Blog
  * PHP version 5
@@ -14,10 +15,11 @@
  * @author Deivinson Tejeda <deivinsontejeda@gmail.com>
  */
 class Usuario extends ActiveRecord {
+
     public function initialize() {
         //relaciones
         $this->belongs_to('perfil');
-        $this->validates_email_in('mail', array('message'=>'Campo mail incorrecto'));
+        $this->validates_email_in('mail', array('message' => 'Campo mail incorrecto'));
     }
 
     /**
@@ -42,14 +44,19 @@ class Usuario extends ActiveRecord {
     public function changePass($idUser, $passOld, $passNew) {
         $user = $this->find($idUser);
         $passOld = sha1($passOld);
-        if($user->password == $passOld) {
+        if ($user->password == $passOld) {
             $user->password = sha1($passNew);
-            if($user->save()) {
-                Flash::success('Cambio de Clave se efectuó');
+            if ($user->save()) {
+                //Flash::success('El cambio de clave se efectuó con éxito');
+                return true;
+            } else {
+                //Flash::error('Hubo un problema al intentar el cambio de clave');
+                return false;
             }
-            return true;
+        } else {
+            //Flash::error('Las contraseñas no coinciden');
+            return false;
         }
-        return false;
     }
 
     /**
@@ -72,8 +79,27 @@ class Usuario extends ActiveRecord {
      */
     public function updateUsuarioByMail($login, $pass) {
         $this->find_first("login='$login'");
-        $this->password = hash('md5', $pass);
+        $this->password = hash('sha1', $pass);
         $this->update();
         return $this;
     }
+
+    /**
+     * Retorna si tiene un perfil determinado
+     */
+    public function hasProfile($perfil) {
+        if ($this->getPerfil()->nombre == $perfil) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Retorna el usuario que ha iniciado sesion
+     */
+    public function getUserLogged() {
+        return $this->find_first('id=' . Auth::get('id'));
+    }
+
 }

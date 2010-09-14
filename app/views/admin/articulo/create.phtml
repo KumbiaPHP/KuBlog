@@ -15,13 +15,19 @@
 
     <div class="row">
         <label for="articulo_contenido">Contenido</label>
-        <?php echo Form::textarea('articulo.contenido', "style='width:100%'") ?>
+        <?php echo Form::textarea('articulo.contenido', "style='width:100%' rows='20'") ?>
     </div>
 
     <div class="row">
         <label for="articulo_estado">Estado</label>
         <?php echo Form::select('articulo.estado',
                 array('0' => 'Borrador', '1' => 'Publicado', '2' => 'Archivado')) ?>
+    </div>
+
+    <div class="row">
+        <label for="articulo_estado">Permitir comentarios</label>
+        <?php echo Form::select('articulo.habilitar_comentarios',
+                array('1' => 'SI', '0' => 'NO')) ?>
     </div>
 
     <div class="row">

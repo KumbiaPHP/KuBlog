@@ -60,9 +60,10 @@ class Comentario extends ActiveRecord {
      */
     public function before_validation_on_create(){
         $this->estado = 1;
+        $this->aprobado = self::STATUS_APPROVED;
     }
 
-    public function before_save() {
+    public function before_save() {        
         /*Load::lib('Validations');
         if(!Validations::url($this->url)) {
             return 'cancel';

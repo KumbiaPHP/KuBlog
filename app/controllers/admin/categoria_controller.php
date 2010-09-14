@@ -28,9 +28,11 @@ class CategoriaController extends ApplicationController {
      * @return Paginate
      */
     public function index ($page = 1) {
-        $this->pageTitle = 'Lista de categorias';
+        $this->pageTitle = 'Lista de categorías';
         $categoria = new Categoria();
-        $this->listPosts = $categoria->getAllPost($page);
+        $this->listPosts = $categoria->paginate("page: $page",
+                "per_page: 15",
+                'order: nombre asc');
     }
     /**
      * Edita una categoria
@@ -38,19 +40,16 @@ class CategoriaController extends ApplicationController {
      * @return ResultSet
      */
     public function edit ($id = NULL) {
-        $categoria = new Categoria();
-        if($id != NULL){
-    	    //Aplicando la autocarga de objeto, para comenzar la edición
-            $this->categoria = $categoria->find($id);
-    	}
+        $categoria = new Categoria();        
         if(Input::hasPost('categoria')){
-
-            if(!$categoria->update(Input::post('categoria'))){
-                Flash::error('Falló Operación');
-            } else {                
-                return Router::redirect('admin/categoria/');
+            if($categoria->update(Input::post('categoria'))){
+                Flash::success('Categoria actualizada con éxito');
+                return Router::redirect('admin/categoria/');                
             }
         }
+        if($id != NULL){    	    
+            $this->categoria = $categoria->find($id);
+    	}
     }
     
     /**
@@ -60,12 +59,12 @@ class CategoriaController extends ApplicationController {
     public function create () {
         if (Input::hasPost('categoria')) {
             if($categoria = Categoria::input('create', Input::post('categoria'))) {
+                Flash::success('Categoria creada con éxito');
                 return Router::redirect('admin/categoria/');
+            }else{
+                $this->categoria = new Categoria(Input::post('categoria'));
             }
         }
-
-        $this->usuario_id = Auth::get('id');
-        //$this->autor = Auth::get('nombre');
     }
     /**
      * Eliminar una categoria

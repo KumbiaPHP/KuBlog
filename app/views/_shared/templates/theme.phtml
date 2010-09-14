@@ -35,39 +35,38 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#">home</a></li>
-                <li><a href="#">tutorials</a></li>
-                <li><a href="#">resources</a></li>
-                <li><a href="#">articles</a></li>
-                <li><a href="#">forums</a></li>
-                <li><a href="#">contact</a></li>
+                <li><a href="/">Inicio</a></li>
+                <?php foreach ($categorias as $item) {
+ ?>
+                    <li><a href="articulo/<?php echo $item->url?>"/><?php echo $item->nombre?></a></li>
+<?php } ?>
             </ul>
         </nav>
     </header>
 
     <div id="content">
         <section class="hfeed">
-            <?php View::content(); ?>
-        </section>
-        <aside>            
-            <?php View::partial('cloud_tag') ?>
-            <br />
-            <?php View::partial('comentario/recientes') ?>
-            <br />
-        </aside>
-    </div>
-    <footer id="main-footer">
-        <section id="footer-1">
-		Copyright KuBlog &copy; 2010
-        </section>
-        <section id="footer-2">
+<?php View::content(); ?>
+            </section>
+            <aside>
+<?php View::partial('cloud_tag') ?>
+                <br />
+<?php View::partial('comentario/recientes') ?>
+                <br />
+            </aside>
+        </div>
+        <footer id="main-footer">
+            <section id="footer-1">
+            		Copyright KuBlog &copy; 2010
+            </section>
+            <section id="footer-2">
 
-        </section>
-    </footer>
+            </section>
+        </footer>
     <?php echo Tag::js('jquery/jquery-1.3.2.min'); ?>
     <?php echo Tag::js('jquery/jquery.kumbiaphp'); ?>
-    <?php //View::partial('analytics') ?>
-            <!--<?php echo 'Tiempo: ' . round((microtime(1) - START_TIME), 4) . ' seg.';
-            echo ', Memoria Usada: ' . number_format(memory_get_usage() / 1048576, 2) . ' MB'; ?>-->
+<?php //View::partial('analytics')   ?>
+                <!--<?php echo 'Tiempo: ' . round((microtime(1) - START_TIME), 4) . ' seg.';
+                echo ', Memoria Usada: ' . number_format(memory_get_usage() / 1048576, 2) . ' MB'; ?>-->
 </body>
 </html>
