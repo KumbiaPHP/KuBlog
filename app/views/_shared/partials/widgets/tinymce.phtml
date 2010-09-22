@@ -1,11 +1,13 @@
-<script type="text/javascript" src="<?php echo PUBLIC_PATH ?>javascript/tinymce/jscripts/tiny_mce/tiny_mce.js"></script> 
+<script type="text/javascript" src="<?php echo PUBLIC_PATH ?>javascript/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript"><!--
     tinyMCE.init({
+        file_browser_callback: 'openKCFinder',
+        // General options
         mode : "textareas",
         theme : "advanced",
         language : "en",
         readonly : false,
-        plugins : "spellchecker,pagebreak,style,layer,advimage,advlink,emotions,media,searchreplace,fullscreen,noneditable,visualchars",
+        plugins : "safari,spellchecker,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,imagemanager,filemanager",
 
         // Theme options
         theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,|,formatselect,fontsizeselect,|,cut,copy,paste",
@@ -20,6 +22,22 @@
         relative_urls : false,
         remove_script_host : false
 
-        //content_css : "/content.css"
     });
-</script> 
+
+    function openKCFinder(field_name, url, type, win) {
+        tinyMCE.activeEditor.windowManager.open({
+            file: '<?php echo PUBLIC_PATH ?>javascript/kcfinder/browse.php?opener=tinymce&dir=/img/upload/&type=' + type,
+            title: 'KCFinder',
+            width: 700,
+            height: 500,
+            resizable: "yes",
+            inline: true,
+            close_previous: "no",
+            popup_css: false
+        }, {
+            window: win,
+            input: field_name
+        });
+        return false;
+    }
+</script>
